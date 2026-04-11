@@ -1,0 +1,6 @@
+2026/04/10 10:26:39 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/nginx.conf:88
+2026/04/10 10:26:39 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/nginx.conf:89
+2026/04/10 10:26:39 [warn] 1#1: "ssl_stapling" ignored, no OCSP responder URL in the certificate "/etc/nginx/ssl/cert.pem"
+2026/04/11 01:00:06 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/nginx.conf:88
+2026/04/11 01:00:06 [warn] 1#1: the "listen ... http2" directive is deprecated, use the "http2" directive instead in /etc/nginx/nginx.conf:89
+2026/04/11 01:00:06 [warn] 1#1: "ssl_stapling" ignored, no OCSP responder URL in the certificate "/etc/nginx/ssl/cert.pem"

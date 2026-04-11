@@ -1,0 +1,30 @@
+🔄 Renouvellement des certificats SSL...
+========================================
+⏸️  Arrêt de Nginx...
+time="2026-04-11T03:00:02+02:00" level=warning msg="/root/site-officiel-de-mahrasoft-innovations/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container mahrasoft-nginx Stopping 
+ Container mahrasoft-nginx Stopped 
+🔐 Renouvellement avec Let's Encrypt...
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Processing /etc/letsencrypt/renewal/mahrasoft.com.conf
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Certificate not yet due for renewal
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+The following certificates are not due for renewal yet:
+  /etc/letsencrypt/live/mahrasoft.com/fullchain.pem expires on 2026-07-09 (skipped)
+No renewals were attempted.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+✅ Certificats renouvelés
+📋 Copie des nouveaux certificats...
+▶️  Redémarrage de Nginx...
+time="2026-04-11T03:00:05+02:00" level=warning msg="/root/site-officiel-de-mahrasoft-innovations/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container mahrasoft-backend Waiting 
+ Container mahrasoft-backend Healthy 
+ Container mahrasoft-nginx Starting 
+ Container mahrasoft-nginx Started 
+✅ Renouvellement terminé avec succès !
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+📅 Prochain renouvellement:     Expiry Date: 2026-07-09 08:39:54+00:00 (VALID: 89 days)
