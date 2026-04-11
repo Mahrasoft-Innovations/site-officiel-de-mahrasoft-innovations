@@ -160,9 +160,9 @@ case $choice in
             log_info "✅ Certificat généré avec succès"
             
             # Copier les certificats
-            log_info "📋 Copie des certificats..."
-            sudo cp /etc/letsencrypt/live/$domain/fullchain.pem Backend/nginx/ssl/cert.pem
-            sudo cp /etc/letsencrypt/live/$domain/privkey.pem Backend/nginx/ssl/key.pem
+            # log_info "📋 Copie des certificats..."
+            # sudo cp /etc/letsencrypt/live/$domain/fullchain.pem Backend/nginx/ssl/cert.pem
+            # sudo cp /etc/letsencrypt/live/$domain/privkey.pem Backend/nginx/ssl/key.pem
             
             # Permissions
             sudo chown $USER:$USER Backend/nginx/ssl/*.pem

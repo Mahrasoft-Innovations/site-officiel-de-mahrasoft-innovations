@@ -1,126 +1,113 @@
-(function ($) {
-    "use strict";
+// static/js/main.js
+// =====================================================
+// Mahrasoft Innovations — Script principal (module ES6)
+// =====================================================
 
-    // Spinner
-    var spinner = function () {
-        setTimeout(function () {
-            if ($('#spinner').length > 0) {
-                $('#spinner').removeClass('show');
+// Gestionnaire d'événements DOM ready
+export const onReady = (fn) => {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+};
+
+// Cache des éléments DOM
+const dom = {
+    spinner: document.getElementById('spinner'),
+    navbar: document.querySelector('.navbar-modern'),
+    backBtn: document.getElementById('backToTop')
+};
+
+// 1. Masquer le spinner
+if (dom.spinner) dom.spinner.classList.add('hide');
+
+// 2. Navbar effet scroll (avec throttle)
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            const scrolled = window.scrollY > 100;
+            dom.navbar?.classList.toggle('scrolled', scrolled);
+            dom.backBtn?.classList.toggle('d-none', !scrolled);
+            ticking = false;
+        });
+        ticking = true;
+    }
+}, { passive: true });
+
+// 3. Back to top
+dom.backBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// 4. Dropdown au survol (desktop uniquement)
+const initHoverDropdown = () => {
+    if (window.innerWidth < 992) return;
+    document.querySelectorAll('.navbar-modern .dropdown').forEach(dd => {
+        // Nettoyage des anciens écouteurs
+        if (dd._cleanup) dd._cleanup();
+
+        const toggle = dd.querySelector('.dropdown-toggle');
+        const menu = dd.querySelector('.dropdown-menu');
+        if (!toggle || !menu) return;
+
+        const show = () => {
+            dd.classList.add('show');
+            toggle.setAttribute('aria-expanded', 'true');
+            menu.classList.add('show');
+        };
+        const hide = () => {
+            dd.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+            menu.classList.remove('show');
+        };
+
+        dd.addEventListener('mouseenter', show);
+        dd.addEventListener('mouseleave', hide);
+
+        // Sauvegarde pour nettoyage
+        dd._cleanup = () => {
+            dd.removeEventListener('mouseenter', show);
+            dd.removeEventListener('mouseleave', hide);
+        };
+    });
+};
+
+// 5. Gestion du redimensionnement (debounced)
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        document.querySelectorAll('.navbar-modern .dropdown').forEach(dd => dd._cleanup?.());
+        initHoverDropdown();
+    }, 150);
+}, { passive: true });
+
+// 6. Fermeture du menu mobile après clic
+onReady(() => {
+    document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 992) {
+                const nc = document.querySelector('.navbar-collapse');
+                const bsCollapse = nc && bootstrap?.Collapse.getInstance(nc);
+                if (bsCollapse) bsCollapse.hide();
             }
-        }, 1);
-    };
-    spinner();
-    
-    
-    // Initiate the wowjs
-    new WOW().init();
-
-
-    // Sticky Navbar
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 45) {
-            $('.navbar').addClass('sticky-top shadow-sm');
-        } else {
-            $('.navbar').removeClass('sticky-top shadow-sm');
-        }
+        });
     });
-    
-    // Dropdown on mouse hover
-    const $dropdown = $(".dropdown");
-    const $dropdownToggle = $(".dropdown-toggle");
-    const $dropdownMenu = $(".dropdown-menu");
-    const showClass = "show";
-    
-    $(window).on("load resize", function() {
-        if (this.matchMedia("(min-width: 992px)").matches) {
-            $dropdown.hover(
-            function() {
-                const $this = $(this);
-                $this.addClass(showClass);
-                $this.find($dropdownToggle).attr("aria-expanded", "true");
-                $this.find($dropdownMenu).addClass(showClass);
-            },
-            function() {
-                const $this = $(this);
-                $this.removeClass(showClass);
-                $this.find($dropdownToggle).attr("aria-expanded", "false");
-                $this.find($dropdownMenu).removeClass(showClass);
-            }
-            );
-        } else {
-            $dropdown.off("mouseenter mouseleave");
-        }
-    });
+});
 
-
-    // Facts counter
-    $('[data-toggle="counter-up"]').counterUp({
-        delay: 10,
-        time: 2000
-    });
-    
-    
-    // Back to top button
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            $('.back-to-top').fadeIn('slow');
-        } else {
-            $('.back-to-top').fadeOut('slow');
-        }
-    });
-    $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
-        return false;
-    });
-
-
-    // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1500,
-        dots: true,
-        loop: true,
-        center: true,
-        responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:1
-            },
-            768:{
-                items:2
-            },
-            992:{
-                items:3
-            }
-        }
-    });
-
-
-    // Vendor carousel
-    $('.vendor-carousel').owlCarousel({
-        loop: true,
-        margin: 45,
-        dots: false,
-        loop: true,
-        autoplay: true,
-        smartSpeed: 1000,
-        responsive: {
-            0:{
-                items:2
-            },
-            576:{
-                items:4
-            },
-            768:{
-                items:6
-            },
-            992:{
-                items:8
-            }
-        }
-    });
-    
-})(jQuery);
-
+// 7. Initialisation conditionnelle d'AOS
+onReady(() => {
+    if (window.__mahrasoft?.useAOS) {
+        import('https://unpkg.com/aos@2.3.1/dist/aos.js')
+            .then(module => {
+                module.default.init({
+                    duration: 700,
+                    easing: 'ease-in-out',
+                    once: true,
+                    offset: 60
+                });
+            })
+            .catch(() => {}); // Silencieux en cas d'échec
+    }
+    initHoverDropdown();
+});
