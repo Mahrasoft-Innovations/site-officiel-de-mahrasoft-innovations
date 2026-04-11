@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Page introuvable - Mahrasoft Innovations</title>
+    <meta name="description" content="La page que vous recherchez n'existe pas ou a été déplacée. Retournez à l'accueil de Mahrasoft Innovations, leader des services numériques au Tchad.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+
+    <!-- Préconnexions DNS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Préchargement des polices critiques -->
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2" type="font/woff2" crossorigin>
+
+    <!-- Google Fonts (asynchrone) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" media="print" onload="this.media='all';this.onload=null;">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap"></noscript>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" media="print" onload="this.media='all';this.onload=null;">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"></noscript>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" media="print" onload="this.media='all';this.onload=null;">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"></noscript>
+
+    <!-- Critical CSS inline -->
+    <style>
+        /* === RESET & VARIABLES === */
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;font-size:16px}
+        body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:#1f2937;line-height:1.6;overflow-x:hidden;background:#fff;min-height:100vh;display:flex;flex-direction:column}
+        h1,h2,h3{font-family:'Poppins',system-ui,sans-serif;font-weight:700;line-height:1.2}
+        a{text-decoration:none;color:inherit}
+        img{max-width:100%;height:auto;display:block}
+        :root{
+            --blue:#0066cc;--blue-light:#5ba3e0;--sky:#87CEEB;
+            --grad:linear-gradient(135deg,#0066cc 0%,#5ba3e0 100%);
+            --grad-r:linear-gradient(135deg,#5ba3e0 0%,#0066cc 100%);
+            --white:#fff;--g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;
+            --g700:#374151;--g800:#1f2937;--g900:#111827;
+            --sh:0 1px 3px rgba(0,0,0,.1);
+            --sh-lg:0 10px 15px -3px rgba(0,0,0,.1);
+            --tr:250ms cubic-bezier(.4,0,.2,1);
+        }
+
+        /* === SPINNER === */
+        #spinner{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .4s}
+        #spinner.hide{opacity:0;pointer-events:none}
+        .sp-ring{width:44px;height:44px;border:3px solid #e5e7eb;border-top-color:#0066cc;border-radius:50%;animation:spin .7s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+
+        /* === NAVBAR (simplifiée) === */
+        .navbar-modern{background:rgba(255,255,255,.95)!important;backdrop-filter:blur(20px);box-shadow:var(--sh);padding:1rem 0;position:sticky;top:0;z-index:1000}
+        .navbar-brand-modern{display:flex;align-items:center;gap:1rem}
+        .navbar-brand-modern img{height:50px;width:auto}
+        .brand-name{font-size:1.5rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .btn-primary-gradient{background:var(--grad);color:#fff;border:none;padding:.75rem 1.5rem;border-radius:9999px;font-weight:600;transition:var(--tr);box-shadow:var(--sh)}
+        .btn-primary-gradient:hover{transform:translateY(-2px);box-shadow:var(--sh-lg);background:var(--grad-r);color:#fff}
+
+        /* === MAIN 404 === */
+        .error-section{flex:1;display:flex;align-items:center;justify-content:center;padding:4rem 0;background:linear-gradient(180deg,#f9fafb 0%,#fff 100%)}
+        .error-code{font-size:8rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:1rem}
+        .error-title{font-size:2.5rem;font-weight:700;color:var(--g900);margin-bottom:1rem}
+        .error-message{font-size:1.125rem;color:var(--g700);max-width:500px;margin:0 auto 2rem}
+        .error-illustration{max-width:400px;margin:0 auto}
+
+        /* === FOOTER === */
+        .footer-modern{background:linear-gradient(135deg,#111827 0%,#1f2937 100%);color:#d1d5db;padding:2rem 0;text-align:center;margin-top:auto}
+        .footer-modern a{color:#9ca3af;transition:color var(--tr)}
+        .footer-modern a:hover{color:var(--sky)}
+
+        /* === RESPONSIVE === */
+        @media(max-width:991px){
+            .navbar-modern{padding:.75rem 0}
+            .navbar-brand-modern img{height:45px}
+            .brand-name{font-size:1.25rem}
+        }
+        @media(max-width:576px){
+            .error-code{font-size:6rem}
+            .error-title{font-size:2rem}
+            .navbar-brand-modern img{height:40px}
+            .brand-name{font-size:1.1rem}
+        }
+
+        /* === ACCESSIBILITÉ === */
+        *:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+        @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    </style>
+</head>
+<body>
+
+<!-- Spinner -->
+<div id="spinner" aria-hidden="true"><div class="sp-ring"></div></div>
+
+<!-- Navbar simplifiée -->
+<nav class="navbar navbar-modern">
+    <div class="container">
+        <a href="/" class="navbar-brand-modern">
+            <img src="/static/img/Logo-mahrasoft.jpg"
+                 alt="Mahrasoft Innovations Logo"
+                 width="50" height="50"
+                 loading="eager"
+                 fetchpriority="high">
+            <div class="brand-text">
+                <div class="brand-name">Mahrasoft</div>
+                <div class="brand-tagline d-none d-sm-block">Innovations pour l'Afrique</div>
+            </div>
+        </a>
+        <a href="/contact" class="btn btn-primary-gradient">
+            <i class="bi bi-chat-dots-fill me-2"></i>Contact
+        </a>
+    </div>
+</nav>
+
+<!-- Section principale 404 -->
+<main class="error-section">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Illustration SVG légère -->
+                <div class="error-illustration mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="100%" height="auto" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#0066cc;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#5ba3e0;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Poppins, sans-serif" font-size="120" font-weight="800" fill="url(#grad)">404</text>
+                        <circle cx="150" cy="80" r="15" fill="#5ba3e0" opacity="0.2" />
+                        <circle cx="400" cy="200" r="25" fill="#0066cc" opacity="0.1" />
+                        <circle cx="80" cy="220" r="10" fill="#87CEEB" opacity="0.3" />
+                    </svg>
+                </div>
+                <h1 class="error-title">Page introuvable</h1>
+                <p class="error-message">
+                    La page que vous recherchez a peut-être été déplacée, supprimée ou n'a jamais existé.
+                </p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center">
+                    <a href="/" class="btn btn-primary-gradient btn-lg px-4 py-3">
+                        <i class="bi bi-house-door-fill me-2"></i>Retour à l'accueil
+                    </a>
+                    <a href="/contact" class="btn btn-outline-primary btn-lg px-4 py-3">
+                        <i class="bi bi-envelope-fill me-2"></i>Nous contacter
+                    </a>
+                </div>
+                <p class="mt-5 text-muted small">
+                    <i class="bi bi-search me-1"></i> Vous pouvez également utiliser le menu de navigation pour trouver ce que vous cherchez.
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer minimal -->
+<footer class="footer-modern">
+    <div class="container">
+        <p class="mb-2">
+            <i class="bi bi-geo-alt-fill me-1" style="color:var(--sky)"></i> N'Djaména, Tchad
+            <span class="mx-3">|</span>
+            <i class="bi bi-telephone-fill me-1" style="color:var(--sky)"></i> +235 63 75 58 58
+            <span class="mx-3">|</span>
+            <i class="bi bi-envelope-fill me-1" style="color:var(--sky)"></i> mahrasoft.contact@gmail.com
+        </p>
+        <p class="mb-0">
+            &copy; 2025 <strong>Mahrasoft Innovations</strong>. Tous droits réservés.
+        </p>
+        <p class="mt-3">
+            <a href="/" class="me-3">Accueil</a>
+            <a href="/service" class="me-3">Services</a>
+            <a href="/about">À propos</a>
+        </p>
+    </div>
+</footer>
+
+<!-- Script minimal pour le spinner -->
+<script>
+    (function() {
+        var spinner = document.getElementById('spinner');
+        if (spinner) spinner.classList.add('hide');
+    })();
+</script>
+
+<!-- Bootstrap JS (optionnel mais utile pour le responsive) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+
+</body>
+</html>
