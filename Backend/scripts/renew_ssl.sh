@@ -8,7 +8,7 @@ echo "========================================"
 
 # Arrêter Nginx
 echo "⏸️  Arrêt de Nginx..."
-cd /home/ubuntu/Company_it_service
+cd /root/site-officiel-de-mahrasoft-innovations
 docker compose stop nginx
 
 # Renouveler les certificats
@@ -20,7 +20,7 @@ if sudo certbot renew --standalone; then
     echo "📋 Copie des nouveaux certificats..."
     sudo cp /etc/letsencrypt/live/mahrasoft.com/fullchain.pem Backend/nginx/ssl/cert.pem
     sudo cp /etc/letsencrypt/live/mahrasoft.com/privkey.pem Backend/nginx/ssl/key.pem
-    sudo chown ubuntu:ubuntu Backend/nginx/ssl/*.pem
+    sudo chown root:root Backend/nginx/ssl/*.pem
     sudo chmod 644 Backend/nginx/ssl/cert.pem
     sudo chmod 600 Backend/nginx/ssl/key.pem
     
