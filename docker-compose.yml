@@ -4,6 +4,10 @@
 #
 # App FastAPI sans base de données
 # Dépend du réseau externe créé par /root/docker-compose.yml
+#
+# FIX : volume /static retiré — les fichiers statiques sont
+#       baked dans l'image Docker (COPY app/ .) et ne doivent
+#       PAS être montés par un volume qui les écraserait.
 # =============================================================
 
 services:
@@ -16,7 +20,6 @@ services:
     restart: unless-stopped
 
     environment:
-      # Variables lues depuis .env — noms originaux du projet
       ENVIRONMENT:      ${ENVIRONMENT:-production}
       APP_DEBUG:        ${APP_DEBUG:-False}
       APP_PORT:         8000
@@ -26,32 +29,27 @@ services:
       PYTHONUNBUFFERED: "1"
       PYTHONDONTWRITEBYTECODE: "1"
 
-      # App
       APP_NAME:         ${APP_NAME:-Mahrasoft.com}
       APP_VERSION:      ${APP_VERSION:-1.0.0}
       BASE_URL:         ${BASE_URL:-https://mahrasoft.com}
       DOMAIN:           ${DOMAIN:-mahrasoft.com}
       SECRET_KEY:       ${SECRET_KEY}
 
-      # CORS
       ALLOWED_ORIGINS:  ${ALLOWED_ORIGINS:-https://mahrasoft.com,https://www.mahrasoft.com}
       CORS_ORIGINS:     ${CORS_ORIGINS:-https://mahrasoft.com,https://www.mahrasoft.com}
       CORS_CREDENTIALS: ${CORS_CREDENTIALS:-true}
 
-      # Email
       SMTP_HOST:        ${SMTP_HOST:-smtp.gmail.com}
       SMTP_PORT:        ${SMTP_PORT:-587}
       SMTP_USER:        ${SMTP_USER:-}
       SMTP_PASSWORD:    ${SMTP_PASSWORD:-}
       SMTP_FROM:        ${SMTP_FROM:-}
 
-      # Stockage
+      # UPLOAD_DIR seulement — STATIC_DIR retiré car géré par l'image
       UPLOAD_DIR:       ${UPLOAD_DIR:-/mahrasoft-app/uploads}
-      STATIC_DIR:       ${STATIC_DIR:-/mahrasoft-app/static}
       MAX_UPLOAD_SIZE:  ${MAX_UPLOAD_SIZE:-10485760}
 
-      # Cache
-      PAGE_CACHE_TTL:   3600
+      PAGE_CACHE_TTL:    3600
       ENABLE_PAGE_CACHE: "True"
 
     deploy:
@@ -64,11 +62,15 @@ services:
           cpus: "0.25"
 
     volumes:
+      # ✅ uploads : persisté sur le VPS (fichiers envoyés par les utilisateurs)
       - /mnt/storage/docker/mahrasoft/uploads:/mahrasoft-app/uploads:rw
-      - /mnt/storage/docker/mahrasoft/static:/mahrasoft-app/static:rw
+      # ✅ temp : fichiers temporaires persistés
       - /mnt/storage/docker/mahrasoft/temp:/mahrasoft-app/temp:rw
+      # ✅ logs : persistés pour consultation sans entrer dans le conteneur
       - /mnt/storage/docker/mahrasoft/logs:/mahrasoft-app/logs:rw
-      - /dev/shm:/dev/shm
+      # ❌ /static RETIRÉ — était la cause du bug :
+      #    le volume vide /mnt/storage/docker/mahrasoft/static
+      #    écrasait les fichiers copiés par COPY app/ . dans le Dockerfile
 
     expose:
       - "8000"

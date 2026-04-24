@@ -1,146 +1,126 @@
 #!/bin/bash
+# =============================================================
+# Backend/build/entrypoint.sh — mahrasoft.com
+#
+# FIX : les dossiers /mahrasoft-app/static ne sont plus créés
+#       ici car ils sont baked dans l'image. Seuls uploads,
+#       temp et logs (montés en volumes) sont initialisés.
+# =============================================================
 
 set -eu
 
-# Couleurs pour les logs
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-log_info() {
-    echo -e "${GREEN}[INFO]${NC} $1"
-}
+log_info()  { echo -e "${GREEN}[INFO]${NC} $1"; }
+log_warn()  { echo -e "${YELLOW}[WARN]${NC} $1"; }
+log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
+log_debug() { echo -e "${BLUE}[DEBUG]${NC} $1"; }
 
-log_warn() {
-    echo -e "${YELLOW}[WARN]${NC} $1"
-}
+# ── Variables d'environnement ──────────────────────────────
+log_info "🔍 Vérification des variables d'environnement..."
 
-log_error() {
-    echo -e "${RED}[ERROR]${NC} $1"
-}
-
-log_debug() {
-    echo -e "${BLUE}[DEBUG]${NC} $1"
-}
-
-# ==========================================
-# VÉRIFICATION DES VARIABLES D'ENVIRONNEMENT
-# ==========================================
-log_info "🔍 Checking environment variables..."
-
-# Variables optionnelles mais recommandées
 if [ -z "${SECRET_KEY:-}" ]; then
-  log_warn "⚠️  SECRET_KEY environment variable is not set (will use default)"
+  log_warn "⚠️  SECRET_KEY non défini (valeur par défaut utilisée)"
 fi
+log_info "✅ Variables vérifiées"
 
-log_info "✅ Environment variables checked"
+# ── Dossiers montés en volumes (uploads, temp, logs) ───────
+# ⚠️  NE PAS toucher /mahrasoft-app/static — il est baked
+#     dans l'image et doit rester intact.
+log_info "📁 Initialisation des dossiers de données..."
 
-# ==========================================
-# CRÉATION DES RÉPERTOIRES
-# ==========================================
-log_info "📁 Creating necessary directories..."
-
-# Répertoires pour les uploads et fichiers statiques
-UPLOAD_DIRS=(
+VOLUME_DIRS=(
   "/mahrasoft-app/uploads/img"
   "/mahrasoft-app/uploads/documents"
   "/mahrasoft-app/uploads/media"
   "/mahrasoft-app/uploads/temp"
-  "/mahrasoft-app/static/css"
-  "/mahrasoft-app/static/js"
-  "/mahrasoft-app/static/lib"
-  "/mahrasoft-app/static/img"
+  "/mahrasoft-app/temp"
   "/mahrasoft-app/logs"
 )
 
-for dir in "${UPLOAD_DIRS[@]}"; do
+for dir in "${VOLUME_DIRS[@]}"; do
   mkdir -p "$dir"
-  log_debug "Created: $dir"
+  log_debug "✓ $dir"
 done
 
-# Permissions
 if [ "${APP_DEBUG:-False}" == "True" ]; then
-  log_warn "⚠️  Setting permissive permissions (DEBUG mode)"
-  chmod -R 777 /mahrasoft-app/uploads /mahrasoft-app/static 2>/dev/null || true
+  chmod -R 777 /mahrasoft-app/uploads /mahrasoft-app/temp 2>/dev/null || true
+  log_warn "⚠️  Permissions permissives (mode DEBUG)"
 else
-  log_info "✅ Using secure permissions (PRODUCTION mode)"
-  chmod -R 755 /mahrasoft-app/uploads /mahrasoft-app/static 2>/dev/null || true
+  chmod -R 755 /mahrasoft-app/uploads /mahrasoft-app/temp 2>/dev/null || true
+  log_info "✅ Permissions sécurisées (mode PRODUCTION)"
 fi
 
-log_info "✅ Directories created"
+log_info "✅ Dossiers de données initialisés"
 
-# ==========================================
-# VÉRIFICATION DU FICHIER MAIN.PY
-# ==========================================
-log_info "🔍 Checking application files..."
+# ── Vérification des fichiers statiques ────────────────────
+log_info "🔍 Vérification des fichiers statiques..."
+
+if [ ! -d "/mahrasoft-app/static" ]; then
+  log_error "❌ CRITIQUE : /mahrasoft-app/static absent !"
+  log_error "   Cause probable : un volume docker-compose monte"
+  log_error "   un dossier vide sur /mahrasoft-app/static."
+  log_error "   Solution : retirer le volume static du docker-compose.yml"
+  exit 1
+fi
+
+STATIC_COUNT=$(find /mahrasoft-app/static -type f 2>/dev/null | wc -l)
+if [ "$STATIC_COUNT" -eq 0 ]; then
+  log_error "❌ CRITIQUE : /mahrasoft-app/static est VIDE !"
+  log_error "   Un volume vide écrase les fichiers de l'image."
+  log_error "   Solution : retirer le volume static du docker-compose.yml"
+  exit 1
+fi
+
+log_info "✅ Fichiers statiques présents : $STATIC_COUNT fichier(s)"
+
+# ── Vérification de main.py ────────────────────────────────
+log_info "🔍 Vérification de l'application..."
 
 if [ ! -f "/mahrasoft-app/main.py" ]; then
-  log_error "❌ main.py not found in /mahrasoft-app"
-  log_error "📂 Current directory contents:"
+  log_error "❌ main.py introuvable dans /mahrasoft-app"
   ls -la /mahrasoft-app
   exit 1
 fi
 
-log_info "✅ Application files found"
+log_info "✅ main.py trouvé"
 
-# ==========================================
-# CONFIGURATION DE L'APPLICATION
-# ==========================================
-log_info "⚙️  Configuring application..."
-
-# Afficher les informations de configuration
-log_info "Configuration:"
-log_info "  - Environment: ${ENVIRONMENT:-production}"
-log_info "  - Debug mode: ${APP_DEBUG:-False}"
-log_info "  - Workers: ${NB_WORKERS:-2}"
-log_info "  - Python path: ${PYTHONPATH:-/mahrasoft-app}"
-
-# Options de démarrage basées sur le mode
-if [ "${APP_DEBUG:-False}" == "True" ]; then
-  RELOAD_OPT="--reload"
-  LOG_LEVEL="debug"
-  log_warn "🚧 Running in DEBUG mode with auto-reload enabled"
-else
-  RELOAD_OPT=""
-  LOG_LEVEL="info"
-  log_info "🚀 Running in PRODUCTION mode"
-fi
-
-# ==========================================
-# COLLECTE DES FICHIERS STATIQUES (Optionnel)
-# ==========================================
-# Si vous avez un script pour collecter les fichiers statiques
-# log_info "📦 Collecting static files..."
-# python -c "from static_collector import collect; collect()" || log_warn "⚠️  Static collection failed"
-
-# ==========================================
-# VÉRIFICATION DE SANTÉ DE L'APPLICATION
-# ==========================================
-log_info "🏥 Performing health checks..."
-
-# Vérifier que Python peut importer l'application
+# ── Import Python ──────────────────────────────────────────
 if python -c "import main" 2>/dev/null; then
-  log_info "✅ Application imports successfully"
+  log_info "✅ Import Python réussi"
 else
-  log_error "❌ Failed to import application"
-  log_error "Python import error:"
+  log_error "❌ Échec de l'import Python :"
   python -c "import main" || true
   exit 1
 fi
 
-# ==========================================
-# LANCEMENT DE L'APPLICATION
-# ==========================================
-log_info "🚀 Starting Mahrasoft.com application..."
-log_info "🌐 Server will be available at http://0.0.0.0:8000"
-log_info "📊 Running with ${NB_WORKERS:-2} workers"
+# ── Configuration du lancement ─────────────────────────────
+log_info "⚙️  Configuration :"
+log_info "   Environment : ${ENVIRONMENT:-production}"
+log_info "   Debug       : ${APP_DEBUG:-False}"
+log_info "   Workers     : ${NB_WORKERS:-2}"
+log_info "   Static files: $STATIC_COUNT fichier(s)"
 
-# Changer le répertoire de travail
+if [ "${APP_DEBUG:-False}" == "True" ]; then
+  RELOAD_OPT="--reload"
+  LOG_LEVEL="debug"
+  log_warn "🚧 Mode DEBUG activé (auto-reload)"
+else
+  RELOAD_OPT=""
+  LOG_LEVEL="info"
+  log_info "🚀 Mode PRODUCTION"
+fi
+
+# ── Lancement ──────────────────────────────────────────────
+log_info "🚀 Démarrage de mahrasoft.com sur http://0.0.0.0:8000"
+log_info "   Workers : ${NB_WORKERS:-2}"
+
 cd /mahrasoft-app
 
-# Lancer Gunicorn avec Uvicorn workers
 exec gunicorn \
   --workers ${NB_WORKERS:-2} \
   --worker-class uvicorn.workers.UvicornWorker \

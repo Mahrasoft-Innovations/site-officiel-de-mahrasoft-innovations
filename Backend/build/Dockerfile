@@ -1,14 +1,20 @@
-# Utiliser Python Alpine pour une image plus légère
+# =============================================================
+# Backend/build/Dockerfile — mahrasoft.com
+#
+# FIX : les fichiers statiques (CSS, JS, images) sont copiés
+#       dans l'image via COPY app/ . et NE DOIVENT PAS être
+#       montés par un volume docker-compose qui les écraserait.
+# =============================================================
+
 FROM python:3.10-alpine
 
-# Définir les variables d'environnement
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
     PYTHONPATH=/mahrasoft-app
 
-# Installer les dépendances système nécessaires
+# Dépendances système
 RUN apk add --no-cache \
     gcc \
     musl-dev \
@@ -18,34 +24,39 @@ RUN apk add --no-cache \
     bash \
     && rm -rf /var/cache/apk/*
 
-# Créer le répertoire de travail
 WORKDIR /mahrasoft-app
 
-# Copier requirements.txt depuis le dossier app
+# Requirements en premier pour bénéficier du cache Docker
 COPY app/requirements.txt .
-
-# Installer les dépendances Python
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Copier tout le contenu du dossier app
+# ✅ Copie tout le code + statiques dans l'image
+# static/img/, static/css/, static/js/ sont baked ici
+# Le volume docker-compose ne doit PAS monter /mahrasoft-app/static
 COPY app/ .
 
-# Copier l'entrypoint
+# Entrypoint
 COPY build/entrypoint.sh /mahrasoft-app/entrypoint.sh
 
-# Créer les dossiers nécessaires
-RUN mkdir -p /mahrasoft-app/uploads \
-             /mahrasoft-app/static \
-             /mahrasoft-app/logs && \
+# Créer uniquement les dossiers qui seront montés par des volumes
+# (uploads, temp, logs) — PAS static qui est déjà dans l'image
+RUN mkdir -p \
+        /mahrasoft-app/uploads \
+        /mahrasoft-app/temp \
+        /mahrasoft-app/logs && \
     chmod -R 755 /mahrasoft-app && \
     chmod +x /mahrasoft-app/entrypoint.sh
 
-# Exposer le port
+# Vérification au build que les statiques sont bien présents
+RUN test -d /mahrasoft-app/static || \
+    (echo "❌ ERREUR: dossier static manquant dans app/" && exit 1)
+
+RUN test -f /mahrasoft-app/static/img/Logo-mahrasoft.jpg || \
+    echo "⚠️  WARN: Logo-mahrasoft.jpg absent de static/img/"
+
 EXPOSE 8000
 
-# Healthcheck
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
-# Utiliser l'entrypoint
 ENTRYPOINT ["/mahrasoft-app/entrypoint.sh"]
