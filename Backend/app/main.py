@@ -1,14 +1,12 @@
 """
-Mahrasoft.com — main.py (version optimisée pour la performance)
+Mahrasoft.com — main.py
 ================================================================
-Optimisations appliquées :
-  1. GZipMiddleware  — compression automatique des réponses HTML/JSON/CSS/JS
-  2. En-têtes Cache-Control sur les fichiers statiques (via middleware)
-  3. Routes /health et /ping dédupliquées (une seule définition chacune)
-  4. Lifespan remplace les @on_event dépréciés (FastAPI ≥ 0.93)
-  5. Chargement des posts en dehors du lifespan pour éviter les re-lectures
-  6. Imports rangés (stdlib → tiers → local)
-  FIX : Nouvelle API Starlette 0.36+ — TemplateResponse(request, name, context)
+FIXES appliqués :
+  1. Handler 404 : ajout de {"request": request} dans le context
+     (requis par Starlette 0.36+ sinon ValueError → 500)
+  2. Handler 404 route /carrieres/job/{id} : même fix
+  3. Tous les TemplateResponse utilisent la nouvelle API :
+     TemplateResponse(request, name, context)
 ================================================================
 """
 
@@ -20,7 +18,7 @@ import os
 from contextlib import asynccontextmanager
 from datetime import datetime
 
-from fastapi import FastAPI, HTTPException, Request, status
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse, Response
@@ -49,7 +47,7 @@ logging.basicConfig(
 logger = logging.getLogger("mahrasoft")
 
 # ──────────────────────────────────────────────────────────────────────────────
-# DONNÉES (chargées une seule fois au démarrage du process)
+# DONNÉES
 # ──────────────────────────────────────────────────────────────────────────────
 def _load_posts() -> list[dict]:
     try:
@@ -69,11 +67,11 @@ def _load_posts() -> list[dict]:
 posts: list[dict] = _load_posts()
 
 # ──────────────────────────────────────────────────────────────────────────────
-# HELPERS
+# HELPER — forcer HTTPS sur les URL générées
 # ──────────────────────────────────────────────────────────────────────────────
 def https_url_for(request: Request, name: str, **path_params) -> str:
     try:
-        url = str(request.url_for(name, **path_params))
+        url   = str(request.url_for(name, **path_params))
         proto = request.headers.get("x-forwarded-proto", "")
         if proto == "https" or os.getenv("ENVIRONMENT", "development").lower() == "production":
             url = url.replace("http://", "https://", 1)
@@ -83,14 +81,16 @@ def https_url_for(request: Request, name: str, **path_params) -> str:
         return f"/static/{path_params.get('path', '')}"
 
 # ──────────────────────────────────────────────────────────────────────────────
-# MIDDLEWARE — Cache-Control sur les statiques
+# MIDDLEWARE — Cache-Control statiques
 # ──────────────────────────────────────────────────────────────────────────────
 class StaticCacheMiddleware(BaseHTTPMiddleware):
     _LONG_CACHE  = "public, max-age=604800, immutable"
     _NO_CACHE    = "no-cache, no-store, must-revalidate"
     _SHORT_CACHE = "public, max-age=3600"
-    _STATIC_EXTS = {".css", ".js", ".woff", ".woff2", ".ttf", ".eot",
-                    ".ico", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"}
+    _STATIC_EXTS = {
+        ".css", ".js", ".woff", ".woff2", ".ttf", ".eot",
+        ".ico", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp",
+    }
 
     async def dispatch(self, request: Request, call_next) -> Response:
         response = await call_next(request)
@@ -147,7 +147,7 @@ app.add_middleware(
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
-# ── Templates (instance unique) ───────────────────────────────────────────────
+# ── Templates ─────────────────────────────────────────────────────────────────
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
 templates.env.globals["https_url_for"] = https_url_for
 
@@ -157,7 +157,10 @@ async def log_requests(request: Request, call_next):
     t0       = datetime.now()
     response = await call_next(request)
     ms       = (datetime.now() - t0).total_seconds() * 1000
-    logger.info("%s %s → %d (%.1f ms)", request.method, request.url.path, response.status_code, ms)
+    logger.info(
+        "%s %s → %d (%.1f ms)",
+        request.method, request.url.path, response.status_code, ms,
+    )
     return response
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -179,46 +182,63 @@ async def ping():
 
 # ──────────────────────────────────────────────────────────────────────────────
 # PAGES PRINCIPALES
-# FIX : nouvelle API Starlette — TemplateResponse(request, name, context)
 # ──────────────────────────────────────────────────────────────────────────────
 @app.get("/", response_class=HTMLResponse, tags=["Pages"])
 async def index(request: Request):
-    return templates.TemplateResponse(request, "index.html", {"current": "index"})
+    return templates.TemplateResponse(
+        request, "index.html", {"current": "index"}
+    )
 
 @app.get("/about", response_class=HTMLResponse, tags=["Pages"])
 async def about(request: Request):
-    return templates.TemplateResponse(request, "about.html", {"current": "about"})
+    return templates.TemplateResponse(
+        request, "about.html", {"current": "about"}
+    )
 
 @app.get("/service", response_class=HTMLResponse, tags=["Pages"])
 async def service(request: Request):
-    return templates.TemplateResponse(request, "service.html", {"current": "service"})
+    return templates.TemplateResponse(
+        request, "service.html", {"current": "service"}
+    )
 
 @app.get("/blog", response_class=HTMLResponse, tags=["Pages"])
 async def blog(request: Request):
-    return templates.TemplateResponse(request, "blog.html", {"current": "blog"})
+    return templates.TemplateResponse(
+        request, "blog.html", {"current": "blog"}
+    )
 
 @app.get("/detail", response_class=HTMLResponse, tags=["Pages"])
 async def detail(request: Request):
-    return templates.TemplateResponse(request, "detail.html", {"current": "detail"})
+    return templates.TemplateResponse(
+        request, "detail.html", {"current": "detail"}
+    )
 
 @app.get("/contact", response_class=HTMLResponse, tags=["Pages"])
 async def contact(request: Request):
-    return templates.TemplateResponse(request, "contact.html", {"current": "contact"})
+    return templates.TemplateResponse(
+        request, "contact.html", {"current": "contact"}
+    )
 
 # ──────────────────────────────────────────────────────────────────────────────
 # SECTION DÉCOUVREZ
 # ──────────────────────────────────────────────────────────────────────────────
 @app.get("/decouvrez/valeurs", response_class=HTMLResponse, tags=["Découvrez"])
 async def valeurs(request: Request):
-    return templates.TemplateResponse(request, "valeurs.html", {"current": "valeurs"})
+    return templates.TemplateResponse(
+        request, "valeurs.html", {"current": "valeurs"}
+    )
 
 @app.get("/decouvrez/clients", response_class=HTMLResponse, tags=["Découvrez"])
 async def clients(request: Request):
-    return templates.TemplateResponse(request, "clients.html", {"current": "clients"})
+    return templates.TemplateResponse(
+        request, "clients.html", {"current": "clients"}
+    )
 
 @app.get("/decouvrez/strategie", response_class=HTMLResponse, tags=["Découvrez"])
 async def strategie(request: Request):
-    return templates.TemplateResponse(request, "strategie.html", {"current": "strategie"})
+    return templates.TemplateResponse(
+        request, "strategie.html", {"current": "strategie"}
+    )
 
 # ──────────────────────────────────────────────────────────────────────────────
 # SECTION CARRIÈRES
@@ -235,20 +255,31 @@ async def rechercher_postuler(request: Request):
 async def job(id: str, request: Request):
     post = next((p for p in posts if p["id"] == id), None)
     if post:
-        return templates.TemplateResponse(request, "job.html", {"post": post})
-    return templates.TemplateResponse(request, "404.html", status_code=404)
+        return templates.TemplateResponse(
+            request, "job.html", {"post": post}
+        )
+    # FIX : {"request": request} obligatoire pour Starlette 0.36+
+    return templates.TemplateResponse(
+        request, "404.html", {"request": request}, status_code=404
+    )
 
 @app.get("/carrieres/jeunediplomes", response_class=HTMLResponse, tags=["Carrières"])
 async def jeune_diplomes(request: Request):
-    return templates.TemplateResponse(request, "jeunediplomes.html", {"current": "jeunediplomes"})
+    return templates.TemplateResponse(
+        request, "jeunediplomes.html", {"current": "jeunediplomes"}
+    )
 
 @app.get("/carrieres/etudiants", response_class=HTMLResponse, tags=["Carrières"])
 async def etudiants(request: Request):
-    return templates.TemplateResponse(request, "etudiants.html", {"current": "etudiants"})
+    return templates.TemplateResponse(
+        request, "etudiants.html", {"current": "etudiants"}
+    )
 
 @app.get("/carrieres/formation", response_class=HTMLResponse, tags=["Carrières"])
 async def formation(request: Request):
-    return templates.TemplateResponse(request, "formation.html", {"current": "formation"})
+    return templates.TemplateResponse(
+        request, "formation.html", {"current": "formation"}
+    )
 
 @app.get("/carrieres/environnementdetravail", response_class=HTMLResponse, tags=["Carrières"])
 async def environnement_travail(request: Request):
@@ -266,14 +297,24 @@ async def not_found(request: Request, exc: HTTPException):
     if request.url.path.startswith("/api"):
         return JSONResponse(
             status_code=404,
-            content={"error": "Not Found", "path": request.url.path, "timestamp": datetime.now().isoformat()},
+            content={
+                "error":     "Not Found",
+                "path":      request.url.path,
+                "timestamp": datetime.now().isoformat(),
+            },
         )
-    return templates.TemplateResponse(request, "404.html", status_code=404)
+    # FIX : {"request": request} obligatoire — sans ça → ValueError → 500
+    return templates.TemplateResponse(
+        request, "404.html", {"request": request}, status_code=404
+    )
 
 @app.exception_handler(500)
 async def server_error(request: Request, exc: Exception):
     logger.error("Erreur 500 sur %s : %s", request.url.path, exc)
     return JSONResponse(
         status_code=500,
-        content={"error": "Internal Server Error", "timestamp": datetime.now().isoformat()},
+        content={
+            "error":     "Internal Server Error",
+            "timestamp": datetime.now().isoformat(),
+        },
     )
