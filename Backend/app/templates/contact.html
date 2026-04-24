@@ -1,1030 +1,318 @@
 {% extends "base.html" %}
-
-{% block head_title %}Contact - Mahrasoft Innovations | Solutions IT au Tchad{% endblock %}
-
-{% block carousel %}
-<!-- Page Header Modern -->
-<section class="page-header-modern" style="background: linear-gradient(135deg, #0066cc 0%, #5ba3e0 100%); position: relative; overflow: hidden; padding: 140px 0 100px;">
-    <div class="hero-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-    </div>
-    <div class="container" style="position: relative; z-index: 2;">
-        <div class="row align-items-center">
-            <div class="col-lg-10 mx-auto text-center" data-aos="fade-down" data-aos-duration="1000">
-                <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb justify-content-center" style="background: transparent;">
-                        <li class="breadcrumb-item">
-                            <a href="{{ https_url_for(request,'index') }}" class="text-white opacity-75 hover-white">
-                                <i class="bi bi-house me-1"></i>Accueil
-                            </a>
-                        </li>
-                        <li class="breadcrumb-item text-white active opacity-90">Contact</li>
-                    </ol>
-                </nav>
-                <span class="badge bg-white text-primary mb-4 px-4 py-3 rounded-pill shadow-sm">
-                    <i class="bi bi-chat-heart me-2"></i>Discutons de votre projet
-                </span>
-                <h1 class="display-3 fw-bold text-white mb-4 hero-title">
-                    Contactez-<span class="text-light-blue">Nous</span>
-                </h1>
-                <p class="lead text-white opacity-90 mb-5 fs-5">
-                    Prêt à transformer votre entreprise ? Parlons de vos besoins en solutions digitales.
-                </p>
-                
-                <!-- Statistiques Hero Améliorées -->
-                <div class="hero-stats mt-5">
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="100">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-headset"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2">24/7</h3>
-                                <p class="stat-label mb-0">Support Client</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="200">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-clock"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2">2h</h3>
-                                <p class="stat-label mb-0">Réponse Moyenne</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="300">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-award"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2">100%</h3>
-                                <p class="stat-label mb-0">Satisfaction Client</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
-            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
-            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
-        </svg>
-    </div>
-</section>
-
+{% block head_title %}Contact — Mahrasoft Innovations{% endblock %}
+{% block meta_desc %}Contactez Mahrasoft Innovations pour vos projets de transformation digitale. Devis gratuit, consultation et support depuis N'Djaména, Tchad.{% endblock %}
+{% block extra_css %}
 <style>
-    .hero-shapes {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
+/* Formulaire */
+.contact-form-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-xl); padding: 40px;
+  box-shadow: var(--shadow-lg);
+}
+.form-lbl {
+  display: block; font-family: var(--font-display); font-size: .72rem;
+  font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ms-muted); margin-bottom: 7px;
+}
+.form-ctrl {
+  width: 100%; padding: 12px 16px;
+  border: 1.5px solid var(--ms-border); border-radius: var(--radius);
+  font-family: var(--font-body); font-size: .9rem; color: var(--ms-text);
+  background: var(--ms-ivory); transition: var(--transition); outline: none;
+}
+.form-ctrl:focus { border-color: var(--ms-blue); box-shadow: 0 0 0 3px rgba(0,102,204,.1); background: #fff; }
+.form-ctrl::placeholder { color: var(--ms-muted); opacity: .65; }
+textarea.form-ctrl { resize: vertical; min-height: 130px; }
+select.form-ctrl {
+  appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-repeat: no-repeat; background-position: right 14px center; background-size: 14px;
+  padding-right: 40px;
+}
+.form-submit-btn {
+  width: 100%; padding: 14px; border: none; cursor: pointer;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  color: #fff; border-radius: 50px;
+  font-family: var(--font-display); font-weight: 700; font-size: .9rem;
+  box-shadow: 0 5px 18px rgba(0,102,204,.3); transition: var(--transition);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.form-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 9px 28px rgba(0,102,204,.42); }
+.form-submit-btn:disabled { opacity: .7; cursor: not-allowed; transform: none; }
 
-    .shape {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        animation: float 20s infinite ease-in-out;
-    }
+/* Info card */
+.contact-info-card {
+  background: var(--ms-navy); border-radius: var(--radius-xl);
+  padding: 36px 28px; height: 100%;
+}
+.ci-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.ci-item:last-child { border-bottom: none; }
+.ci-icon {
+  width: 42px; height: 42px; border-radius: 11px;
+  background: rgba(0,102,204,.25); border: 1px solid rgba(0,102,204,.3);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ms-sky); font-size: .95rem; flex-shrink: 0;
+}
+.ci-label { font-size: .66rem; font-weight: 700; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 4px; font-family: var(--font-display); }
+.ci-value { font-size: .85rem; color: rgba(255,255,255,.82); line-height: 1.6; }
+.ci-value a { color: var(--ms-sky); }
+.ci-value a:hover { color: #fff; }
 
-    .shape-1 {
-        width: 400px;
-        height: 400px;
-        top: -150px;
-        left: -100px;
-        animation-delay: 0s;
-    }
+.quick-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 11px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.09);
+  color: rgba(255,255,255,.72); font-family: var(--font-display); font-weight: 600; font-size: .82rem;
+  text-decoration: none; transition: var(--transition); margin-bottom: 6px;
+}
+.quick-link:hover { background: rgba(0,102,204,.3); border-color: rgba(0,102,204,.4); color: #fff; }
+.quick-link i { color: var(--ms-sky); font-size: .85rem; }
 
-    .shape-2 {
-        width: 250px;
-        height: 250px;
-        top: 20%;
-        right: -80px;
-        animation-delay: 5s;
-    }
+/* FAQ */
+.faq-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-lg); padding: 22px 20px;
+  height: 100%; transition: var(--transition);
+}
+.faq-card:hover { box-shadow: var(--shadow); border-color: rgba(0,102,204,.2); transform: translateY(-3px); }
+.faq-q { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.faq-q-icon { width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0; background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid)); display: flex; align-items: center; justify-content: center; color: #fff; font-size: .9rem; }
+.faq-q h5 { font-size: .92rem; font-weight: 800; color: var(--ms-navy); margin: 0; }
+.faq-a { font-size: .84rem; color: var(--ms-muted); line-height: 1.7; margin: 0; }
 
-    .shape-3 {
-        width: 180px;
-        height: 180px;
-        bottom: 50px;
-        left: 25%;
-        animation-delay: 10s;
-    }
-
-    .shape-4 {
-        width: 120px;
-        height: 120px;
-        bottom: 100px;
-        right: 20%;
-        animation-delay: 15s;
-    }
-
-    .wave-divider {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        overflow: hidden;
-        line-height: 0;
-        transform: rotate(180deg);
-    }
-
-    .wave-divider svg {
-        position: relative;
-        display: block;
-        width: calc(100% + 1.3px);
-        height: 80px;
-    }
-
-    .wave-divider .shape-fill {
-        fill: #FFFFFF;
-    }
-
-    @keyframes float {
-        0%, 100% {
-            transform: translateY(0) rotate(0deg);
-        }
-        33% {
-            transform: translateY(-20px) rotate(120deg);
-        }
-        66% {
-            transform: translateY(10px) rotate(240deg);
-        }
-    }
-
-    .text-light-blue {
-        color: #87CEEB !important;
-        text-shadow: 0 2px 10px rgba(135, 206, 235, 0.3);
-    }
-
-    .hover-white:hover {
-        color: white !important;
-        opacity: 1 !important;
-    }
-
-    .hero-title {
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Styles pour les statistiques hero */
-    .stat-card-hero {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 25px;
-        min-width: 180px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        overflow: hidden;
-    }
-
-    .stat-card-hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-    }
-
-    .stat-card-hero:hover {
-        transform: translateY(-15px) scale(1.08);
-        background: rgba(255, 255, 255, 0.25);
-        border-color: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 25px 50px rgba(0, 102, 204, 0.4);
-    }
-
-    .stat-icon-wrapper {
-        position: relative;
-        display: inline-block;
-    }
-
-    .stat-icon-inner {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(10px);
-        transition: all 0.4s ease;
-    }
-
-    .stat-card-hero:hover .stat-icon-inner {
-        transform: scale(1.15) rotate(10deg);
-        background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
-        border-color: rgba(255, 255, 255, 0.8);
-    }
-
-    .stat-icon-inner i {
-        font-size: 2rem;
-        color: white;
-        text-shadow: 0 2px 15px rgba(0, 102, 204, 0.6);
-    }
-
-    .stat-number {
-        font-size: 2.8rem;
-        background: linear-gradient(135deg, #ffffff, #e6f2ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 0 4px 25px rgba(0, 102, 204, 0.4);
-        letter-spacing: -1px;
-    }
-
-    .stat-label {
-        color: rgba(255, 255, 255, 0.95);
-        font-size: 1.1rem;
-        font-weight: 600;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .stat-glow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, transparent 70%);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        border-radius: 25px;
-    }
-
-    .stat-card-hero:hover .stat-glow {
-        opacity: 1;
-    }
+/* Notification */
+.ms-notif {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  background: var(--ms-success); color: #fff;
+  padding: 14px 20px; border-radius: var(--radius);
+  font-family: var(--font-display); font-size: .85rem; font-weight: 600;
+  box-shadow: var(--shadow-xl); display: flex; align-items: center; gap: 10px;
+  animation: fadeUp .3s ease; max-width: 340px;
+}
 </style>
 {% endblock %}
 
 {% block content %}
-<!-- Informations de Contact -->
-<section class="section-modern py-6">
-    <div class="container">
-        <div class="section-title-modern text-center mb-6" data-aos="fade-up" data-aos-duration="1000">
-            <span class="section-subtitle">RESTONS CONNECTÉS</span>
-            <h2 class="section-heading">Plusieurs Façons de Nous Contacter</h2>
-            <p class="section-description">
-                Choisissez le moyen de communication qui vous convient le mieux
-            </p>
-        </div>
-
-        <div class="row g-5">
-            <!-- Téléphone -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="contact-card text-center p-5 rounded-4 h-100">
-                    <div class="contact-icon mx-auto mb-4">
-                        <i class="bi bi-telephone-fill"></i>
-                        <div class="icon-glow"></div>
-                    </div>
-                    <h4 class="fw-bold mb-3">Appelez-Nous</h4>
-                    <p class="text-muted mb-4">
-                        Parlez directement avec nos experts pour des conseils personnalisés et immédiats
-                    </p>
-                    <div class="contact-info mb-4">
-                        <h5 class="text-primary fw-bold mb-2">+235 64 64 35 00</h5>
-                        <p class="text-muted small mb-0">Lun - Ven: 8h00 - 18h00</p>
-                    </div>
-                    <a href="tel:+23566383856" class="btn btn-primary-modern w-100">
-                        <i class="bi bi-telephone-outbound me-2"></i>Appeler Maintenant
-                    </a>
-                </div>
-            </div>
-
-            <!-- Email -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="contact-card text-center p-5 rounded-4 h-100">
-                    <div class="contact-icon mx-auto mb-4">
-                        <i class="bi bi-envelope-fill"></i>
-                        <div class="icon-glow"></div>
-                    </div>
-                    <h4 class="fw-bold mb-3">Envoyez un Email</h4>
-                    <p class="text-muted mb-4">
-                        Décrivez votre projet en détail pour une réponse complète et personnalisée
-                    </p>
-                    <div class="contact-info mb-4">
-                        <h5 class="text-primary fw-bold mb-2">mahrasoft.contact@gmail.com</h5>
-                        <p class="text-muted small mb-0">Réponse sous 2 heures</p>
-                    </div>
-                    <a href="mailto:mahrasoft.contact@gmail.com" class="btn btn-primary-modern w-100">
-                        <i class="bi bi-send me-2"></i>Envoyer un Email
-                    </a>
-                </div>
-            </div>
-
-            <!-- Bureau -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="contact-card text-center p-5 rounded-4 h-100">
-                    <div class="contact-icon mx-auto mb-4">
-                        <i class="bi bi-geo-alt-fill"></i>
-                        <div class="icon-glow"></div>
-                    </div>
-                    <h4 class="fw-bold mb-3">Visitez-Nous</h4>
-                    <p class="text-muted mb-4">
-                        Rencontrons-nous pour discuter de votre projet en personne au cœur de N'Djamena
-                    </p>
-                    <div class="contact-info mb-4">
-                        <h5 class="text-primary fw-bold mb-2">Rue de 40, NDjemana</h5>
-                        <p class="text-muted small mb-0">N'Djamena, Tchad</p>
-                    </div>
-                    <a href="#map" class="btn btn-primary-modern w-100">
-                        <i class="bi bi-map me-2"></i>Voir sur la Carte
-                    </a>
-                </div>
-            </div>
-        </div>
+<section class="ms-page-hero">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="ms-breadcrumb">
+      <a href="{{ https_url_for(request,'index') }}">Accueil</a>
+      <i class="bi bi-chevron-right" style="font-size:.5rem"></i><span>Contact</span>
     </div>
+    <h1 data-aos="fade-up">Parlons de votre projet</h1>
+    <p data-aos="fade-up" data-aos-delay="80">Notre équipe répond sous 24h ouvrées. Décrivez votre besoin et nous proposons une solution adaptée — gratuitement.</p>
+  </div>
 </section>
 
-<!-- Formulaire de Contact & Carte -->
-<section class="section-modern py-6" style="background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);">
-    <div class="container">
-        <div class="row g-6">
-            <!-- Formulaire -->
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
-                <div class="contact-form-wrapper p-5 rounded-4 shadow-sm">
-                    <div class="section-title-modern text-start mb-5">
-                        <span class="section-subtitle">ENVOYEZ-NOUS UN MESSAGE</span>
-                        <h2 class="section-heading">Discutons de Votre Projet</h2>
-                        <p class="section-description">
-                            Remplissez le formulaire ci-dessous et nous vous recontacterons dans les plus brefs délais
-                        </p>
-                    </div>
+<section class="ms-section">
+  <div class="container">
+    <div class="row g-5">
 
-                    <form class="contact-form" id="contactForm">
-                        <div class="row g-4">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name" class="form-label fw-semibold mb-3">Votre Nom Complet *</label>
-                                    <div class="input-group-modern">
-                                        <i class="bi bi-person input-icon"></i>
-                                        <input type="text" class="form-control-modern" id="name" placeholder="John Doe" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email" class="form-label fw-semibold mb-3">Votre Email *</label>
-                                    <div class="input-group-modern">
-                                        <i class="bi bi-envelope input-icon"></i>
-                                        <input type="email" class="form-control-modern" id="email" placeholder="john@example.com" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="subject" class="form-label fw-semibold mb-3">Objet *</label>
-                                    <div class="input-group-modern">
-                                        <i class="bi bi-chat-dots input-icon"></i>
-                                        <input type="text" class="form-control-modern" id="subject" placeholder="De quoi souhaitez-vous discuter ?" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="service" class="form-label fw-semibold mb-3">Service Intéressé</label>
-                                    <div class="input-group-modern">
-                                        <i class="bi bi-briefcase input-icon"></i>
-                                        <select class="form-control-modern" id="service">
-                                            <option selected>Choisissez un service...</option>
-                                            <option value="numerisation">Numérisation d'Archives</option>
-                                            <option value="developpement">Développement Logiciel</option>
-                                            <option value="gestion-documentaire">Gestion Documentaire</option>
-                                            <option value="formation">Formation Professionnelle</option>
-                                            <option value="ia-data">Analyse de Données & IA</option>
-                                            <option value="support-it">Services Informatiques</option>
-                                            <option value="autre">Autre</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="message" class="form-label fw-semibold mb-3">Votre Message *</label>
-                                    <div class="input-group-modern">
-                                        <i class="bi bi-pen input-icon"></i>
-                                        <textarea class="form-control-modern" id="message" rows="6" placeholder="Décrivez votre projet ou vos besoins en détail..." required></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary-modern btn-lg w-100 py-3 submit-btn">
-                                    <span class="btn-content">
-                                        <i class="bi bi-send-fill me-2"></i>Envoyer le Message
-                                    </span>
-                                    <span class="btn-loading" style="display: none;">
-                                        <i class="bi bi-arrow-repeat me-2 spin"></i>Envoi en cours...
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+      <!-- Formulaire -->
+      <div class="col-lg-7" data-aos="fade-right">
+        <div class="contact-form-card">
+          <h3 style="font-size:1.2rem;font-weight:800;color:var(--ms-navy);margin-bottom:6px">Envoyez-nous un message</h3>
+          <p style="font-size:.86rem;color:var(--ms-muted);margin-bottom:26px">Remplissez le formulaire — nous vous répondons dans les 24h ouvrées.</p>
 
-            <!-- Carte -->
-            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
-                <div class="map-section">
-                    <div class="section-title-modern text-start mb-5">
-                        <span class="section-subtitle">NOTRE LOCALISATION</span>
-                        <h2 class="section-heading">Notre Bureau à N'Djamena</h2>
-                        <p class="section-description">
-                            Venez nous rencontrer pour discuter de votre projet digital dans un cadre professionnel
-                        </p>
-                    </div>
-
-                    <div class="map-container position-relative rounded-4 overflow-hidden shadow-lg">
-                        <iframe 
-                            id="map"
-                            class="w-100 map-iframe"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15678.834293714006!2d15.044227949999999!3d12.11449245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10e8995ac5bfffff%3A0x5e3c2955d3c5b0!2sN&#39;Djamena%2C%20Tchad!5e0!3m2!1sfr!2sfr!4v1640000000000!5m2!1sfr!2sfr"
-                            allowfullscreen="" 
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                        <div class="map-overlay p-4 rounded-3">
-                            <div class="d-flex align-items-center gap-4">
-                                <div class="flex-shrink-0">
-                                    <div class="map-icon">
-                                        <i class="bi bi-geo-alt-fill"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="fw-bold mb-2">Mahrasoft Innovations</h5>
-                                    <p class="text-muted mb-1 small">Rue de 40, NDjemana</p>
-                                    <p class="text-muted mb-0 small">N'Djamena, Tchad</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Informations supplémentaires -->
-                    <div class="map-info mt-4">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="info-item d-flex align-items-center gap-3 p-3 rounded-3" style="background: rgba(0, 102, 204, 0.05);">
-                                    <div class="info-icon">
-                                        <i class="bi bi-clock text-primary"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="fw-bold mb-1">Horaires</h6>
-                                        <p class="text-muted small mb-0">Lun - Ven: 8h-18h</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="info-item d-flex align-items-center gap-3 p-3 rounded-3" style="background: rgba(0, 102, 204, 0.05);">
-                                    <div class="info-icon">
-                                        <i class="bi bi-calendar-check text-primary"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="fw-bold mb-1">Rendez-vous</h6>
-                                        <p class="text-muted small mb-0">Recommandé</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ Rapide -->
-<section class="section-modern py-6">
-    <div class="container">
-        <div class="section-title-modern text-center mb-6" data-aos="fade-up" data-aos-duration="1000">
-            <span class="section-subtitle">QUESTIONS FRÉQUENTES</span>
-            <h2 class="section-heading">Réponses Rapides</h2>
-            <p class="section-description">
-                Quelques questions que nos clients nous posent souvent
-            </p>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="faq-item p-4 rounded-4">
-                    <div class="faq-header d-flex align-items-start gap-3 mb-3">
-                        <div class="faq-icon">
-                            <i class="bi bi-question-circle"></i>
-                        </div>
-                        <h5 class="fw-bold mb-0">Quel est le délai de réponse moyen ?</h5>
-                    </div>
-                    <p class="text-muted mb-0">
-                        Nous répondons à tous les emails dans un délai de 2 heures maximum pendant les heures ouvrables. Pour les appels téléphoniques, nous sommes disponibles du lundi au vendredi de 8h00 à 18h00.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="faq-item p-4 rounded-4">
-                    <div class="faq-header d-flex align-items-start gap-3 mb-3">
-                        <div class="faq-icon">
-                            <i class="bi bi-question-circle"></i>
-                        </div>
-                        <h5 class="fw-bold mb-0">Proposez-vous des consultations gratuites ?</h5>
-                    </div>
-                    <p class="text-muted mb-0">
-                        Oui, nous offrons une consultation initiale gratuite pour discuter de votre projet, analyser vos besoins et vous proposer la meilleure solution adaptée à votre situation.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="faq-item p-4 rounded-4">
-                    <div class="faq-header d-flex align-items-start gap-3 mb-3">
-                        <div class="faq-icon">
-                            <i class="bi bi-question-circle"></i>
-                        </div>
-                        <h5 class="fw-bold mb-0">Quels sont vos horaires d'ouverture ?</h5>
-                    </div>
-                    <p class="text-muted mb-0">
-                        Notre bureau est ouvert du lundi au vendredi de 8h00 à 18h00. Pour les urgences, nous proposons un support 24/7 pour nos clients sous contrat de maintenance.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="faq-item p-4 rounded-4">
-                    <div class="faq-header d-flex align-items-start gap-3 mb-3">
-                        <div class="faq-icon">
-                            <i class="bi bi-question-circle"></i>
-                        </div>
-                        <h5 class="fw-bold mb-0">Travaillez-vous avec des clients internationaux ?</h5>
-                    </div>
-                    <p class="text-muted mb-0">
-                        Absolument ! Bien que basés au Tchad, nous travaillons avec des clients dans toute l'Afrique Centrale et au-delà. Nous proposons des réunions en ligne pour faciliter la collaboration à distance.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA Amélioré -->
-<section class="section-modern py-6" style="background: linear-gradient(135deg, #0066cc 0%, #5ba3e0 100%); position: relative; overflow: hidden;">
-    <div class="particles-container">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-    <div class="container position-relative" style="z-index: 2;">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-8" data-aos="fade-right" data-aos-duration="1000">
-                <h2 class="display-5 fw-bold text-white mb-4">
-                    Prêt à Démarrer Votre Projet ?
-                </h2>
-                <p class="lead text-white mb-4 opacity-90 fs-5">
-                    Contactez-nous dès aujourd'hui pour une consultation gratuite et découvrez comment nos solutions peuvent transformer votre entreprise.
+          <form id="contactForm" method="post" action="{{ https_url_for(request,'contact') }}">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <label class="form-lbl">Nom complet *</label>
+                <input type="text" name="name" class="form-ctrl" placeholder="Prénom NOM" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-lbl">Email *</label>
+                <input type="email" name="email" class="form-ctrl" placeholder="votre@email.com" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-lbl">Téléphone</label>
+                <input type="tel" name="phone" class="form-ctrl" placeholder="+235 XX XX XX XX">
+              </div>
+              <div class="col-md-6">
+                <label class="form-lbl">Organisation</label>
+                <input type="text" name="company" class="form-ctrl" placeholder="Entreprise / Institution">
+              </div>
+              <div class="col-12">
+                <label class="form-lbl">Service souhaité</label>
+                <select name="service" class="form-ctrl">
+                  <option value="">— Choisissez un service —</option>
+                  <option>Numérisation d'Archives</option>
+                  <option>Développement Logiciel</option>
+                  <option>Formation Professionnelle</option>
+                  <option>Analyse de Données & IA</option>
+                  <option>Gestion Documentaire</option>
+                  <option>E-Commerce & Marketplace</option>
+                  <option>Conseil / Audit IT</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-lbl">Votre message *</label>
+                <textarea name="message" class="form-ctrl" placeholder="Décrivez votre projet, vos besoins ou posez vos questions…" required></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="form-submit-btn" id="submitBtn">
+                  <i class="bi bi-send-fill"></i>
+                  <span id="submitText">Envoyer le message</span>
+                </button>
+                <p style="font-size:.73rem;color:var(--ms-muted);margin-top:10px;text-align:center">
+                  <i class="bi bi-shield-check me-1" style="color:var(--ms-blue)"></i>
+                  Vos données sont confidentielles et ne seront jamais partagées.
                 </p>
-                <div class="cta-features">
-                    <div class="cta-feature">
-                        <i class="bi bi-check-circle-fill text-white"></i>
-                        <span class="text-white opacity-90">Consultation gratuite</span>
-                    </div>
-                    <div class="cta-feature">
-                        <i class="bi bi-check-circle-fill text-white"></i>
-                        <span class="text-white opacity-90">Devis personnalisé</span>
-                    </div>
-                    <div class="cta-feature">
-                        <i class="bi bi-check-circle-fill text-white"></i>
-                        <span class="text-white opacity-90">Support 24/7</span>
-                    </div>
-                </div>
+              </div>
             </div>
-            <div class="col-lg-4 text-lg-end" data-aos="fade-left" data-aos-duration="1000">
-                <div class="d-flex flex-column flex-sm-row flex-lg-column gap-3">
-                    <a href="tel:+23566383856" class="btn btn-light btn-lg px-4 py-3 rounded-pill fw-bold shadow-lg">
-                        <i class="bi bi-telephone-fill me-2"></i>Nous Appeler
-                    </a>
-                    <a href="mailto:mahrasoft.contact@gmail.com" class="btn btn-outline-light btn-lg px-4 py-3 rounded-pill fw-bold">
-                        <i class="bi bi-envelope me-2"></i>Envoyer Email
-                    </a>
-                </div>
-            </div>
+          </form>
         </div>
+      </div>
+
+      <!-- Informations -->
+      <div class="col-lg-5" data-aos="fade-left" data-aos-delay="100">
+        <div class="contact-info-card">
+          <h4 style="color:#fff;font-size:1rem;font-weight:800;margin-bottom:6px">Nos coordonnées</h4>
+          <p style="color:rgba(255,255,255,.48);font-size:.82rem;margin-bottom:22px;line-height:1.6">
+            Disponible Lun–Sam 8h–18h (UTC+1, N'Djaména)
+          </p>
+
+          <div class="ci-item">
+            <div class="ci-icon"><i class="bi bi-geo-alt-fill"></i></div>
+            <div>
+              <div class="ci-label">Adresse</div>
+              <div class="ci-value">N'Djaména, République du Tchad<br>Rue de 40, Quartier Moursal</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon"><i class="bi bi-telephone-fill"></i></div>
+            <div>
+              <div class="ci-label">Téléphone</div>
+              <div class="ci-value">
+                <a href="tel:+23563755858">+235 63 75 58 58</a><br>
+                <a href="tel:+23564643500">+235 64 64 35 00</a>
+              </div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon"><i class="bi bi-envelope-fill"></i></div>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value">
+                <a href="mailto:mahrasoft.contact@gmail.com">mahrasoft.contact@gmail.com</a>
+              </div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon"><i class="bi bi-clock-fill"></i></div>
+            <div>
+              <div class="ci-label">Horaires</div>
+              <div class="ci-value">Lun–Sam : 8h00 – 18h00<br>Réponse email &lt; 24h ouvrées</div>
+            </div>
+          </div>
+
+          <!-- Liens produits -->
+          <div style="margin-top:22px">
+            <div style="font-size:.64rem;font-weight:700;color:rgba(255,255,255,.38);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;font-family:var(--font-display)">
+              Accès rapide — Nos produits
+            </div>
+            <a href="https://mahrasoftacademia.com" target="_blank" rel="noopener" class="quick-link"><i class="bi bi-mortarboard-fill"></i> Mahrasoft Academia</a>
+            <a href="https://mahrasouk.com" target="_blank" rel="noopener" class="quick-link"><i class="bi bi-cart-fill"></i> Mahrasouk</a>
+            <a href="https://chume-ndjamena.com" target="_blank" rel="noopener" class="quick-link"><i class="bi bi-hospital-fill"></i> CHUME N'Djamena</a>
+            <a href="https://estructuretchad.com" target="_blank" rel="noopener" class="quick-link"><i class="bi bi-building"></i> EstructuraTchad</a>
+          </div>
+
+          <!-- Réseaux -->
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)">
+            <div style="font-size:.64rem;font-weight:700;color:rgba(255,255,255,.38);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;font-family:var(--font-display)">Réseaux sociaux</div>
+            <div style="display:flex;gap:8px">
+              {% set soc_links = [('bi-facebook','https://www.facebook.com/people/Mahrasoft-Innovations/61564920615100/'),('bi-twitter-x','https://twitter.com/mahrasoft'),('bi-linkedin','https://www.linkedin.com/company/mahrasoft'),('bi-youtube','https://www.youtube.com/@mahrasoftinnovations'),('bi-instagram','https://instagram.com/mahrasoft')] %}
+              {% for icon, url in soc_links %}
+              <a href="{{ url }}" target="_blank" rel="noopener"
+                 style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);font-size:.8rem;text-decoration:none;transition:var(--transition)"
+                 onmouseover="this.style.background='var(--ms-blue)';this.style.color='#fff'"
+                 onmouseout="this.style.background='rgba(255,255,255,.08)';this.style.color='rgba(255,255,255,.55)'">
+                <i class="bi {{ icon }}"></i>
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </section>
 
-<style>
-    .py-6 {
-        padding: 6rem 0;
-    }
+<!-- Carte -->
+<section class="ms-section-sm alt">
+  <div class="container">
+    <div class="text-center mb-4" data-aos="fade-up">
+      <span class="ms-tag">Localisation</span>
+      <h2 class="ms-title">Notre bureau à N'Djaména</h2>
+    </div>
+    <div style="border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl);height:400px;position:relative" data-aos="fade-up" data-aos-delay="80">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15678.834293714006!2d15.044227949999999!3d12.11449245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10e8995ac5bfffff%3A0x5e3c2955d3c5b0!2sN%27Djam%C3%A9na%2C%20Tchad!5e0!3m2!1sfr!2sfr!4v1640000000000!5m2!1sfr!2sfr"
+        width="100%" height="100%" style="border:0;filter:grayscale(.15)" allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <!-- Badge overlay -->
+      <div style="position:absolute;bottom:20px;left:20px;right:20px;background:#fff;border-radius:var(--radius);padding:14px 18px;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:14px">
+        <div style="width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,var(--ms-blue),var(--ms-blue-mid));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;flex-shrink:0">
+          <i class="bi bi-geo-alt-fill"></i>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display);font-weight:800;font-size:.88rem;color:var(--ms-navy)">Mahrasoft Innovations</div>
+          <div style="font-size:.76rem;color:var(--ms-muted)">Rue de 40 — N'Djaména, Tchad · Lun–Sam 8h–18h</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    .mb-6 {
-        margin-bottom: 6rem;
-    }
+<!-- FAQ -->
+<section class="ms-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Questions fréquentes</span>
+      <h2 class="ms-title">Réponses rapides</h2>
+    </div>
+    <div class="row g-4 justify-content-center">
+      {% set faqs = [
+        ('bi-clock-fill','Délai de réponse','Nous répondons à tous les messages sous 24h ouvrées. Pour les urgences, appelez directement le +235 63 75 58 58.'),
+        ('bi-currency-exchange','Devis gratuit ?','Oui, 100% gratuit. Notre analyse initiale et notre proposition technique sont offertes sans engagement de votre part.'),
+        ('bi-geo-alt-fill','Déplacements possibles ?','Nous intervenons à N\'Djaména et dans toutes les régions du Tchad. Certains projets nécessitent des déplacements.'),
+        ('bi-calendar-check','Durée des projets','De 2 semaines pour un site vitrine à 6+ mois pour un ERP. Nous adaptons les délais à vos contraintes.')
+      ] %}
+      {% for icon, q, a in faqs %}
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 55 }}">
+        <div class="faq-card">
+          <div class="faq-q">
+            <div class="faq-q-icon"><i class="bi {{ icon }}"></i></div>
+            <h5>{{ q }}</h5>
+          </div>
+          <p class="faq-a">{{ a }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-    /* Styles pour les cartes de contact */
-    .contact-card {
-        background: white;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border: 2px solid transparent;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .contact-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 25px 50px rgba(0, 102, 204, 0.2);
-        border-color: rgba(0, 102, 204, 0.2);
-    }
-
-    .contact-icon {
-        position: relative;
-        width: 100px;
-        height: 100px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 25px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        color: white;
-        transition: all 0.3s ease;
-    }
-
-    .contact-card:hover .contact-icon {
-        transform: scale(1.1) rotate(5deg);
-        box-shadow: 0 15px 30px rgba(0, 102, 204, 0.4);
-    }
-
-    .icon-glow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
-        border-radius: 25px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .contact-card:hover .icon-glow {
-        opacity: 1;
-    }
-
-    /* Styles pour le formulaire */
-    .contact-form-wrapper {
-        background: white;
-        border: 2px solid rgba(0, 102, 204, 0.1);
-    }
-
-    .input-group-modern {
-        position: relative;
-    }
-
-    .input-icon {
-        position: absolute;
-        left: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #0066cc;
-        font-size: 1.2rem;
-        z-index: 3;
-    }
-
-    .form-control-modern {
-        width: 100%;
-        padding: 16px 20px 16px 55px;
-        border: 2px solid #e5e7eb;
-        border-radius: 15px;
-        font-size: 1rem;
-        transition: all 0.3s;
-        background: #ffffff;
-        color: #2c3e50;
-    }
-
-    .form-control-modern:focus {
-        border-color: #0066cc;
-        box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.15);
-        background: #ffffff;
-        transform: translateY(-2px);
-    }
-
-    .form-control-modern:hover {
-        border-color: #cbd5e1;
-    }
-
-    textarea.form-control-modern {
-        resize: vertical;
-        min-height: 120px;
-    }
-
-    select.form-control-modern {
-        appearance: none;
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-        background-position: right 20px center;
-        background-repeat: no-repeat;
-        background-size: 16px;
-        padding-right: 55px;
-    }
-
-    .submit-btn {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .submit-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
-    }
-
-    .spin {
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-
-    /* Styles pour la carte */
-    .map-container {
-        position: relative;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .map-iframe {
-        height: 500px;
-        border: none;
-        filter: grayscale(0.2);
-        transition: filter 0.3s ease;
-    }
-
-    .map-container:hover .map-iframe {
-        filter: grayscale(0);
-    }
-
-    .map-overlay {
-        background: white;
-        position: absolute;
-        bottom: 25px;
-        left: 25px;
-        right: 25px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        transition: all 0.3s ease;
-    }
-
-    .map-container:hover .map-overlay {
-        transform: translateY(-5px);
-    }
-
-    .map-icon {
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: white;
-    }
-
-    .info-icon {
-        width: 45px;
-        height: 45px;
-        background: rgba(0, 102, 204, 0.1);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-    }
-
-    /* Styles pour la FAQ */
-    .faq-item {
-        background: rgba(0, 102, 204, 0.05);
-        border: 2px solid rgba(0, 102, 204, 0.1);
-        transition: all 0.3s ease;
-    }
-
-    .faq-item:hover {
-        transform: translateY(-5px);
-        border-color: rgba(0, 102, 204, 0.3);
-        box-shadow: 0 10px 25px rgba(0, 102, 204, 0.1);
-    }
-
-    .faq-icon {
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        color: white;
-        flex-shrink: 0;
-    }
-
-    /* Styles pour les particules CTA */
-    .particles-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .particle {
-        position: absolute;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        animation: float-particle 15s infinite linear;
-    }
-
-    .particle:nth-child(1) { width: 20px; height: 20px; top: 10%; left: 10%; animation-delay: 0s; }
-    .particle:nth-child(2) { width: 15px; height: 15px; top: 30%; left: 80%; animation-delay: 2s; }
-    .particle:nth-child(3) { width: 25px; height: 25px; top: 70%; left: 20%; animation-delay: 4s; }
-    .particle:nth-child(4) { width: 18px; height: 18px; top: 50%; left: 60%; animation-delay: 6s; }
-    .particle:nth-child(5) { width: 22px; height: 22px; top: 80%; left: 90%; animation-delay: 8s; }
-
-    @keyframes float-particle {
-        0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-    }
-
-    .cta-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        margin-top: 1.5rem;
-    }
-
-    .cta-feature {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .py-6 {
-            padding: 4rem 0;
-        }
-        
-        .contact-form-wrapper {
-            padding: 2rem !important;
-        }
-        
-        .map-iframe {
-            height: 300px;
-        }
-        
-        .contact-icon {
-            width: 80px;
-            height: 80px;
-            font-size: 2rem;
-        }
-        
-        .cta-features {
-            flex-direction: column;
-            gap: 1rem;
-        }
-    }
-</style>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    // Animation du formulaire améliorée
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('contactForm');
-        const submitBtn = form.querySelector('.submit-btn');
-        const btnContent = submitBtn.querySelector('.btn-content');
-        const btnLoading = submitBtn.querySelector('.btn-loading');
-        
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validation des champs
-            const requiredFields = form.querySelectorAll('[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.style.borderColor = '#dc3545';
-                    isValid = false;
-                } else {
-                    field.style.borderColor = '#0066cc';
-                }
-            });
-            
-            if (!isValid) {
-                // Animation de shake pour les champs invalides
-                form.classList.add('shake');
-                setTimeout(() => form.classList.remove('shake'), 500);
-                return;
-            }
-            
-            // Animation de soumission
-            btnContent.style.display = 'none';
-            btnLoading.style.display = 'inline';
-            submitBtn.disabled = true;
-            
-            // Simulation d'envoi (à remplacer par votre logique d'envoi réelle)
-            setTimeout(() => {
-                btnContent.style.display = 'inline';
-                btnLoading.style.display = 'none';
-                submitBtn.disabled = false;
-                
-                // Animation de succès
-                submitBtn.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Message Envoyé !';
-                submitBtn.style.background = '#28a745';
-                
-                // Réinitialiser le formulaire
-                setTimeout(() => {
-                    form.reset();
-                    submitBtn.innerHTML = '<i class="bi bi-send-fill me-2"></i>Envoyer le Message';
-                    submitBtn.style.background = '';
-                    
-                    // Afficher une notification de succès
-                    showNotification('Merci ! Votre message a été envoyé avec succès. Nous vous recontacterons rapidement.', 'success');
-                }, 2000);
-            }, 3000);
-        });
-        
-        // Animation au focus des champs
-        const inputs = form.querySelectorAll('.form-control-modern');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'translateY(-2px)';
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'translateY(0)';
-            });
-        });
-    });
-    
-    // Fonction de notification
-    function showNotification(message, type) {
-        const notification = document.createElement('div');
-        notification.className = `alert alert-${type} position-fixed`;
-        notification.style.cssText = `
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-            min-width: 300px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border: none;
-            border-radius: 15px;
-        `;
-        notification.innerHTML = `
-            <div class="d-flex align-items-center">
-                <i class="bi bi-${type === 'success' ? 'check-circle-fill' : 'exclamation-circle-fill'} me-3 fs-5"></i>
-                <div>${message}</div>
-            </div>
-        `;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.remove();
-        }, 5000);
-    }
-    
-    // Animation CSS pour le shake
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        .shake {
-            animation: shake 0.5s ease-in-out;
-        }
-    `;
-    document.head.appendChild(style);
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  var btn  = document.getElementById('submitBtn');
+  var txt  = document.getElementById('submitText');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="bi bi-arrow-repeat" style="animation:spin 1s linear infinite"></i> <span>Envoi en cours…</span>';
+  /* Remettre après soumission si pas de redirection */
+  setTimeout(function() {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="bi bi-send-fill"></i><span>Envoyer le message</span>';
+  }, 6000);
+});
 </script>
+<style>@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}</style>
 {% endblock %}

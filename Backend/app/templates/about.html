@@ -1,1108 +1,292 @@
 {% extends "base.html" %}
-
-{% block head_title %}À Propos - Mahrasoft Innovations | Excellence en Services Numériques{% endblock %}
-
-{% block carousel %}
-<!-- Page Header Modern -->
-<section class="page-header-modern" style="background: linear-gradient(135deg, #0066cc 0%, #5ba3e0 100%); position: relative; overflow: hidden; padding: 140px 0 100px;">
-    <div class="hero-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-    </div>
-    <div class="container" style="position: relative; z-index: 2;">
-        <div class="row align-items-center">
-            <div class="col-lg-10 mx-auto text-center" data-aos="fade-down" data-aos-duration="1000">
-                <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb justify-content-center" style="background: transparent;">
-                        <li class="breadcrumb-item">
-                            <a href="{{ https_url_for(request,'index') }}" class="text-white opacity-75 hover-white">
-                                <i class="bi bi-house me-1"></i>Accueil
-                            </a>
-                        </li>
-                        <li class="breadcrumb-item text-white active opacity-90">À Propos</li>
-                    </ol>
-                </nav>
-                <span class="badge bg-white text-primary mb-4 px-4 py-3 rounded-pill shadow-sm">
-                    <i class="bi bi-rocket-takeoff me-2"></i>Notre Histoire
-                </span>
-                <h1 class="display-3 fw-bold text-white mb-4 hero-title">
-                    À Propos de <span class="text-light-blue">Mahrasoft</span>
-                </h1>
-                <p class="lead text-white opacity-90 mb-5 fs-5">
-                    Pionniers de la transformation digitale en Afrique Centrale
-                </p>
-                
-                <!-- Statistiques Hero Améliorées -->
-                <div class="hero-stats mt-5">
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="100">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-award-fill"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2" data-count="3">0+</h3>
-                                <p class="stat-label mb-0">Années d'Excellence</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="200">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-check-circle-fill"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2" data-count="50">0+</h3>
-                                <p class="stat-label mb-0">Projets Réalisés</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="300">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-people-fill"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2" data-count="30">0+</h3>
-                                <p class="stat-label mb-0">Clients Satisfaits</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
-            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
-            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
-        </svg>
-    </div>
-</section>
-
+{% block head_title %}À Propos — Mahrasoft Innovations{% endblock %}
+{% block meta_desc %}Fondée en 2024 à N'Djaména par Nousradine Cherif et Mahamat Abdallah, Mahrasoft Innovations est leader des services numériques au Tchad.{% endblock %}
+{% block extra_css %}
 <style>
-    .hero-shapes {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
+.about-feature-item {
+  display: flex; align-items: flex-start; gap: 13px;
+  padding: 13px 0; border-bottom: 1px solid var(--ms-border); transition: var(--transition);
+}
+.about-feature-item:last-child { border-bottom: none; }
+.about-feature-item:hover { padding-left: 5px; }
+.afi-icon {
+  width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: .95rem; box-shadow: 0 4px 12px rgba(0,102,204,.22); transition: var(--transition);
+}
+.about-feature-item:hover .afi-icon { transform: rotate(-5deg) scale(1.05); }
+.afi-title { font-size: .88rem; font-weight: 700; color: var(--ms-navy); margin-bottom: 2px; }
+.afi-desc  { font-size: .8rem; color: var(--ms-muted); line-height: 1.55; margin: 0; }
 
-    .shape {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        animation: float 20s infinite ease-in-out;
-    }
+/* Team card */
+.team-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-xl); overflow: hidden;
+  transition: all .38s cubic-bezier(.4,0,.2,1);
+}
+.team-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-8px); border-color: rgba(0,102,204,.2); }
+.team-avatar-wrap {
+  position: relative; width: 100%; aspect-ratio: 1/1; max-height: 280px; overflow: hidden;
+  background: linear-gradient(135deg, var(--ms-navy), var(--ms-navy-mid));
+  display: flex; align-items: center; justify-content: center;
+}
+.team-avatar-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .5s ease; }
+.team-card:hover .team-avatar-wrap img { transform: scale(1.05); }
+.team-avatar-ph { font-size: 5rem; color: rgba(255,255,255,.2); }
+.team-avatar-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,22,40,.72) 0%, transparent 50%); pointer-events: none; }
+.team-body { padding: 22px 20px; }
+.team-name { font-size: 1.02rem; font-weight: 800; color: var(--ms-navy); margin-bottom: 3px; }
+.team-role { font-size: .78rem; font-weight: 700; color: var(--ms-blue); margin-bottom: 8px; letter-spacing: .02em; }
+.team-bio  { font-size: .82rem; color: var(--ms-muted); line-height: 1.7; margin-bottom: 16px; }
+.team-socials { display: flex; gap: 8px; }
+.team-soc-btn {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--ms-ivory); border: 1px solid var(--ms-border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ms-blue); font-size: .82rem; text-decoration: none; transition: var(--transition);
+}
+.team-soc-btn:hover { background: var(--ms-blue); color: #fff; border-color: var(--ms-blue); transform: translateY(-2px); }
 
-    .shape-1 {
-        width: 400px;
-        height: 400px;
-        top: -150px;
-        left: -100px;
-        animation-delay: 0s;
-    }
+/* KPI cards */
+.kpi-box {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.09);
+  border-radius: var(--radius-lg); padding: 28px 18px; text-align: center;
+  position: relative; overflow: hidden; transition: var(--transition);
+}
+.kpi-box::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 50%; height: 2px; background: linear-gradient(90deg, transparent, var(--ms-gold), transparent);
+  opacity: 0; transition: opacity .3s;
+}
+.kpi-box:hover { background: rgba(255,255,255,.1); transform: translateY(-5px); }
+.kpi-box:hover::before { opacity: 1; }
+.kpi-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: 900; color: var(--ms-gold); line-height: 1; margin-bottom: 6px; letter-spacing: -.04em; }
+.kpi-lbl { font-size: .7rem; color: rgba(255,255,255,.42); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
 
-    .shape-2 {
-        width: 250px;
-        height: 250px;
-        top: 20%;
-        right: -80px;
-        animation-delay: 5s;
-    }
-
-    .shape-3 {
-        width: 180px;
-        height: 180px;
-        bottom: 50px;
-        left: 25%;
-        animation-delay: 10s;
-    }
-
-    .shape-4 {
-        width: 120px;
-        height: 120px;
-        bottom: 100px;
-        right: 20%;
-        animation-delay: 15s;
-    }
-
-    .wave-divider {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        overflow: hidden;
-        line-height: 0;
-        transform: rotate(180deg);
-    }
-
-    .wave-divider svg {
-        position: relative;
-        display: block;
-        width: calc(100% + 1.3px);
-        height: 80px;
-    }
-
-    .wave-divider .shape-fill {
-        fill: #FFFFFF;
-    }
-
-    @keyframes float {
-        0%, 100% {
-            transform: translateY(0) rotate(0deg);
-        }
-        33% {
-            transform: translateY(-20px) rotate(120deg);
-        }
-        66% {
-            transform: translateY(10px) rotate(240deg);
-        }
-    }
-
-    .text-light-blue {
-        color: #87CEEB !important;
-        text-shadow: 0 2px 10px rgba(135, 206, 235, 0.3);
-    }
-
-    .hover-white:hover {
-        color: white !important;
-        opacity: 1 !important;
-    }
-
-    .hero-title {
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Styles pour les statistiques hero */
-    .stat-card-hero {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 25px;
-        min-width: 180px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        overflow: hidden;
-    }
-
-    .stat-card-hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-    }
-
-    .stat-card-hero:hover {
-        transform: translateY(-15px) scale(1.08);
-        background: rgba(255, 255, 255, 0.25);
-        border-color: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 25px 50px rgba(0, 102, 204, 0.4);
-    }
-
-    .stat-icon-wrapper {
-        position: relative;
-        display: inline-block;
-    }
-
-    .stat-icon-inner {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(10px);
-        transition: all 0.4s ease;
-    }
-
-    .stat-card-hero:hover .stat-icon-inner {
-        transform: scale(1.15) rotate(10deg);
-        background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
-        border-color: rgba(255, 255, 255, 0.8);
-    }
-
-    .stat-icon-inner i {
-        font-size: 2rem;
-        color: white;
-        text-shadow: 0 2px 15px rgba(0, 102, 204, 0.6);
-    }
-
-    .stat-number {
-        font-size: 2.8rem;
-        background: linear-gradient(135deg, #ffffff, #e6f2ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 0 4px 25px rgba(0, 102, 204, 0.4);
-        letter-spacing: -1px;
-    }
-
-    .stat-label {
-        color: rgba(255, 255, 255, 0.95);
-        font-size: 1.1rem;
-        font-weight: 600;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .stat-glow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, transparent 70%);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        border-radius: 25px;
-    }
-
-    .stat-card-hero:hover .stat-glow {
-        opacity: 1;
-    }
+/* Partner badge */
+.partner-badge {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--ms-white); border: 1px solid var(--ms-border); border-radius: var(--radius);
+  padding: 13px 16px; transition: var(--transition);
+}
+.partner-badge:hover { box-shadow: var(--shadow); transform: translateY(-3px); border-color: rgba(0,102,204,.2); }
+.partner-badge i { font-size: 1.3rem; color: var(--ms-blue); flex-shrink: 0; }
+.pb-name { font-family: var(--font-display); font-weight: 800; font-size: .85rem; color: var(--ms-navy); }
+.pb-sub  { font-size: .7rem; color: var(--ms-muted); }
 </style>
 {% endblock %}
 
 {% block content %}
-<!-- Notre Histoire -->
-<section class="section-modern py-6">
-    <div class="container">
-        <div class="row align-items-center g-6">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
-                <div class="position-relative">
-                    <div class="image-frame">
-                        <img src="{{ https_url_for(request,'static', path='img/Logo-mahrasoft.jpg') }}" 
-                             alt="Équipe Mahrasoft" 
-                             class="img-fluid rounded-4 shadow-lg main-image">
-                        <div class="floating-badge">
-                            <div class="badge-content">
-                                <h2 class="fw-bold text-white mb-0">3+</h2>
-                                <p class="mb-0 text-white opacity-90">Années d'Excellence</p>
-                            </div>
-                            <div class="badge-glow"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
-                <div class="section-title-modern text-start">
-                    <span class="section-subtitle">NOTRE HISTOIRE</span>
-                    <h2 class="section-heading">Excellence en Services Numériques</h2>
-                </div>
-                <p class="text-muted mb-4 lead fs-6">
-                    Mahrasoft Innovations est une entreprise tchadienne fondée par des ingénieurs passionnés par l’innovation technologique et déterminés à créer des solutions numériques modernes et adaptées. Portée par une vision ambitieuse, l’entreprise place l’excellence, la créativité et l’impact au cœur de chacun de ses projets. Chaque solution développée vise à transformer durablement les pratiques et à accompagner les organisations vers un avenir plus performant et digital.
-                </p>
-                <p class="text-muted mb-4 fs-6">
-                    Notre mission est d’accompagner la transformation numérique des entreprises, institutions et particuliers en offrant des solutions modernes, performantes et entièrement sécurisées. Nous intervenons notamment dans la numérisation et la gestion des archives, le développement de logiciels et de plateformes innovantes, ainsi que dans la formation professionnelle destinée à renforcer les compétences digitales.
-                </p>
-                
-                <!-- Statistiques améliorées -->
-                <div class="row g-3 mt-5">
-                    <div class="col-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="stat-card-modern text-center p-4 rounded-4">
-                            <div class="stat-icon-small mb-3">
-                                <i class="bi bi-check-circle-fill"></i>
-                            </div>
-                            <h3 class="fw-bold text-primary mb-2" data-count="50">0+</h3>
-                            <p class="text-muted mb-0 small fw-semibold">Projets Réalisés</p>
-                        </div>
-                    </div>
-                    <div class="col-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="stat-card-modern text-center p-4 rounded-4">
-                            <div class="stat-icon-small mb-3">
-                                <i class="bi bi-people-fill"></i>
-                            </div>
-                            <h3 class="fw-bold text-primary mb-2" data-count="30">0+</h3>
-                            <p class="text-muted mb-0 small fw-semibold">Clients Satisfaits</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+<!-- Hero -->
+<section class="ms-page-hero">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="ms-breadcrumb">
+      <a href="{{ https_url_for(request,'index') }}">Accueil</a>
+      <i class="bi bi-chevron-right" style="font-size:.5rem"></i><span>À Propos</span>
     </div>
+    <h1 data-aos="fade-up">Qui sommes-nous ?</h1>
+    <p data-aos="fade-up" data-aos-delay="80">
+      Mahrasoft Innovations — entreprise technologique tchadienne fondée par des ingénieurs passionnés,
+      dédiée à la transformation digitale en Afrique.
+    </p>
+  </div>
 </section>
 
-<!-- Mission & Vision -->
-<section class="section-modern py-6" style="background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-6" data-aos="fade-up" data-aos-duration="1000">
-                <div class="mission-vision-card h-100 p-5">
-                    <div class="card-icon-large mx-auto mb-4">
-                        <i class="bi bi-bullseye"></i>
-                    </div>
-                    <h3 class="fw-bold mb-4 text-center gradient-text">Notre Mission</h3>
-                    <p class="text-muted text-center mb-5 fs-6">
-                        Transformer le paysage numérique du Tchad et de l'Afrique Centrale en fournissant des solutions technologiques innovantes, accessibles et adaptées aux défis locaux.
-                    </p>
-                    <div class="row g-4">
-                        <div class="col-12" data-aos="fade-up" data-aos-delay="100">
-                            <div class="feature-item p-4 rounded-4">
-                                <div class="d-flex align-items-start gap-4">
-                                    <div class="flex-shrink-0">
-                                        <div class="feature-icon">
-                                            <i class="bi bi-geo-alt-fill"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6 class="fw-bold mb-2">Innovation Locale</h6>
-                                        <p class="text-muted small mb-0">Développement de solutions adaptées au contexte tchadien et africain</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12" data-aos="fade-up" data-aos-delay="200">
-                            <div class="feature-item p-4 rounded-4">
-                                <div class="d-flex align-items-start gap-4">
-                                    <div class="flex-shrink-0">
-                                        <div class="feature-icon">
-                                            <i class="bi bi-graph-up-arrow"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6 class="fw-bold mb-2">Croissance Durable</h6>
-                                        <p class="text-muted small mb-0">Accompagnement vers une transformation numérique pérenne</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12" data-aos="fade-up" data-aos-delay="300">
-                            <div class="feature-item p-4 rounded-4">
-                                <div class="d-flex align-items-start gap-4">
-                                    <div class="flex-shrink-0">
-                                        <div class="feature-icon">
-                                            <i class="bi bi-award-fill"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6 class="fw-bold mb-2">Excellence Technique</h6>
-                                        <p class="text-muted small mb-0">Standards internationaux adaptés aux réalités locales</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                <div class="mission-vision-card h-100 p-5">
-                    <div class="card-icon-large mx-auto mb-4">
-                        <i class="bi bi-eye"></i>
-                    </div>
-                    <h3 class="fw-bold mb-4 text-center gradient-text">Notre Vision</h3>
-                    <p class="text-muted text-center mb-5 fs-6">
-                        Devenir la référence en matière de solutions digitales en Afrique Centrale, en formant la prochaine génération de talents technologiques.
-                    </p>
-                    <div class="row g-4">
-                        <div class="col-12" data-aos="fade-up" data-aos-delay="200">
-                            <div class="feature-item p-4 rounded-4">
-                                <div class="d-flex align-items-start gap-4">
-                                    <div class="flex-shrink-0">
-                                        <div class="feature-icon">
-                                            <i class="bi bi-globe-americas"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6 class="fw-bold mb-2">Excellence Régionale</h6>
-                                        <p class="text-muted small mb-0">Positionner le Tchad comme hub technologique d'Afrique Centrale</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12" data-aos="fade-up" data-aos-delay="300">
-                            <div class="feature-item p-4 rounded-4">
-                                <div class="d-flex align-items-start gap-4">
-                                    <div class="flex-shrink-0">
-                                        <div class="feature-icon">
-                                            <i class="bi bi-mortarboard-fill"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6 class="fw-bold mb-2">Formation Continue</h6>
-                                        <p class="text-muted small mb-0">Investir dans le capital humain technologique local</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12" data-aos="fade-up" data-aos-delay="400">
-                            <div class="feature-item p-4 rounded-4">
-                                <div class="d-flex align-items-start gap-4">
-                                    <div class="flex-shrink-0">
-                                        <div class="feature-icon">
-                                            <i class="bi bi-lightbulb-fill"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6 class="fw-bold mb-2">Innovation Continue</h6>
-                                        <p class="text-muted small mb-0">Recherche et développement permanent pour l'Afrique</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- Notre histoire -->
+<section class="ms-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800">
+        <div style="position:relative">
+          <img src="{{ https_url_for(request,'static', path='img/cours_1.jpeg') }}"
+               alt="Équipe Mahrasoft" loading="lazy"
+               style="width:100%;border-radius:var(--radius-xl);object-fit:cover;height:460px;box-shadow:var(--shadow-xl)">
+          <div style="position:absolute;bottom:-16px;right:-16px;background:linear-gradient(135deg,var(--ms-blue),var(--ms-blue-mid));color:#fff;border-radius:var(--radius);padding:18px 22px;text-align:center;box-shadow:var(--shadow-lg);border:3px solid #fff">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:900;line-height:1">2024</div>
+            <div style="font-size:.68rem;opacity:.85;font-weight:600;margin-top:2px">Année de création</div>
+          </div>
         </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+        <span class="ms-tag">Notre Histoire</span>
+        <h2 class="ms-title mt-3">Nés au Tchad,<br>pensés pour l'Afrique</h2>
+        <p style="color:var(--ms-muted);line-height:1.85;margin-bottom:20px">
+          Fondée en 2024 à N'Djaména, Mahrasoft Innovations est née d'un constat simple :
+          les institutions et entreprises africaines manquent de partenaires technologiques
+          qui comprennent vraiment leurs réalités — connectivité limitée, multilinguisme,
+          processus papier hérités, contraintes budgétaires.
+        </p>
+        <p style="color:var(--ms-muted);line-height:1.85;margin-bottom:28px">
+          Nos ingénieurs, formés à l'international mais ancrés localement, conçoivent des solutions
+          <strong style="color:var(--ms-navy)">robustes, adaptées et durables</strong> —
+          de la numérisation d'archives militaires à la plateforme e-learning,
+          en passant par les systèmes hospitaliers et les marketplaces.
+        </p>
+        <div class="row g-3 mb-4">
+          <div class="col-6">
+            <div style="background:var(--ms-ivory);border:1px solid var(--ms-border);border-radius:14px;padding:18px;text-align:center">
+              <div style="font-family:var(--font-display);font-size:1.9rem;font-weight:900;color:var(--ms-blue);line-height:1">2024</div>
+              <div style="font-size:.72rem;color:var(--ms-muted);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">Création</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="background:var(--ms-ivory);border:1px solid var(--ms-border);border-radius:14px;padding:18px;text-align:center">
+              <div style="font-family:var(--font-display);font-size:1.9rem;font-weight:900;color:var(--ms-blue);line-height:1">N'Djaména</div>
+              <div style="font-size:.72rem;color:var(--ms-muted);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.06em">Siège social</div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4">
+          {% set feats = [
+            ('bi-lightning-charge-fill','Livraison rapide','Délais optimisés grâce à des méthodologies agiles éprouvées.'),
+            ('bi-shield-check-fill','Sécurité garantie','Standards RGPD et sécurité internationale sur toutes nos solutions.'),
+            ('bi-translate','Multilingue','Français, anglais et arabe — l\'Afrique plurielle mérite des solutions plurielles.')
+          ] %}
+          {% for icon, title, desc in feats %}
+          <div class="about-feature-item">
+            <div class="afi-icon"><i class="bi {{ icon }}"></i></div>
+            <div><div class="afi-title">{{ title }}</div><p class="afi-desc">{{ desc }}</p></div>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="{{ https_url_for(request,'contact') }}" class="btn-ms-primary">
+          <i class="bi bi-chat-dots-fill"></i> Travailler avec nous
+        </a>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- Nos Valeurs -->
-<section class="section-modern py-6">
-    <div class="container">
-        <div class="section-title-modern text-center" data-aos="fade-up" data-aos-duration="1000">
-            <span class="section-subtitle">NOS VALEURS</span>
-            <h2 class="section-heading">Ce Qui Nous Définit</h2>
-            <p class="section-description">
-                Les principes fondamentaux qui guident notre action quotidienne
-            </p>
-        </div>
-
-        <div class="row g-5">
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="value-card text-center p-5 rounded-4 h-100">
-                    <div class="value-icon mb-4 mx-auto">
-                        <i class="bi bi-stars"></i>
-                    </div>
-                    <h4 class="fw-bold mb-3">Excellence</h4>
-                    <p class="text-muted mb-0">
-                        Nous visons l'excellence dans chaque projet, avec des standards de qualité internationaux adaptés au contexte local.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="value-card text-center p-5 rounded-4 h-100">
-                    <div class="value-icon mb-4 mx-auto">
-                        <i class="bi bi-lightbulb"></i>
-                    </div>
-                    <h4 class="fw-bold mb-3">Innovation</h4>
-                    <p class="text-muted mb-0">
-                        L'innovation est au cœur de nos solutions pour répondre aux défis technologiques spécifiques de l'Afrique.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="value-card text-center p-5 rounded-4 h-100">
-                    <div class="value-icon mb-4 mx-auto">
-                        <i class="bi bi-shield-check"></i>
-                    </div>
-                    <h4 class="fw-bold mb-3">Intégrité</h4>
-                    <p class="text-muted mb-0">
-                        Transparence et honnêteté dans toutes nos relations avec nos clients, partenaires et collaborateurs.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="value-card text-center p-5 rounded-4 h-100">
-                    <div class="value-icon mb-4 mx-auto">
-                        <i class="bi bi-people"></i>
-                    </div>
-                    <h4 class="fw-bold mb-3">Collaboration</h4>
-                    <p class="text-muted mb-0">
-                        Travail d'équipe et partenariats solides pour créer des solutions durables et impactantes.
-                    </p>
-                </div>
-            </div>
-        </div>
+<!-- Chiffres -->
+<section style="background:linear-gradient(135deg,var(--ms-navy),var(--ms-navy-mid));padding:72px 0;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none"></div>
+  <div class="container" style="position:relative">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 style="color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:6px">Mahrasoft en chiffres</h2>
+      <p style="color:rgba(255,255,255,.5);font-size:.9rem">Des résultats concrets pour nos clients</p>
     </div>
+    <div class="row g-4">
+      {% set kpis = [('500k+','Dossiers numérisés'),('50+','Projets livrés'),('30+','Clients satisfaits'),('8','Produits actifs'),('3+','Années d\'expérience'),('100%','Satisfaction client')] %}
+      {% for num, lbl in kpis %}
+      <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 50 }}">
+        <div class="kpi-box"><div class="kpi-num">{{ num }}</div><div class="kpi-lbl">{{ lbl }}</div></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </section>
 
-<!-- Nos Chiffres -->
-<section class="section-modern py-6" style="background: linear-gradient(135deg, #0066cc 0%, #5ba3e0 100%); position: relative; overflow: hidden;">
-    <div class="particles-container">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+<!-- Notre équipe -->
+<section class="ms-section alt">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Notre Équipe</span>
+      <h2 class="ms-title">Des experts passionnés</h2>
+      <p class="ms-subtitle mx-auto">Une équipe d'ingénieurs qualifiés et dévoués à la réussite numérique de leurs clients.</p>
     </div>
-    <div class="container position-relative" style="z-index: 2;">
-        <div class="section-title-modern text-center mb-6">
-            <span class="section-subtitle text-white opacity-90">NOS CHIFFRES</span>
-            <h2 class="section-heading text-white">Impact et Réalisations</h2>
-            <p class="section-description text-white opacity-90">
-                Des résultats concrets qui témoignent de notre expertise et de notre engagement
-            </p>
+    <div class="row g-4 justify-content-center">
+
+      <!-- Cherif -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <div class="team-card">
+          <div class="team-avatar-wrap">
+            <div class="team-avatar-ph"><i class="bi bi-person-fill"></i></div>
+            <div class="team-avatar-overlay"></div>
+          </div>
+          <div class="team-body">
+            <div class="team-name">Nousradine Cherif Hassan</div>
+            <div class="team-role">Fondateur &amp; Directeur Général</div>
+            <p class="team-bio">Expert en développement logiciel, transformation digitale et intelligence artificielle. Animé par une profonde passion pour l'innovation technologique au service du développement africain. Conçoit et pilote des solutions numériques modernes adaptées aux organisations tchadiennes.</p>
+            <div class="team-socials">
+              <a href="https://www.linkedin.com/in/cherif-hassan-nousradine-b20b701b1/" target="_blank" rel="noopener" class="team-soc-btn"><i class="bi bi-linkedin"></i></a>
+              <a href="https://x.com/borkounou" target="_blank" rel="noopener" class="team-soc-btn"><i class="bi bi-twitter-x"></i></a>
+              <a href="https://www.facebook.com/NousradineBorkounou" target="_blank" rel="noopener" class="team-soc-btn"><i class="bi bi-facebook"></i></a>
+            </div>
+          </div>
         </div>
-        <div class="row g-5 text-center text-white">
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="counter-box p-5">
-                    <div class="counter-icon mb-4">
-                        <i class="bi bi-file-earmark-text"></i>
-                    </div>
-                    <h2 class="fw-bold mb-3 counter-number" data-count="500000">0+</h2>
-                    <p class="mb-0 opacity-90 fw-semibold">Dossiers Numérisés</p>
-                </div>
+      </div>
+
+      <!-- Mahamat -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="80">
+        <div class="team-card">
+          <div class="team-avatar-wrap">
+            <div class="team-avatar-ph"><i class="bi bi-person-fill"></i></div>
+            <div class="team-avatar-overlay"></div>
+          </div>
+          <div class="team-body">
+            <div class="team-name">Mahamat Abdallah Esso</div>
+            <div class="team-role">Co-Fondateur &amp; Chef de Projet</div>
+            <p class="team-bio">Spécialiste en gestion de projets IT et architecture de solutions numériques. Expert dans la coordination d'équipes et le déploiement de systèmes adaptés aux marchés émergents. Garantit la réussite opérationnelle de chaque projet.</p>
+            <div class="team-socials">
+              <a href="https://www.linkedin.com/in/mahamat-abdallah-65a40011a/" target="_blank" rel="noopener" class="team-soc-btn"><i class="bi bi-linkedin"></i></a>
+              <a href="#" class="team-soc-btn"><i class="bi bi-twitter-x"></i></a>
+              <a href="https://www.facebook.com/mahamat.abdallah.7" target="_blank" rel="noopener" class="team-soc-btn"><i class="bi bi-facebook"></i></a>
             </div>
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="counter-box p-5">
-                    <div class="counter-icon mb-4">
-                        <i class="bi bi-people"></i>
-                    </div>
-                    <h2 class="fw-bold mb-3 counter-number" data-count="30">0+</h2>
-                    <p class="mb-0 opacity-90 fw-semibold">Clients Satisfaits</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="counter-box p-5">
-                    <div class="counter-icon mb-4">
-                        <i class="bi bi-laptop"></i>
-                    </div>
-                    <h2 class="fw-bold mb-3 counter-number" data-count="50">0+</h2>
-                    <p class="mb-0 opacity-90 fw-semibold">Projets Réalisés</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="counter-box p-5">
-                    <div class="counter-icon mb-4">
-                        <i class="bi bi-mortarboard"></i>
-                    </div>
-                    <h2 class="fw-bold mb-3 counter-number" data-count="100">0+</h2>
-                    <p class="mb-0 opacity-90 fw-semibold">Apprenants Formés</p>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Équipe -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="160">
+        <div class="team-card">
+          <div class="team-avatar-wrap" style="background:linear-gradient(135deg,var(--ms-blue),var(--ms-navy-mid))">
+            <i class="bi bi-people-fill team-avatar-ph" style="font-size:4rem"></i>
+            <div class="team-avatar-overlay"></div>
+          </div>
+          <div class="team-body">
+            <div class="team-name">Notre Équipe</div>
+            <div class="team-role">15+ Experts &amp; Développeurs</div>
+            <p class="team-bio">Une équipe pluridisciplinaire regroupant développeurs, designers, data scientists et formateurs. Animés par un esprit d'innovation et de collaboration, nous unissons nos compétences pour bâtir l'avenir digital du Tchad.</p>
+            <div>
+              <a href="{{ https_url_for(request,'contact') }}" class="btn-ms-primary" style="width:100%;justify-content:center">
+                <i class="bi bi-people-fill"></i> Rejoignez-nous
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </section>
 
-<!-- Notre Équipe -->
-<section class="section-modern py-6">
-    <div class="container">
-        <div class="section-title-modern text-center" data-aos="fade-up" data-aos-duration="1000">
-            <span class="section-subtitle">NOTRE ÉQUIPE</span>
-            <h2 class="section-heading">Des Experts Passionnés</h2>
-            <p class="section-description">
-                Une équipe d'ingénieurs qualifiés et dévoués à votre réussite numérique
-            </p>
-        </div>
-
-        <div class="row g-5 justify-content-center">
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="team-card text-center p-5 rounded-4 h-100">
-                    <div class="team-image mb-4 mx-auto">
-                        <div class="image-wrapper">
-                            <i class="bi bi-person"></i>
-                        </div>
-                        <div class="team-glow"></div>
-                    </div>
-                    <h4 class="fw-bold mb-3">Nousradine Cherif Hassan</h4>
-                    <p class="text-primary fw-semibold mb-4">Fondateur & Directeur Général </p>
-                    <p class="text-muted mb-5">
-                       Expert en développement logiciel, en transformation digitale et en intelligence artificielle, animé par une profonde passion pour l’innovation technologique au service du développement africain. Fort d’une solide expérience technique et d’une vision résolument tournée vers l’avenir, il conçoit et pilote des solutions numériques modernes, performantes et adaptées aux réalités des organisations. Son engagement constant pour l’excellence contribue à accélérer la digitalisation et à renforcer l’écosystème technologique du continent.
-                    </p>
-                    <div class="social-links d-flex gap-3 justify-content-center">
-                        <a href="https://www.linkedin.com/in/cherif-hassan-nousradine-b20b701b1/" class="social-link">
-                            <i class="bi bi-linkedin"></i>
-                        </a>
-                        <a href="https://x.com/borkounou" class="social-link">
-                            <i class="bi bi-twitter-x"></i>
-                        </a>
-                        <a href="https://www.facebook.com/NousradineBorkounou" class="social-link">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="team-card text-center p-5 rounded-4 h-100">
-                    <div class="team-image mb-4 mx-auto">
-                        <div class="image-wrapper">
-                            <i class="bi bi-person"></i>
-                        </div>
-                        <div class="team-glow"></div>
-                    </div>
-                    <h4 class="fw-bold mb-3">Mahamat Abdallah Esso</h4>
-                    <p class="text-primary fw-semibold mb-4">Co-Fondateur & Chef de Projet</p>
-                    <p class="text-muted mb-5">
-                       Co-fondateur & Chef de Projet, spécialiste en gestion de projets IT et en architecture de solutions numériques. Expert dans la conception et le déploiement de systèmes adaptés aux besoins des marchés émergents, il se distingue par sa capacité à coordonner efficacement les équipes, structurer les processus et garantir la réussite opérationnelle des projets. Grâce à une approche pragmatique et orientée résultats, il contribue activement au développement de solutions digitales fiables, performantes et parfaitement alignées avec les enjeux des organisations.
-                    </p>
-                    <div class="social-links d-flex gap-3 justify-content-center">
-                        <a href="https://www.linkedin.com/in/mahamat-abdallah-65a40011a/" class="social-link">
-                            <i class="bi bi-linkedin"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="bi bi-twitter-x"></i>
-                        </a>
-                        <a href="https://www.facebook.com/mahamat.abdallah.7" class="social-link">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="team-card text-center p-5 rounded-4 h-100">
-                    <div class="team-image mb-4 mx-auto">
-                        <div class="image-wrapper">
-                            <i class="bi bi-people"></i>
-                        </div>
-                        <div class="team-glow"></div>
-                    </div>
-                    <h4 class="fw-bold mb-3">Notre Équipe</h4>
-                    <p class="text-primary fw-semibold mb-4">Experts & Développeurs</p>
-                    <p class="text-muted mb-5">
-                        Une équipe passionnée regroupant plus de 15 experts en développement, design, data science et formation. Animés par un esprit d’innovation et de collaboration, nous unissons nos compétences pour concevoir des solutions numériques fiables et performantes, et contribuer activement à bâtir l’avenir digital du Tchad.
-                    </p>
-                    <div class="social-links">
-                        <a href="{{ https_url_for(request,'contact') }}" class="btn btn-primary-modern btn-lg">
-                            <i class="bi bi-people-fill me-2"></i>Rejoignez-Nous
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Clients institutionnels -->
+<section class="ms-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Références</span>
+      <h2 class="ms-title">Ils nous font confiance</h2>
+      <p class="ms-subtitle mx-auto">Des institutions publiques aux startups, nos clients témoignent de l'impact de nos solutions.</p>
     </div>
+    <div class="row g-3" data-aos="fade-up" data-aos-delay="80">
+      {% set clients = [
+        ('bi-building-fill','CARMI','Numérisation de 500k+ dossiers militaires'),
+        ('bi-hospital-fill','CHUME N\'Djamena','Site web, RDV en ligne, gestion médicale'),
+        ('bi-bank','ONAPE','Plateforme formation et emploi'),
+        ('bi-shield-lock-fill','DGSSIE','Sécurité et archives numériques'),
+        ('bi-landmark-fill','DGI Tchad','Gestion documentaire fiscale'),
+        ('bi-plus-circle-fill','Ministère Santé','Système d\'information sanitaire')
+      ] %}
+      {% for icon, name, desc in clients %}
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 40 }}">
+        <div class="partner-badge">
+          <i class="bi {{ icon }}"></i>
+          <div>
+            <div class="pb-name">{{ name }}</div>
+            <div class="pb-sub">{{ desc }}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-5" data-aos="fade-up">
+      <a href="{{ https_url_for(request,'contact') }}" class="btn-ms-primary">
+        <i class="bi bi-chat-dots-fill"></i> Rejoindre nos clients satisfaits
+      </a>
+    </div>
+  </div>
 </section>
 
-<!-- CTA -->
-<section class="section-modern py-6">
-    <div class="container">
-        <div class="cta-box p-6 rounded-4 text-center" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="cta-content">
-                <h2 class="display-5 fw-bold text-white mb-4">
-                    Travaillons Ensemble
-                </h2>
-                <p class="lead text-white mb-5 opacity-90 fs-5">
-                    Prêt à transformer votre entreprise avec des solutions digitales innovantes adaptées au marché tchadien ?
-                </p>
-                <div class="d-flex flex-wrap gap-4 justify-content-center">
-                    <a href="{{ https_url_for(request,'contact') }}" class="btn btn-light btn-lg px-5 py-3 rounded-pill fw-semibold">
-                        <i class="bi bi-chat-dots-fill me-2"></i>Contactez-Nous
-                    </a>
-                    <a href="{{ https_url_for(request,'service') }}" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill fw-semibold">
-                        <i class="bi bi-arrow-right-circle me-2"></i>Découvrir Nos Services
-                    </a>
-                </div>
-            </div>
-            <div class="cta-glow"></div>
-        </div>
-    </div>
-</section>
-
-<style>
-    .py-6 {
-        padding: 6rem 0;
-    }
-
-    .p-6 {
-        padding: 4rem !important;
-    }
-
-    /* Styles pour l'image principale */
-    .image-frame {
-        position: relative;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    }
-
-    .main-image {
-        transition: transform 0.5s ease;
-    }
-
-    .image-frame:hover .main-image {
-        transform: scale(1.03);
-    }
-
-    .floating-badge {
-        position: absolute;
-        bottom: 30px;
-        right: 30px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        padding: 25px;
-        border-radius: 20px;
-        box-shadow: 0 15px 35px rgba(0, 102, 204, 0.4);
-        animation: float-badge 3s ease-in-out infinite;
-    }
-
-    .badge-glow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
-        border-radius: 20px;
-        opacity: 0.5;
-    }
-
-    @keyframes float-badge {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
-
-    /* Styles pour les cartes mission/vision */
-    .mission-vision-card {
-        background: white;
-        border-radius: 25px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-        transition: all 0.3s ease;
-        border: 1px solid rgba(0, 102, 204, 0.1);
-    }
-
-    .mission-vision-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 25px 50px rgba(0, 102, 204, 0.15);
-    }
-
-    .card-icon-large {
-        width: 100px;
-        height: 100px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 25px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        color: white;
-        box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
-    }
-
-    .gradient-text {
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .feature-item {
-        background: linear-gradient(135deg, #f9fafb, #ffffff);
-        border: 1px solid rgba(0, 102, 204, 0.1);
-        transition: all 0.3s ease;
-    }
-
-    .feature-item:hover {
-        transform: translateX(10px);
-        border-color: rgba(0, 102, 204, 0.3);
-        box-shadow: 0 10px 25px rgba(0, 102, 204, 0.1);
-    }
-
-    .feature-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        color: white;
-    }
-
-    /* Styles pour les valeurs */
-    .value-card {
-        background: white;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border: 2px solid transparent;
-    }
-
-    .value-card:hover {
-        transform: translateY(-15px) scale(1.05);
-        box-shadow: 0 25px 50px rgba(0, 102, 204, 0.2);
-        border-color: rgba(0, 102, 204, 0.2);
-    }
-
-    .value-icon {
-        width: 100px;
-        height: 100px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 25px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        color: white;
-        transition: all 0.3s ease;
-    }
-
-    .value-card:hover .value-icon {
-        transform: scale(1.1) rotate(5deg);
-        box-shadow: 0 15px 30px rgba(0, 102, 204, 0.4);
-    }
-
-    /* Styles pour les compteurs */
-    .particles-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .particle {
-        position: absolute;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        animation: float-particle 15s infinite linear;
-    }
-
-    .particle:nth-child(1) { width: 20px; height: 20px; top: 10%; left: 10%; animation-delay: 0s; }
-    .particle:nth-child(2) { width: 15px; height: 15px; top: 30%; left: 80%; animation-delay: 2s; }
-    .particle:nth-child(3) { width: 25px; height: 25px; top: 70%; left: 20%; animation-delay: 4s; }
-    .particle:nth-child(4) { width: 18px; height: 18px; top: 50%; left: 60%; animation-delay: 6s; }
-    .particle:nth-child(5) { width: 22px; height: 22px; top: 80%; left: 90%; animation-delay: 8s; }
-
-    @keyframes float-particle {
-        0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-    }
-
-    .counter-box {
-        transition: all 0.3s ease;
-    }
-
-    .counter-box:hover {
-        transform: translateY(-10px);
-    }
-
-    .counter-icon {
-        font-size: 3.5rem;
-        opacity: 0.9;
-    }
-
-    .counter-number {
-        color:#f9fafb;
-        font-size: 3.5rem;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Styles pour l'équipe */
-    .team-card {
-        background: white;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border: 2px solid transparent;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .team-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 25px 50px rgba(0, 102, 204, 0.2);
-        border-color: rgba(0, 102, 204, 0.2);
-    }
-
-    .team-image {
-        position: relative;
-    }
-
-    .image-wrapper {
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 4.5rem;
-        color: white;
-        position: relative;
-        z-index: 2;
-    }
-
-    .team-glow {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 200px;
-        height: 200px;
-        background: radial-gradient(circle, rgba(0,102,204,0.3) 0%, transparent 70%);
-        border-radius: 50%;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .team-card:hover .team-glow {
-        opacity: 1;
-    }
-
-    .social-link {
-        width: 45px;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #f9fafb;
-        border-radius: 50%;
-        color: #0066cc;
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .social-link:hover {
-        background: #0066cc;
-        color: white;
-        transform: translateY(-5px) scale(1.1);
-        box-shadow: 0 10px 20px rgba(0, 102, 204, 0.3);
-    }
-
-    /* Styles pour le CTA */
-    .cta-box {
-        background: linear-gradient(135deg, #0066cc 0%, #5ba3e0 100%);
-        box-shadow: 0 25px 50px rgba(0,102,204,0.3);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .cta-glow {
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-        opacity: 0.5;
-        animation: rotate-glow 10s linear infinite;
-    }
-
-    @keyframes rotate-glow {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    .cta-content {
-        position: relative;
-        z-index: 2;
-    }
-
-    /* Styles pour les statistiques */
-    .stat-card-modern {
-        background: rgba(0, 102, 204, 0.05);
-        border: 2px solid rgba(0, 102, 204, 0.1);
-        transition: all 0.3s ease;
-    }
-
-    .stat-card-modern:hover {
-        background: rgba(0, 102, 204, 0.1);
-        border-color: rgba(0, 102, 204, 0.3);
-        transform: translateY(-5px);
-    }
-
-    .stat-icon-small {
-        font-size: 1.5rem;
-        color: #0066cc;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .py-6 {
-            padding: 4rem 0;
-        }
-        
-        .p-6 {
-            padding: 2.5rem !important;
-        }
-        
-        .display-3 {
-            font-size: 2.5rem;
-        }
-        
-        .hero-stats .row {
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .stat-card-hero {
-            min-width: 200px;
-            margin-bottom: 1rem;
-        }
-    }
-</style>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-    // Animation des compteurs améliorée
-    function animateCounter(element) {
-        const target = parseInt(element.getAttribute('data-count'));
-        const duration = 2500;
-        const startTime = Date.now();
-        const startValue = 0;
-
-        function updateCounter() {
-            const currentTime = Date.now();
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            // Easing function for smooth animation
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart);
-
-            if (element.classList.contains('counter-number')) {
-                element.textContent = currentValue.toLocaleString() + '+';
-            } else {
-                element.textContent = currentValue.toLocaleString() + '+';
-            }
-
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            } else {
-                if (element.classList.contains('counter-number')) {
-                    element.textContent = target.toLocaleString() + '+';
-                } else {
-                    element.textContent = target.toLocaleString() + '+';
-                }
-            }
-        }
-
-        requestAnimationFrame(updateCounter);
-    }
-
-    // Observer pour les compteurs avec seuil réduit pour déclenchement plus rapide
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                setTimeout(() => {
-                    animateCounter(counter);
-                }, 200);
-                observer.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    // Observer tous les compteurs
-    document.querySelectorAll('[data-count]').forEach(counter => {
-        observer.observe(counter);
-    });
-
-    // Animation au scroll pour les éléments avec data-aos
-    document.addEventListener('DOMContentLoaded', function() {
-        // Réinitialiser les animations lorsque les éléments deviennent visibles
-        const aosObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('[data-aos]').forEach(element => {
-            aosObserver.observe(element);
-        });
-    });
-</script>
 {% endblock %}

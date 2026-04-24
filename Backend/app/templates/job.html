@@ -1,123 +1,316 @@
 {% extends "base.html" %}
+{% block head_title %}{{ post['titre'] }} — Mahrasoft Innovations{% endblock %}
+{% block extra_css %}
+<style>
+.job-main-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-xl); overflow: hidden;
+  box-shadow: var(--shadow-sm); margin-bottom: 24px;
+  transition: var(--transition);
+}
+.job-main-card:hover { box-shadow: var(--shadow); }
+.job-section-header {
+  padding: 20px 26px; border-bottom: 1px solid var(--ms-border);
+  display: flex; align-items: center; gap: 11px;
+  background: var(--ms-ivory);
+}
+.job-section-header h3 {
+  font-size: 1rem; font-weight: 800; color: var(--ms-navy); margin: 0;
+}
+.job-section-icon {
+  width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: .88rem;
+}
+.job-section-body { padding: 24px 26px; }
+.job-task-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 14px; border-radius: var(--radius);
+  font-size: .86rem; color: var(--ms-text); line-height: 1.55;
+  transition: var(--transition); margin-bottom: 6px;
+  background: rgba(0,102,204,.04); border: 1px solid rgba(0,102,204,.09);
+}
+.job-task-item:hover { background: rgba(0,102,204,.09); transform: translateX(4px); }
+.job-task-item i { color: var(--ms-blue); flex-shrink: 0; margin-top: 2px; font-size: .88rem; }
+.job-qual-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 8px 0; border-bottom: 1px solid var(--ms-border);
+  font-size: .86rem; color: var(--ms-text); line-height: 1.55;
+}
+.job-qual-item:last-child { border-bottom: none; }
+.job-qual-item i { color: var(--ms-success); flex-shrink: 0; margin-top: 2px; }
 
-{%block carousel%} 
-<div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
-    <div class="row py-5">
-        <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-            <h1 class="display-4 text-white animated zoomIn">Nos offres d'emploi</h1>
-            <a href="" class="h5 text-white">Accueil</a>
-            <i class="far fa-circle text-white px-2"></i>
-            <a href="" class="h5 text-white">offre</a>
-        </div>
+/* Sidebar */
+.job-sidebar-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-xl); overflow: hidden;
+  box-shadow: var(--shadow-sm); margin-bottom: 18px;
+  position: sticky; top: 90px;
+}
+.job-sidebar-header {
+  padding: 16px 20px; background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  color: #fff;
+}
+.job-sidebar-header h4 { font-size: .95rem; font-weight: 800; margin: 0; color: #fff; }
+.job-sidebar-body { padding: 18px 20px; }
+.job-meta-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid var(--ms-border);
+  font-size: .82rem;
+}
+.job-meta-row:last-child { border-bottom: none; }
+.job-meta-row .lbl { color: var(--ms-muted); font-weight: 500; }
+.job-meta-row .val { font-weight: 700; color: var(--ms-navy); font-family: var(--font-display); font-size: .8rem; }
+.job-apply-btn {
+  width: 100%; padding: 13px; border: none; cursor: pointer;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  color: #fff; border-radius: 50px;
+  font-family: var(--font-display); font-weight: 700; font-size: .86rem;
+  box-shadow: 0 5px 18px rgba(0,102,204,.3); transition: var(--transition);
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  text-decoration: none; margin-bottom: 8px;
+}
+.job-apply-btn:hover { transform: translateY(-2px); box-shadow: 0 9px 28px rgba(0,102,204,.42); }
+.job-apply-secondary {
+  width: 100%; padding: 11px; border: 2px solid var(--ms-blue); cursor: pointer;
+  background: transparent; color: var(--ms-blue) !important; border-radius: 50px;
+  font-family: var(--font-display); font-weight: 700; font-size: .84rem;
+  transition: var(--transition); display: flex; align-items: center;
+  justify-content: center; gap: 7px; text-decoration: none;
+}
+.job-apply-secondary:hover { background: var(--ms-blue); color: #fff !important; }
+.apply-method-card {
+  border-radius: var(--radius); border: 1px solid var(--ms-border);
+  padding: 20px 18px; text-align: center;
+  transition: var(--transition); background: var(--ms-ivory);
+}
+.apply-method-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); border-color: rgba(0,102,204,.2); }
+.apply-method-card i { font-size: 2rem; color: var(--ms-blue); display: block; margin-bottom: 10px; }
+.apply-method-card h5 { font-size: .88rem; font-weight: 800; color: var(--ms-navy); margin-bottom: 6px; }
+.apply-method-card p { font-size: .78rem; color: var(--ms-muted); margin-bottom: 12px; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section class="ms-page-hero">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="ms-breadcrumb">
+      <a href="{{ https_url_for(request,'index') }}">Accueil</a>
+      <i class="bi bi-chevron-right" style="font-size:.5rem"></i>
+      <a href="{{ https_url_for(request,'rechercher_postuler') }}">Carrières</a>
+      <i class="bi bi-chevron-right" style="font-size:.5rem"></i>
+      <span>Offre</span>
     </div>
-</div>
-{%endblock%}
+    <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(0,102,204,.2);border:1px solid rgba(0,102,204,.35);padding:5px 14px;border-radius:50px;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ms-sky);font-family:var(--font-display);margin-bottom:16px">
+      <i class="bi bi-briefcase-fill"></i> Recrutement
+    </div>
+    <h1 data-aos="fade-up">{{ post['titre'] }}</h1>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.58)" data-aos="fade-up" data-aos-delay="80">
+      <span><i class="bi bi-geo-alt me-1"></i>N'Djaména, Tchad</span>
+      <span><i class="bi bi-clock me-1"></i>Temps plein — CDI</span>
+      <span><i class="bi bi-calendar me-1"></i>Publié le {{ post['date'] }}</span>
+    </div>
+  </div>
+</section>
 
-<!-- Description Du Poste  -->
- <!-- Qualifications -->
+<section class="ms-section">
+  <div class="container">
+    <div class="row g-4">
 
- <!-- A propos de nous  -->
+      <!-- Contenu principal -->
+      <div class="col-lg-8">
 
- <!-- Egalité des chances face à l'emploi -->
-   
-
-{%block content%} 
-
-
-    <!-- Blog Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-
-                <div class="col-lg-8">
-                    <div class="mb-5">
-                        <h1 class="mb-4">{{ post['titre'] }}</h1>
-                        <h3 class="mb-4">Description Du Poste</h3>
-                        <p>{{ post['description'] }}</p>
-                        <h4 class="mb-4">Votre Mission:</h4>
-                        <p>{{ post['content']['mission_paragraph'] }}</p>
-                        <ul>
-                            {% for task in post['content']['mission'] %}
-                            <li>{{ task }}</li>
-                            {% endfor %}
-                        </ul>
-
-                          {% for element in post['content']['additional_info'] %}
-                            <p>{{element}}</p>
-                          {%endfor%}
-                 
-                        <h3 class="mb-4">Qualifications</h3>
-                        <ul>
-                            {% for qualification in post['qualifications'] %}
-                            <li>{{ qualification }}</li>
-                            {% endfor %}
-                        </ul>
-
-                        <h4 class="mb-4">A propos de nous </h4>
-
-                        
-
-                        <p>Mahrasoft Innovations, c'est une communauté de talents passionnés avec une mission commune : allier technologie et ingéniosité humaine pour relever les défis de demain.</p> 
-                        <p>Dans un monde en constante évolution, nous accompagnons la transformation des entreprises de toutes tailles, de la stratégie à la réalisation des projets, en nous appuyant sur les technologies de pointe et en stimulant leur croissance grâce à l'expertise de nos équipes pluridisciplinaires.</p> 
-                        <p>Nos recrutements sont basés sur les compétences, sans distinction d'origine, d'âge ou de genre, et tous nos postes sont ouverts aux personnes en situation de handicap.</p>
-
-                        <h4 class="mb-4">Pour postuler</h4>
-                        <p>Envoyez votre CV et lettre de motivation à l'adresse suivante : <strong>mahrasoft.contact@gmail.com</strong></p>
-                        <p> Pour toute information supplémentaire, n'hésitez pas à nous appeler au <strong>+235 66 38 38 56</strong></p>
-
-                    </div>
+        <!-- En-tête rapide -->
+        <div class="job-main-card" data-aos="fade-up">
+          <div class="job-section-body" style="background:linear-gradient(135deg,var(--ms-ivory),#fff)">
+            <div class="row align-items-center g-3">
+              <div class="col-md-8">
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+                  <span style="background:rgba(0,102,204,.1);color:var(--ms-blue);padding:4px 13px;border-radius:20px;font-size:.72rem;font-weight:700;font-family:var(--font-display)">{{ post.equipe | default('Équipe Technique') }}</span>
+                  <span style="background:rgba(22,163,74,.1);color:var(--ms-success);padding:4px 13px;border-radius:20px;font-size:.72rem;font-weight:700;font-family:var(--font-display)">Salaire compétitif</span>
                 </div>
-                
-
-    
-                <!-- Sidebar Start -->
-                <div class="col-lg-4">
-
-                    <!-- Category Start -->
-                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
-                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                            <h3 class="mb-0">Categories</h3>
-                        </div>
-                        <div class="link-animated d-flex flex-column justify-content-start">
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Infos</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Dates importantes</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Actualités</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Annonces</a>
-                        </div>
-                    </div>
-                    <!-- Category End -->
-    
-    
-                    <!-- Image Start -->
-                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
-                        <img src="/static/img/blog-1.jpg" alt="" class="img-fluid rounded">
-                    </div>
-                    <!-- Image End -->
-
-                    {%include "themes.html" %}
-    
-
-    
-                    <!-- Plain Text Start -->
-                    <div class="wow slideInUp" data-wow-delay="0.1s">
-                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                            <h3 class="mb-0">Annonces importantes</h3>
-                        </div>
-                        <div class="bg-light text-center" style="padding: 30px; text-align: justify;">
-                            <p style="text-align: justify;">À partir de décembre 2024, Mahrasoft Innovations lance une grande campagne de recrutement pour attirer de nouveaux talents dans les domaines du développement informatique, du marketing et de la formation professionnelle.</p>
-                            <p style="text-align: justify;">Si vous êtes passionné par l'innovation, motivé par les défis et désireux de rejoindre une entreprise en pleine expansion, restez connecté ! Nous publierons régulièrement de nouvelles offres d'emploi sur notre site</p>
-                            <p style="text-align: justify;">N'hésitez pas à consulter notre site web pour découvrir les opportunités qui pourraient correspondre à vos aspirations professionnelles.</p>
-                            <p style="text-align: justify;">Rejoignez Mahrasoft Innovations et participez à l'aventure de la transformation numérique !</p>
-                            <!-- <a href="" class="btn btn-primary py-2 px-4">Lire la suite</a> -->
-                        </div>
-                    </div>
-                    <!-- Plain Text End -->
-                </div>
-                <!-- Sidebar End -->
+                <p style="font-size:.88rem;color:var(--ms-muted);line-height:1.7;margin:0">Rejoignez notre équipe dynamique et participez à des projets qui transforment le paysage numérique du Tchad.</p>
+              </div>
+              <div class="col-md-4 text-md-end">
+                <a href="#postuler" class="btn-ms-primary" style="width:100%;justify-content:center;margin-bottom:8px">
+                  <i class="bi bi-send-fill"></i> Postuler
+                </a>
+                <a href="{{ https_url_for(request,'rechercher_postuler') }}" class="btn-ms-outline" style="width:100%;justify-content:center">
+                  <i class="bi bi-arrow-left"></i> Retour aux offres
+                </a>
+              </div>
             </div>
+          </div>
         </div>
+
+        <!-- Description -->
+        <div class="job-main-card" data-aos="fade-up" data-aos-delay="60">
+          <div class="job-section-header">
+            <div class="job-section-icon"><i class="bi bi-file-text-fill"></i></div>
+            <h3>Description du poste</h3>
+          </div>
+          <div class="job-section-body">
+            <p style="font-size:.88rem;color:var(--ms-muted);line-height:1.8;margin-bottom:18px">{{ post['description'] }}</p>
+            {% if post['content']['mission_paragraph'] %}
+            <p style="font-size:.88rem;color:var(--ms-muted);line-height:1.8;margin-bottom:18px">{{ post['content']['mission_paragraph'] }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Responsabilités -->
+        <div class="job-main-card" data-aos="fade-up" data-aos-delay="80">
+          <div class="job-section-header">
+            <div class="job-section-icon"><i class="bi bi-list-check"></i></div>
+            <h3>Responsabilités principales</h3>
+          </div>
+          <div class="job-section-body">
+            {% for task in post['content']['mission'] %}
+            <div class="job-task-item"><i class="bi bi-check-circle-fill"></i><span>{{ task }}</span></div>
+            {% endfor %}
+            {% for info in post['content']['additional_info'] %}
+            <p style="font-size:.85rem;color:var(--ms-muted);line-height:1.7;margin-top:14px;padding:12px 16px;background:rgba(0,102,204,.04);border-radius:var(--radius);border-left:3px solid var(--ms-blue)">{{ info }}</p>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Qualifications -->
+        <div class="job-main-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="job-section-header">
+            <div class="job-section-icon"><i class="bi bi-award-fill"></i></div>
+            <h3>Qualifications requises</h3>
+          </div>
+          <div class="job-section-body">
+            {% for q in post['qualifications'] %}
+            <div class="job-qual-item"><i class="bi bi-check-square-fill"></i><span>{{ q }}</span></div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- À propos de nous -->
+        <div class="job-main-card" data-aos="fade-up" data-aos-delay="120">
+          <div class="job-section-header">
+            <div class="job-section-icon"><i class="bi bi-building-fill"></i></div>
+            <h3>À propos de Mahrasoft Innovations</h3>
+          </div>
+          <div class="job-section-body">
+            <p style="font-size:.88rem;color:var(--ms-muted);line-height:1.8;margin-bottom:12px">Mahrasoft Innovations est une communauté de talents passionnés avec une mission commune : allier technologie et ingéniosité humaine pour relever les défis du Tchad et de l'Afrique de demain.</p>
+            <p style="font-size:.88rem;color:var(--ms-muted);line-height:1.8;margin-bottom:12px">Dans un monde en constante évolution, nous accompagnons la transformation des entreprises et institutions en nous appuyant sur les technologies de pointe.</p>
+            <div style="background:rgba(0,102,204,.05);border-left:4px solid var(--ms-blue);border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px">
+              <p style="font-size:.82rem;color:var(--ms-muted);margin:0;line-height:1.7"><strong style="color:var(--ms-navy)">Égalité des chances :</strong> Nos recrutements sont basés sur les compétences, sans distinction d'origine, d'âge ou de genre.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comment postuler -->
+        <div class="job-main-card" id="postuler" data-aos="fade-up" data-aos-delay="140">
+          <div class="job-section-header">
+            <div class="job-section-icon"><i class="bi bi-send-fill"></i></div>
+            <h3>Comment postuler</h3>
+          </div>
+          <div class="job-section-body">
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <div class="apply-method-card">
+                  <i class="bi bi-envelope-fill"></i>
+                  <h5>Par email</h5>
+                  <p>CV + lettre de motivation à notre équipe recrutement</p>
+                  <a href="mailto:mahrasoft.contact@gmail.com?subject=Candidature — {{ post['titre'] }}" class="btn-ms-primary" style="font-size:.78rem;padding:9px 18px">
+                    mahrasoft.contact@gmail.com
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="apply-method-card">
+                  <i class="bi bi-telephone-fill"></i>
+                  <h5>Par téléphone</h5>
+                  <p>Pour toute information supplémentaire sur le poste</p>
+                  <a href="tel:+23563755858" class="btn-ms-primary" style="font-size:.78rem;padding:9px 18px">
+                    +235 63 75 58 58
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div style="background:rgba(22,163,74,.08);border-left:4px solid var(--ms-success);border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px">
+              <p style="font-size:.82rem;color:var(--ms-muted);margin:0;line-height:1.7"><strong style="color:var(--ms-success)"><i class="bi bi-lightbulb me-1"></i>Conseil :</strong> Personnalisez votre lettre de motivation et mettez en avant vos réalisations les plus pertinentes pour ce poste.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-4">
+        <div class="job-sidebar-card" data-aos="fade-left" data-aos-delay="100">
+          <div class="job-sidebar-header">
+            <h4><i class="bi bi-lightning-charge-fill me-2"></i>Postuler rapidement</h4>
+          </div>
+          <div class="job-sidebar-body">
+            <p style="font-size:.82rem;color:var(--ms-muted);margin-bottom:16px">Cette offre vous intéresse ? Candidatez dès maintenant.</p>
+            <a href="mailto:mahrasoft.contact@gmail.com?subject=Candidature — {{ post['titre'] }}" class="job-apply-btn">
+              <i class="bi bi-send-fill"></i> Postuler par email
+            </a>
+            <a href="{{ https_url_for(request,'contact') }}" class="job-apply-secondary">
+              <i class="bi bi-info-circle"></i> Plus d'informations
+            </a>
+          </div>
+        </div>
+
+        <div class="job-sidebar-card" data-aos="fade-left" data-aos-delay="150">
+          <div class="job-sidebar-header" style="background:var(--ms-ivory);border-bottom:1px solid var(--ms-border)">
+            <h4 style="color:var(--ms-navy);font-size:.9rem"><i class="bi bi-card-list me-2" style="color:var(--ms-blue)"></i>Détails de l'offre</h4>
+          </div>
+          <div class="job-sidebar-body">
+            <div class="job-meta-row"><span class="lbl">Type de contrat</span><span class="val">CDI</span></div>
+            <div class="job-meta-row"><span class="lbl">Localisation</span><span class="val">N'Djaména</span></div>
+            <div class="job-meta-row"><span class="lbl">Expérience</span><span class="val">2+ ans</span></div>
+            <div class="job-meta-row"><span class="lbl">Salaire</span><span class="val" style="color:var(--ms-success)">Compétitif</span></div>
+            <div class="job-meta-row"><span class="lbl">Télétravail</span><span class="val">Partiel</span></div>
+            <div class="job-meta-row"><span class="lbl">Date publiée</span><span class="val">{{ post['date'] }}</span></div>
+          </div>
+        </div>
+
+        <div class="job-sidebar-card" data-aos="fade-left" data-aos-delay="200">
+          <div class="job-sidebar-header" style="background:var(--ms-ivory);border-bottom:1px solid var(--ms-border)">
+            <h4 style="color:var(--ms-navy);font-size:.9rem"><i class="bi bi-share-fill me-2" style="color:var(--ms-blue)"></i>Partager cette offre</h4>
+          </div>
+          <div class="job-sidebar-body">
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              {% for icon, url_tpl in [('bi-linkedin','https://www.linkedin.com/sharing/share-offsite/?url='),('bi-facebook','https://www.facebook.com/sharer/sharer.php?u='),('bi-twitter-x','https://twitter.com/intent/tweet?url=')] %}
+              <a href="{{ url_tpl }}{{ request.url }}" target="_blank" rel="noopener"
+                 style="flex:1;min-width:44px;height:40px;border-radius:10px;background:var(--ms-ivory);border:1px solid var(--ms-border);display:flex;align-items:center;justify-content:center;color:var(--ms-blue);text-decoration:none;font-size:.9rem;transition:var(--transition)"
+                 onmouseover="this.style.background='var(--ms-blue)';this.style.color='#fff'"
+                 onmouseout="this.style.background='var(--ms-ivory)';this.style.color='var(--ms-blue)'">
+                <i class="bi {{ icon }}"></i>
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
-    <!-- Blog End -->
+  </div>
+</section>
 
+<!-- CTA autres offres -->
+<section style="background:linear-gradient(135deg,var(--ms-blue),var(--ms-navy-mid));padding:64px 0;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none"></div>
+  <div class="container" style="position:relative">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8" data-aos="fade-right">
+        <h2 style="color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:8px">D'autres opportunités vous attendent</h2>
+        <p style="color:rgba(255,255,255,.65);margin:0;font-size:.97rem;line-height:1.7">Découvrez toutes nos offres d'emploi et trouvez le poste qui correspond à vos aspirations.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+        <a href="{{ https_url_for(request,'rechercher_postuler') }}" class="btn-ms-ghost">
+          <i class="bi bi-briefcase-fill"></i> Voir toutes les offres
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-{%endblock%}
+{% endblock %}

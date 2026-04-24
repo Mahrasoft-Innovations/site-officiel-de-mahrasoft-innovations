@@ -1,1105 +1,390 @@
 {% extends "base.html" %}
+{% block head_title %}Nos Services — Mahrasoft Innovations{% endblock %}
+{% block meta_desc %}Numérisation d'archives, développement logiciel, formation, IA et gestion documentaire — les solutions Mahrasoft pour votre transformation digitale au Tchad.{% endblock %}
 
-{% block head_title %}Services - Mahrasoft Innovations | Solutions IT Complètes au Tchad{% endblock %}
-
-{% block carousel %}
-<!-- Page Header Modern -->
-<section class="page-header-modern" style="background: linear-gradient(135deg, #0066cc 0%, #5ba3e0 100%); position: relative; overflow: hidden; padding: 140px 0 100px;">
-    <div class="hero-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-    </div>
-    <div class="container" style="position: relative; z-index: 2;">
-        <div class="row align-items-center">
-            <div class="col-lg-10 mx-auto text-center" data-aos="fade-down" data-aos-duration="1000">
-                <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb justify-content-center" style="background: transparent;">
-                        <li class="breadcrumb-item">
-                            <a href="{{ https_url_for(request,'index') }}" class="text-white opacity-75 hover-white">
-                                <i class="bi bi-house me-1"></i>Accueil
-                            </a>
-                        </li>
-                        <li class="breadcrumb-item text-white active opacity-90">Services</li>
-                    </ol>
-                </nav>
-                <span class="badge bg-white text-primary mb-4 px-4 py-3 rounded-pill shadow-sm">
-                    <i class="bi bi-stack me-2"></i>Nos Expertises
-                </span>
-                <h1 class="display-3 fw-bold text-white mb-4 hero-title">
-                    Nos <span class="text-light-blue">Services</span>
-                </h1>
-                <p class="lead text-white opacity-90 mb-5 fs-5">
-                    Solutions digitales complètes pour propulser votre transformation numérique au Tchad
-                </p>
-                
-                <!-- Statistiques Hero Améliorées -->
-                <div class="hero-stats mt-5">
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="100">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-check-circle-fill"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2" data-count="50">0+</h3>
-                                <p class="stat-label mb-0">Projets Réalisés</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="200">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-people-fill"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2" data-count="30">0+</h3>
-                                <p class="stat-label mb-0">Clients Satisfaits</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="300">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-file-earmark-text-fill"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2" data-count="500000">0+</h3>
-                                <p class="stat-label mb-0">Dossiers Numérisés</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
-            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
-            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
-        </svg>
-    </div>
-</section>
-
+{% block extra_css %}
 <style>
-    .hero-shapes {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
+/* ── Service detail block ── */
+.svc-detail {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--ms-border);
+}
+.svc-detail:last-of-type { border-bottom: none; }
 
-    .shape {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        animation: float 20s infinite ease-in-out;
-    }
+.svc-img-frame {
+  position: relative; border-radius: var(--radius-xl); overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+.svc-img-frame img {
+  width: 100%; height: 400px; object-fit: cover; display: block;
+  transition: transform .55s cubic-bezier(.4,0,.2,1);
+}
+.svc-img-frame:hover img { transform: scale(1.04); }
+.svc-img-badge {
+  position: absolute; top: 16px; left: 16px;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  color: #fff; padding: 8px 16px; border-radius: var(--radius);
+  font-family: var(--font-display); font-size: .74rem; font-weight: 800;
+  box-shadow: 0 6px 18px rgba(0,102,204,.3);
+  display: flex; align-items: center; gap: 6px;
+  animation: float 3.2s ease-in-out infinite;
+}
 
-    .shape-1 {
-        width: 400px;
-        height: 400px;
-        top: -150px;
-        left: -100px;
-        animation-delay: 0s;
-    }
+.svc-cat-label {
+  font-family: var(--font-display); font-size: .68rem; font-weight: 800;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--ms-blue);
+  margin-bottom: 12px; display: block;
+}
+.svc-detail-title {
+  font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 900; color: var(--ms-navy);
+  letter-spacing: -.03em; line-height: 1.1; margin-bottom: 14px;
+}
+.svc-detail-desc {
+  font-size: 1rem; color: var(--ms-muted); line-height: 1.78; margin-bottom: 24px;
+}
 
-    .shape-2 {
-        width: 250px;
-        height: 250px;
-        top: 20%;
-        right: -80px;
-        animation-delay: 5s;
-    }
+/* Feature items */
+.svc-feature-row {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px 16px; border-radius: var(--radius);
+  background: var(--ms-ivory); border: 1px solid var(--ms-border);
+  margin-bottom: 10px; transition: var(--transition);
+}
+.svc-feature-row:hover { border-color: rgba(0,102,204,.2); transform: translateX(4px); }
+.svc-feature-icon {
+  width: 42px; height: 42px; border-radius: 11px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1rem; transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(0,102,204,.22);
+}
+.svc-feature-row:hover .svc-feature-icon { transform: rotate(-5deg) scale(1.07); }
+.svc-feature-title { font-size: .88rem; font-weight: 700; color: var(--ms-navy); margin-bottom: 3px; }
+.svc-feature-desc  { font-size: .8rem; color: var(--ms-muted); line-height: 1.6; margin: 0; }
 
-    .shape-3 {
-        width: 180px;
-        height: 180px;
-        bottom: 50px;
-        left: 25%;
-        animation-delay: 10s;
-    }
+/* Tech tags */
+.tech-row { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
+.tech-tag {
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  color: #fff; padding: 5px 13px; border-radius: 20px;
+  font-size: .72rem; font-weight: 700; transition: var(--transition);
+  font-family: var(--font-display);
+}
+.tech-tag:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,102,204,.3); }
 
-    .shape-4 {
-        width: 120px;
-        height: 120px;
-        bottom: 100px;
-        right: 20%;
-        animation-delay: 15s;
-    }
+/* Benefits box */
+.benefits-box {
+  background: linear-gradient(135deg, rgba(0,102,204,.05), rgba(91,163,224,.05));
+  border: 1px solid rgba(0,102,204,.12); border-radius: var(--radius-lg);
+  padding: 22px 20px; margin-bottom: 22px;
+}
+.benefits-box h6 { font-size: .82rem; font-weight: 800; color: var(--ms-navy); margin-bottom: 12px; font-family: var(--font-display); }
+.benefit-item {
+  display: flex; align-items: center; gap: 9px;
+  font-size: .84rem; color: var(--ms-text); padding: 4px 0;
+}
+.benefit-item i { color: var(--ms-blue); font-size: .9rem; flex-shrink: 0; }
 
-    .wave-divider {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        overflow: hidden;
-        line-height: 0;
-        transform:rotate(180deg);
-    }
+/* Divider décoratif */
+.svc-divider {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 20px 0;
+}
+.svc-divider-line { width: 2px; height: 48px; background: linear-gradient(to bottom, var(--ms-blue), var(--ms-blue-light)); border-radius: 2px; }
+.svc-divider-dot {
+  width: 40px; height: 40px; border-radius: 50%; margin-top: 10px;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: .95rem;
+  box-shadow: 0 6px 18px rgba(0,102,204,.3);
+  animation: float 2.5s ease-in-out infinite;
+}
 
-    .wave-divider svg {
-        position: relative;
-        display: block;
-        width: calc(100% + 1.3px);
-        height: 80px;
-    }
+/* Process cards */
+.process-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-lg); padding: 28px 22px; height: 100%;
+  transition: all .35s cubic-bezier(.4,0,.2,1); position: relative;
+  overflow: hidden; text-align: center;
+}
+.process-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--ms-blue), var(--ms-sky));
+  transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+}
+.process-card:hover::before { transform: scaleX(1); }
+.process-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-6px); border-color: rgba(0,102,204,.2); }
+.process-num {
+  position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  color: #fff; font-family: var(--font-display); font-weight: 900; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,102,204,.3);
+}
+.process-icon {
+  width: 72px; height: 72px; border-radius: 18px; margin: 44px auto 16px;
+  background: var(--ms-ivory); border: 2px solid var(--ms-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; color: var(--ms-blue); transition: var(--transition);
+}
+.process-card:hover .process-icon { background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid)); color: #fff; border-color: transparent; }
+.process-card h4 { font-size: .95rem; font-weight: 800; color: var(--ms-navy); margin-bottom: 8px; }
+.process-card p  { font-size: .83rem; color: var(--ms-muted); line-height: 1.7; margin: 0; }
 
-    .wave-divider .shape-fill {
-        fill: #FFFFFF;
-    }
+/* Tech grid */
+.tech-grid-item {
+  background: var(--ms-ivory); border: 1px solid var(--ms-border);
+  border-radius: var(--radius); padding: 16px 12px; text-align: center;
+  transition: var(--transition); cursor: default;
+}
+.tech-grid-item:hover { box-shadow: var(--shadow); border-color: rgba(0,102,204,.2); transform: translateY(-4px); }
+.tech-grid-item i { font-size: 1.55rem; color: var(--ms-blue); display: block; margin-bottom: 6px; }
+.tech-grid-item .t-name { font-family: var(--font-display); font-weight: 800; font-size: .78rem; color: var(--ms-navy); }
+.tech-grid-item .t-cat  { font-size: .64rem; color: var(--ms-muted); }
 
-    @keyframes float {
-        0%, 100% {
-            transform: translateY(0) rotate(0deg);
-        }
-        33% {
-            transform: translateY(-20px) rotate(120deg);
-        }
-        66% {
-            transform: translateY(10px) rotate(240deg);
-        }
-    }
-
-    .text-light-blue {
-        color: #87CEEB !important;
-        text-shadow: 0 2px 10px rgba(135, 206, 235, 0.3);
-    }
-
-    .hover-white:hover {
-        color: white !important;
-        opacity: 1 !important;
-    }
-
-    .hero-title {
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Styles pour les statistiques hero */
-    .stat-card-hero {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 25px;
-        min-width: 180px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        overflow: hidden;
-    }
-
-    .stat-card-hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-    }
-
-    .stat-card-hero:hover {
-        transform: translateY(-15px) scale(1.08);
-        background: rgba(255, 255, 255, 0.25);
-        border-color: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 25px 50px rgba(0, 102, 204, 0.4);
-    }
-
-    .stat-icon-wrapper {
-        position: relative;
-        display: inline-block;
-    }
-
-    .stat-icon-inner {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(10px);
-        transition: all 0.4s ease;
-    }
-
-    .stat-card-hero:hover .stat-icon-inner {
-        transform: scale(1.15) rotate(10deg);
-        background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
-        border-color: rgba(255, 255, 255, 0.8);
-    }
-
-    .stat-icon-inner i {
-        font-size: 2rem;
-        color: white;
-        text-shadow: 0 2px 15px rgba(0, 102, 204, 0.6);
-    }
-
-    .stat-number {
-        font-size: 2.8rem;
-        background: linear-gradient(135deg, #ffffff, #e6f2ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 0 4px 25px rgba(0, 102, 204, 0.4);
-        letter-spacing: -1px;
-    }
-
-    .stat-label {
-        color: rgba(255, 255, 255, 0.95);
-        font-size: 1.1rem;
-        font-weight: 600;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .stat-glow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, transparent 70%);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        border-radius: 25px;
-    }
-
-    .stat-card-hero:hover .stat-glow {
-        opacity: 1;
-    }
+/* CTA strip */
+.ms-cta-strip {
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-navy-mid));
+  border-radius: var(--radius-xl); padding: 48px 44px; position: relative; overflow: hidden;
+}
+.ms-cta-strip::before {
+  content: ''; position: absolute; top: -80px; right: -80px; width: 280px; height: 280px;
+  border-radius: 50%; background: rgba(255,255,255,.06); pointer-events: none;
+}
 </style>
 {% endblock %}
 
 {% block content %}
-<!-- Services Détaillés -->
-<section class="section-modern py-6">
-    <div class="container">
-        <!-- Numérisation d'Archives -->
-        <div class="service-detail mb-6 pb-6" data-aos="fade-up" data-aos-duration="1000">
-            <div class="row align-items-center g-6">
-                <div class="col-lg-6">
-                    <div class="service-image-wrapper">
-                        <div class="image-frame">
-                            <img src="{{ https_url_for(request,'static', path='img/cours_10.jpeg') }}" 
-                                 alt="Numérisation d'archives" 
-                                 class="img-fluid rounded-4 shadow-lg service-image">
-                            <div class="service-badge">
-                                <span class="badge-content">
-                                    <i class="bi bi-file-earmark-text me-2"></i>Service Phare
-                                </span>
-                                <div class="badge-glow"></div>
-                            </div>
-                        </div>
-                        <div class="image-overlay"></div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="service-content">
-                        <span class="service-category">Digitalisation</span>
-                        <h2 class="service-title fw-bold mb-4">Numérisation d'Archives</h2>
-                        <p class="service-description lead mb-4">
-                            Transformez vos documents physiques en archives numériques sécurisées et accessibles instantanément.
-                        </p>
-                        
-                        <div class="feature-list mb-5">
-                            <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
-                                <div class="feature-icon">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h5 class="fw-bold mb-2">Numérisation Haute Résolution</h5>
-                                    <p class="text-muted mb-0">Scanners professionnels haute performance, résolution jusqu'à 600 DPI, traitement OCR pour reconnaissance de texte avancée</p>
-                                </div>
-                            </div>
-                            <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
-                                <div class="feature-icon">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h5 class="fw-bold mb-2">Indexation Intelligente</h5>
-                                    <p class="text-muted mb-0">Structuration et indexation fine selon votre nomenclature, attribution de métadonnées descriptives, classification automatique</p>
-                                </div>
-                            </div>
-                            <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
-                                <div class="feature-icon">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h5 class="fw-bold mb-2">Sécurité Maximale</h5>
-                                    <p class="text-muted mb-0">Chiffrement des données AES-256, sauvegardes redondantes, traçabilité complète des accès, conformité RGPD</p>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="service-stats row g-3 mb-5">
-                            <div class="col-6" data-aos="fade-up" data-aos-delay="400">
-                                <div class="stat-card-modern text-center p-4 rounded-4">
-                                    <h3 class="fw-bold text-primary mb-2" data-count="500000">0+</h3>
-                                    <p class="text-muted mb-0 fw-semibold">Dossiers Numérisés</p>
-                                </div>
-                            </div>
-                            <div class="col-6" data-aos="fade-up" data-aos-delay="500">
-                                <div class="stat-card-modern text-center p-4 rounded-4">
-                                    <h3 class="fw-bold text-primary mb-2">99.9%</h3>
-                                    <p class="text-muted mb-0 fw-semibold">Taux de Qualité</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="service-actions" data-aos="fade-up" data-aos-delay="600">
-                            <a href="{{ https_url_for(request,'contact') }}?service=numerisation" class="btn btn-primary-modern btn-lg px-5">
-                                <i class="bi bi-chat-dots-fill me-2"></i>Demander un Devis
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Séparateur Décoratif -->
-        <div class="service-divider" data-aos="fade-up">
-            <div class="divider-line"></div>
-            <div class="divider-icon">
-                <i class="bi bi-arrow-down"></i>
-            </div>
-        </div>
-
-        <!-- Développement Logiciel -->
-        <div class="service-detail mb-6 pb-6" data-aos="fade-up" data-aos-duration="1000">
-            <div class="row align-items-center g-6 flex-lg-row-reverse">
-                <div class="col-lg-6">
-                    <div class="service-image-wrapper">
-                        <div class="image-frame">
-                            <img src="{{ https_url_for(request,'static', path='img/cours_7.jpeg') }}" 
-                                 alt="Développement logiciel" 
-                                 class="img-fluid rounded-4 shadow-lg service-image">
-                            <div class="service-badge">
-                                <span class="badge-content">
-                                    <i class="bi bi-code-slash me-2"></i>Innovation
-                                </span>
-                                <div class="badge-glow"></div>
-                            </div>
-                        </div>
-                        <div class="image-overlay"></div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="service-content">
-                        <span class="service-category">Développement</span>
-                        <h2 class="service-title fw-bold mb-4">Développement Logiciel</h2>
-                        <p class="service-description lead mb-4">
-                            Applications métiers sur mesure pour digitaliser vos processus et augmenter votre productivité.
-                        </p>
-                        
-                        <div class="feature-list mb-5">
-                            <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
-                                <div class="feature-icon">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h5 class="fw-bold mb-2">Applications Web Modernes</h5>
-                                    <p class="text-muted mb-0">Sites web réactifs, applications web progressives (PWA), e-commerce, plateformes collaboratives, SaaS</p>
-                                </div>
-                            </div>
-                            <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
-                                <div class="feature-icon">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h5 class="fw-bold mb-2">Applications Mobiles</h5>
-                                    <p class="text-muted mb-0">Apps iOS & Android natives, applications cross-platform (React Native, Flutter), intégration API</p>
-                                </div>
-                            </div>
-                            <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
-                                <div class="feature-icon">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h5 class="fw-bold mb-2">Logiciels de Bureau</h5>
-                                    <p class="text-muted mb-0">Applications desktop multiplateforme, intégration avec systèmes existants, automatisation de processus</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tech-stack mb-5" data-aos="fade-up" data-aos-delay="400">
-                            <h6 class="fw-bold mb-3">Technologies Utilisées</h6>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">Django</span>
-                                <span class="tech-tag">PostgreSQL</span>
-                                <span class="tech-tag">MongoDB</span>
-                                <span class="tech-tag">Docker</span>
-                                <span class="tech-tag">Git</span>
-                                <span class="tech-tag">Gitlab</span>
-                                <span class="tech-tag">Github</span>
-                                <span class="tech-tag">Kubernetes</span>
-                                <span class="tech-tag">AWS</span>
-                                <span class="tech-tag">Flutter</span>
-                                <span class="tech-tag">React Native</span>
-                                <span class="tech-tag">FastAPI</span>
-                                <span class="tech-tag">MySQL</span>
-                            </div>
-                        </div>
-
-                        <div class="service-actions" data-aos="fade-up" data-aos-delay="500">
-                            <a href="{{ https_url_for(request,'contact') }}?service=developpement" class="btn btn-primary-modern btn-lg px-5">
-                                <i class="bi bi-rocket-takeoff me-2"></i>Démarrer Votre Projet
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Les autres services suivent le même pattern amélioré -->
-        <!-- Gestion Documentaire -->
-        <div class="service-detail mb-6 pb-6" data-aos="fade-up" data-aos-duration="1000">
-            <div class="row align-items-center g-6">
-                <div class="col-lg-6">
-                    <div class="service-image-wrapper">
-                        <div class="image-frame">
-                            <img src="{{ https_url_for(request,'static', path='img/cours_1.webp') }}" 
-                                 alt="Gestion documentaire" 
-                                 class="img-fluid rounded-4 shadow-lg service-image">
-                            <div class="service-badge">
-                                <span class="badge-content">
-                                    <i class="bi bi-folder2-open me-2"></i>Organisation
-                                </span>
-                                <div class="badge-glow"></div>
-                            </div>
-                        </div>
-                        <div class="image-overlay"></div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="service-content">
-                        <span class="service-category">Gestion</span>
-                        <h2 class="service-title fw-bold mb-4">Gestion Documentaire</h2>
-                        <p class="service-description lead mb-4">
-                            Systèmes d'archivage électronique (SAE) pour une gestion optimale de vos documents numériques.
-                        </p>
-                        
-                        <div class="feature-list mb-5">
-                            <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
-                                <div class="feature-icon">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h5 class="fw-bold mb-2">Centralisation des Documents</h5>
-                                    <p class="text-muted mb-0">Espace numérique unique pour tous vos documents, accessible depuis n'importe où, synchronisation cloud</p>
-                                </div>
-                            </div>
-                            <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
-                                <div class="feature-icon">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h5 class="fw-bold mb-2">Recherche Avancée</h5>
-                                    <p class="text-muted mb-0">Moteur de recherche plein texte, filtres multicritères, recherche par métadonnées, suggestions intelligentes</p>
-                                </div>
-                            </div>
-                            <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
-                                <div class="feature-icon">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h5 class="fw-bold mb-2">Gestion des Droits</h5>
-                                    <p class="text-muted mb-0">Profils utilisateurs personnalisables, permissions granulaires, traçabilité complète, workflow d'approbation</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="benefits-box p-4 rounded-4 mb-5" data-aos="fade-up" data-aos-delay="400">
-                            <h6 class="fw-bold mb-3">Bénéfices Clés</h6>
-                            <div class="benefits-list">
-                                <div class="benefit-item">
-                                    <i class="bi bi-arrow-right-circle-fill text-primary"></i>
-                                    <span>Réduction de 80% du temps de recherche</span>
-                                </div>
-                                <div class="benefit-item">
-                                    <i class="bi bi-arrow-right-circle-fill text-primary"></i>
-                                    <span>Économie d'espace physique de stockage</span>
-                                </div>
-                                <div class="benefit-item">
-                                    <i class="bi bi-arrow-right-circle-fill text-primary"></i>
-                                    <span>Conformité réglementaire garantie</span>
-                                </div>
-                                <div class="benefit-item">
-                                    <i class="bi bi-arrow-right-circle-fill text-primary"></i>
-                                    <span>Zéro papier possible</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="service-actions" data-aos="fade-up" data-aos-delay="500">
-                            <a href="{{ https_url_for(request,'contact') }}?service=gestion-documentaire" class="btn btn-primary-modern btn-lg px-5">
-                                <i class="bi bi-play-circle me-2"></i>Demander une Démo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+<!-- Hero -->
+<section class="ms-page-hero">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="ms-breadcrumb">
+      <a href="{{ https_url_for(request,'index') }}">Accueil</a>
+      <i class="bi bi-chevron-right" style="font-size:.5rem"></i><span>Services</span>
     </div>
+    <!-- Stats hero -->
+    <div class="row align-items-end g-4">
+      <div class="col-lg-7">
+        <h1 data-aos="fade-up">Nos Services &amp; Expertises</h1>
+        <p data-aos="fade-up" data-aos-delay="80">De la numérisation d'archives à l'IA, nos ingénieurs livrent des solutions robustes adaptées au contexte africain.</p>
+      </div>
+      <div class="col-lg-5" data-aos="fade-left" data-aos-delay="100">
+        <div class="d-flex gap-3 flex-wrap justify-content-lg-end">
+          <div style="text-align:center;padding:14px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);backdrop-filter:blur(8px)">
+            <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:900;color:var(--ms-gold);line-height:1">50+</div>
+            <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:3px">Projets livrés</div>
+          </div>
+          <div style="text-align:center;padding:14px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);backdrop-filter:blur(8px)">
+            <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:900;color:var(--ms-gold);line-height:1">30+</div>
+            <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:3px">Clients satisfaits</div>
+          </div>
+          <div style="text-align:center;padding:14px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);backdrop-filter:blur(8px)">
+            <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:900;color:var(--ms-gold);line-height:1">500k+</div>
+            <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:3px">Dossiers numérisés</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Processus de Travail Amélioré -->
-<section class="section-modern py-6" style="background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);">
-    <div class="container">
-        <div class="section-title-modern text-center" data-aos="fade-up" data-aos-duration="1000">
-            <span class="section-subtitle">NOTRE PROCESSUS</span>
-            <h2 class="section-heading">Comment Nous Travaillons</h2>
-            <p class="section-description">
-                Une méthodologie éprouvée pour garantir le succès de votre projet digital
-            </p>
+<!-- ═════════════════════ SERVICES DÉTAILLÉS ═════════════════════ -->
+<div class="container">
+
+  <!-- 1. Numérisation d'Archives -->
+  <div class="svc-detail" data-aos="fade-up">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="svc-img-frame">
+          <img src="{{ https_url_for(request,'static', path='img/cours_10.jpeg') }}"
+               alt="Numérisation d'archives" loading="lazy">
+          <div class="svc-img-badge"><i class="bi bi-file-earmark-text"></i> Service Phare</div>
         </div>
-
-        <div class="process-timeline">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
-                    <div class="process-card text-center p-5 rounded-4 h-100">
-                        <div class="process-number">1</div>
-                        <div class="process-icon mb-4 mx-auto">
-                            <i class="bi bi-chat-dots"></i>
-                        </div>
-                        <h4 class="fw-bold mb-3">Consultation</h4>
-                        <p class="text-muted mb-0">
-                            Analyse approfondie de vos besoins et objectifs business pour comprendre vos défis spécifiques
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="process-card text-center p-5 rounded-4 h-100">
-                        <div class="process-number">2</div>
-                        <div class="process-icon mb-4 mx-auto">
-                            <i class="bi bi-pencil-square"></i>
-                        </div>
-                        <h4 class="fw-bold mb-3">Conception</h4>
-                        <p class="text-muted mb-0">
-                            Élaboration de la solution technique détaillée et plan de projet sur mesure
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="process-card text-center p-5 rounded-4 h-100">
-                        <div class="process-number">3</div>
-                        <div class="process-icon mb-4 mx-auto">
-                            <i class="bi bi-gear"></i>
-                        </div>
-                        <h4 class="fw-bold mb-3">Développement</h4>
-                        <p class="text-muted mb-0">
-                            Implémentation agile avec des revues régulières et tests qualité rigoureux
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="process-card text-center p-5 rounded-4 h-100">
-                        <div class="process-number">4</div>
-                        <div class="process-icon mb-4 mx-auto">
-                            <i class="bi bi-rocket"></i>
-                        </div>
-                        <h4 class="fw-bold mb-3">Livraison</h4>
-                        <p class="text-muted mb-0">
-                            Déploiement et support continu pour assurer votre réussite à long terme
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
+      <div class="col-lg-6">
+        <span class="svc-cat-label">Digitalisation</span>
+        <h2 class="svc-detail-title">Numérisation d'Archives</h2>
+        <p class="svc-detail-desc">Transformez vos documents physiques en archives numériques sécurisées, indexées et accessibles instantanément depuis n'importe où.</p>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-zoom-in"></i></div><div><div class="svc-feature-title">Scan Haute Résolution</div><p class="svc-feature-desc">Scanners professionnels jusqu'à 600 DPI, traitement OCR multilingue (français, arabe, anglais).</p></div></div>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-tags-fill"></i></div><div><div class="svc-feature-title">Indexation Intelligente</div><p class="svc-feature-desc">Structuration fine selon votre nomenclature, métadonnées descriptives, classification automatique.</p></div></div>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-shield-lock-fill"></i></div><div><div class="svc-feature-title">Sécurité & Conformité</div><p class="svc-feature-desc">Chiffrement AES-256, sauvegardes redondantes, traçabilité complète, conformité RGPD.</p></div></div>
+        <a href="{{ https_url_for(request,'contact') }}" class="btn-ms-primary mt-3">
+          <i class="bi bi-chat-dots-fill"></i> Demander un devis
+        </a>
+      </div>
     </div>
+  </div>
+
+  <div class="svc-divider"><div class="svc-divider-line"></div><div class="svc-divider-dot"><i class="bi bi-arrow-down"></i></div></div>
+
+  <!-- 2. Développement Logiciel -->
+  <div class="svc-detail" data-aos="fade-up">
+    <div class="row align-items-center g-5 flex-lg-row-reverse">
+      <div class="col-lg-6">
+        <div class="svc-img-frame">
+          <img src="{{ https_url_for(request,'static', path='img/cours_7.jpeg') }}"
+               alt="Développement logiciel" loading="lazy">
+          <div class="svc-img-badge"><i class="bi bi-code-slash"></i> Innovation</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <span class="svc-cat-label">Développement</span>
+        <h2 class="svc-detail-title">Développement Logiciel</h2>
+        <p class="svc-detail-desc">Applications web, mobiles et desktop sur mesure — de la conception à la maintenance avec les technologies les plus robustes du marché.</p>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-globe"></i></div><div><div class="svc-feature-title">Applications Web Modernes</div><p class="svc-feature-desc">Sites réactifs, PWA, e-commerce, plateformes SaaS avec FastAPI, Django, React, Vue.js.</p></div></div>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-phone-fill"></i></div><div><div class="svc-feature-title">Applications Mobiles</div><p class="svc-feature-desc">iOS & Android natif, React Native et Flutter. Intégration Mobile Money (Airtel, Moov).</p></div></div>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-gear-fill"></i></div><div><div class="svc-feature-title">APIs & Microservices</div><p class="svc-feature-desc">APIs REST documentées, architecture microservices, CI/CD et déploiement Docker/VPS.</p></div></div>
+        <h6 style="font-size:.78rem;font-weight:800;color:var(--ms-muted);text-transform:uppercase;letter-spacing:.08em;margin:18px 0 10px;font-family:var(--font-display)">Stack technologique</h6>
+        <div class="tech-row">
+          {% for t in ['Python','FastAPI','Django','JavaScript','React','Vue.js','Flutter','React Native','PostgreSQL','Docker','Git','AWS'] %}
+          <span class="tech-tag">{{ t }}</span>
+          {% endfor %}
+        </div>
+        <a href="{{ https_url_for(request,'contact') }}" class="btn-ms-primary">
+          <i class="bi bi-rocket-takeoff-fill"></i> Démarrer votre projet
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="svc-divider"><div class="svc-divider-line"></div><div class="svc-divider-dot"><i class="bi bi-arrow-down"></i></div></div>
+
+  <!-- 3. Gestion Documentaire -->
+  <div class="svc-detail" data-aos="fade-up">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="svc-img-frame">
+          <img src="{{ https_url_for(request,'static', path='img/cours_1.jpeg') }}"
+               alt="Gestion documentaire" loading="lazy">
+          <div class="svc-img-badge"><i class="bi bi-folder2-open"></i> Organisation</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <span class="svc-cat-label">Gestion</span>
+        <h2 class="svc-detail-title">Gestion Documentaire</h2>
+        <p class="svc-detail-desc">Systèmes d'archivage électronique (SAE) sécurisés pour centraliser, organiser et gérer vos documents avec workflows de validation.</p>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-search"></i></div><div><div class="svc-feature-title">Recherche Full-Text</div><p class="svc-feature-desc">Moteur de recherche full-text, filtres multicritères, suggestions intelligentes.</p></div></div>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-diagram-3-fill"></i></div><div><div class="svc-feature-title">Workflows de Validation</div><p class="svc-feature-desc">Circuits de validation multi-niveaux, signatures électroniques, versioning automatique.</p></div></div>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-eye-fill"></i></div><div><div class="svc-feature-title">Audit Trail Complet</div><p class="svc-feature-desc">Traçabilité totale des accès, modifications et validations. Conformité réglementaire garantie.</p></div></div>
+        <div class="benefits-box mt-3">
+          <h6><i class="bi bi-trophy-fill me-2" style="color:var(--ms-gold)"></i>Bénéfices mesurés</h6>
+          <div class="benefit-item"><i class="bi bi-arrow-right-circle-fill"></i> Réduction de 80% du temps de recherche de documents</div>
+          <div class="benefit-item"><i class="bi bi-arrow-right-circle-fill"></i> Économie d'espace physique de stockage</div>
+          <div class="benefit-item"><i class="bi bi-arrow-right-circle-fill"></i> Conformité réglementaire garantie</div>
+        </div>
+        <a href="{{ https_url_for(request,'contact') }}" class="btn-ms-primary">
+          <i class="bi bi-play-circle-fill"></i> Demander une démo
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="svc-divider"><div class="svc-divider-line"></div><div class="svc-divider-dot"><i class="bi bi-arrow-down"></i></div></div>
+
+  <!-- 4. Formation -->
+  <div class="svc-detail" data-aos="fade-up">
+    <div class="row align-items-center g-5 flex-lg-row-reverse">
+      <div class="col-lg-6">
+        <div class="svc-img-frame">
+          <img src="{{ https_url_for(request,'static', path='img/img11.jpeg') }}"
+               alt="Formation professionnelle" loading="lazy">
+          <div class="svc-img-badge"><i class="bi bi-mortarboard-fill"></i> Formation</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <span class="svc-cat-label">Formation</span>
+        <h2 class="svc-detail-title">Formation Professionnelle</h2>
+        <p class="svc-detail-desc">Programmes certifiants en technologies numériques dispensés en présentiel à N'Djaména ou à distance via Mahrasoft Academia.</p>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-laptop-fill"></i></div><div><div class="svc-feature-title">Dev Web & Mobile</div><p class="svc-feature-desc">HTML/CSS, JavaScript, Python, React, Django, FastAPI — du niveau débutant à expert.</p></div></div>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-cpu-fill"></i></div><div><div class="svc-feature-title">Data Science & IA</div><p class="svc-feature-desc">Machine Learning, Deep Learning, Python scientifique, Power BI et visualisation.</p></div></div>
+        <div class="svc-feature-row"><div class="svc-feature-icon"><i class="bi bi-building-fill"></i></div><div><div class="svc-feature-title">Formation Enterprise</div><p class="svc-feature-desc">Programmes sur mesure pour vos équipes, à vos locaux ou dans nos centres. Certifications reconnues.</p></div></div>
+        <a href="https://mahrasoftacademia.com" target="_blank" rel="noopener" class="btn-ms-primary mt-3">
+          <i class="bi bi-mortarboard-fill"></i> Voir Mahrasoft Academia
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═════════════════════ NOTRE PROCESSUS ═════════════════════ -->
+<section class="ms-section alt">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Notre Méthodologie</span>
+      <h2 class="ms-title">Comment nous travaillons</h2>
+      <p class="ms-subtitle mx-auto">Une méthodologie éprouvée qui garantit qualité, respect des délais et satisfaction client à chaque projet.</p>
+    </div>
+    <div class="row g-4">
+      {% set steps = [
+        ('bi-chat-dots-fill','Consultation','Analyse approfondie de vos besoins. Rencontre avec vos équipes, rédaction d\'un cahier des charges détaillé.'),
+        ('bi-pencil-square','Conception','Solution technique, maquettes UX/UI, choix des technologies. Validation avant développement.'),
+        ('bi-gear-fill','Développement Agile','Sprints de 2 semaines avec livraisons intermédiaires. Vous suivez l\'avancement en temps réel.'),
+        ('bi-shield-check-fill','Tests & Validation','Tests unitaires, d\'intégration et d\'acceptation. Corrections et optimisations avant livraison.'),
+      ] %}
+      {% for icon, title, desc in steps %}
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 65 }}">
+        <div class="process-card">
+          <div class="process-num">{{ loop.index }}</div>
+          <div class="process-icon"><i class="bi {{ icon }}"></i></div>
+          <h4>{{ title }}</h4>
+          <p>{{ desc }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </section>
 
-<!-- CTA Amélioré -->
-<section class="section-modern py-6" style="background: linear-gradient(135deg, #0066cc 0%, #5ba3e0 100%); position: relative; overflow: hidden;">
-    <div class="particles-container">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+<!-- ═════════════════════ STACK TECHNO ═════════════════════ -->
+<section class="ms-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Technologies</span>
+      <h2 class="ms-title">Notre stack maîtrisé</h2>
+      <p class="ms-subtitle mx-auto">Nos ingénieurs restent en permanence à la pointe des technologies les plus robustes.</p>
     </div>
-    <div class="container position-relative" style="z-index: 2;">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-8" data-aos="fade-right" data-aos-duration="1000">
-                <h2 class="display-5 fw-bold text-white mb-4">
-                    Prêt à Démarrer Votre Projet ?
-                </h2>
-                <p class="lead text-white mb-4 opacity-90 fs-5">
-                    Contactez-nous dès aujourd'hui pour une consultation gratuite et découvrez comment nos solutions peuvent transformer votre entreprise.
-                </p>
-                <div class="cta-features">
-                    <div class="cta-feature">
-                        <i class="bi bi-check-circle-fill text-white"></i>
-                        <span class="text-white opacity-90">Consultation gratuite</span>
-                    </div>
-                    <div class="cta-feature">
-                        <i class="bi bi-check-circle-fill text-white"></i>
-                        <span class="text-white opacity-90">Devis personnalisé</span>
-                    </div>
-                    <div class="cta-feature">
-                        <i class="bi bi-check-circle-fill text-white"></i>
-                        <span class="text-white opacity-90">Support 24/7</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 text-lg-end" data-aos="fade-left" data-aos-duration="1000">
-                <a href="{{ https_url_for(request,'contact') }}" class="btn btn-light btn-lg px-5 py-3 rounded-pill fw-bold shadow-lg">
-                    <i class="bi bi-calendar-check me-2"></i>Prendre Rendez-vous
-                </a>
-            </div>
+    <div class="row g-3" data-aos="fade-up" data-aos-delay="80">
+      {% set techs = [
+        ('bi-filetype-py','Python','Backend'),('bi-filetype-js','JavaScript','Frontend'),
+        ('bi-phone','React Native','Mobile'),('bi-lightning-charge-fill','FastAPI','API'),
+        ('bi-database-fill','PostgreSQL','Base données'),('bi-box-fill','Docker','DevOps'),
+        ('bi-clouds-fill','AWS / VPS','Cloud'),('bi-robot','TensorFlow','IA/ML'),
+        ('bi-bar-chart-fill','Power BI','Analytics'),('bi-git','Git / CI-CD','Workflow'),
+        ('bi-shield-lock-fill','Nginx','Infra'),('bi-phone-flip','Flutter','Mobile')
+      ] %}
+      {% for icon, name, cat in techs %}
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="tech-grid-item">
+          <i class="bi {{ icon }}"></i>
+          <div class="t-name">{{ name }}</div>
+          <div class="t-cat">{{ cat }}</div>
         </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </section>
 
-<style>
-    .py-6 {
-        padding: 6rem 0;
-    }
+<!-- CTA -->
+<section class="ms-section alt">
+  <div class="container" data-aos="zoom-in">
+    <div class="ms-cta-strip">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <h2 style="color:#fff;font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:10px">Un projet en tête ? Parlons-en.</h2>
+          <p style="color:rgba(255,255,255,.7);font-size:.97rem;margin:0;line-height:1.75">Notre équipe analyse votre besoin gratuitement et vous propose une solution adaptée à votre budget et vos délais.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <a href="{{ https_url_for(request,'contact') }}" class="btn-ms-ghost">
+            <i class="bi bi-chat-dots-fill"></i> Devis gratuit
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    .mb-6 {
-        margin-bottom: 6rem;
-    }
-
-    .pb-6 {
-        padding-bottom: 6rem;
-    }
-
-    /* Styles pour les services */
-    .service-image-wrapper {
-        position: relative;
-    }
-
-    .image-frame {
-        position: relative;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    }
-
-    .service-image {
-        transition: transform 0.5s ease;
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
-    }
-
-    .image-frame:hover .service-image {
-        transform: scale(1.05);
-    }
-
-    .image-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(0,102,204,0.1), transparent);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        border-radius: 25px;
-    }
-
-    .image-frame:hover .image-overlay {
-        opacity: 1;
-    }
-
-    .service-badge {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        padding: 12px 20px;
-        border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 102, 204, 0.4);
-        animation: float-badge 3s ease-in-out infinite;
-    }
-
-    .badge-content {
-        color: white;
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
-
-    .badge-glow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
-        border-radius: 15px;
-        opacity: 0.5;
-    }
-
-    @keyframes float-badge {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-5px); }
-    }
-
-    .service-content {
-        padding: 2rem 0;
-    }
-
-    .service-category {
-        color: #0066cc;
-        font-weight: 600;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 1rem;
-        display: block;
-    }
-
-    .service-title {
-        font-size: 2.5rem;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .service-description {
-        color: #6c757d;
-        font-size: 1.2rem;
-        line-height: 1.6;
-    }
-
-    /* Feature List Styles */
-    .feature-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .feature-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 1.5rem;
-        padding: 1.5rem;
-        background: linear-gradient(135deg, #f9fafb, #ffffff);
-        border-radius: 20px;
-        border: 2px solid transparent;
-        transition: all 0.3s ease;
-    }
-
-    .feature-item:hover {
-        transform: translateX(10px);
-        border-color: rgba(0, 102, 204, 0.2);
-        box-shadow: 0 15px 30px rgba(0, 102, 204, 0.1);
-    }
-
-    .feature-icon {
-        flex-shrink: 0;
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        color: white;
-        transition: all 0.3s ease;
-    }
-
-    .feature-item:hover .feature-icon {
-        transform: scale(1.1) rotate(5deg);
-    }
-
-    .feature-content h5 {
-        color: #2c3e50;
-        margin-bottom: 0.5rem;
-    }
-
-    /* Stats Cards */
-    .stat-card-modern {
-        background: rgba(0, 102, 204, 0.05);
-        border: 2px solid rgba(0, 102, 204, 0.1);
-        transition: all 0.3s ease;
-    }
-
-    .stat-card-modern:hover {
-        background: rgba(0, 102, 204, 0.1);
-        border-color: rgba(0, 102, 204, 0.3);
-        transform: translateY(-5px);
-    }
-
-    /* Tech Stack */
-    .tech-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-    }
-
-    .tech-tag {
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 25px;
-        font-size: 0.85rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-
-    .tech-tag:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
-    }
-
-    /* Benefits Box */
-    .benefits-box {
-        background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), rgba(91, 163, 224, 0.05));
-        border: 2px solid rgba(0, 102, 204, 0.1);
-    }
-
-    .benefits-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .benefit-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        color: #2c3e50;
-        font-weight: 500;
-    }
-
-    /* Service Divider */
-    .service-divider {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 4rem 0;
-    }
-
-    .divider-line {
-        width: 2px;
-        height: 60px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 2px;
-    }
-
-    .divider-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.2rem;
-        margin-top: 1rem;
-        animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
-
-    /* Process Timeline */
-    .process-card {
-        background: white;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border: 2px solid transparent;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .process-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 25px 50px rgba(0, 102, 204, 0.2);
-        border-color: rgba(0, 102, 204, 0.2);
-    }
-
-    .process-number {
-        position: absolute;
-        top: 1px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: 800;
-        font-size: 1.8rem;
-        box-shadow: 0 10px 25px rgba(0, 102, 204, 0.4);
-        z-index: 2;
-    }
-
-    .process-icon {
-        width: 100px;
-        height: 100px;
-        background: linear-gradient(135deg, #f9fafb, #ffffff);
-        border: 3px solid #0066cc;
-        border-radius: 25px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        color: #0066cc;
-        transition: all 0.3s ease;
-        margin-top: 2rem;
-    }
-
-    .process-card:hover .process-icon {
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        color: white;
-        transform: scale(1.1);
-    }
-
-    /* CTA Particles */
-    .particles-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .particle {
-        position: absolute;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        animation: float-particle 15s infinite linear;
-    }
-
-    .particle:nth-child(1) { width: 20px; height: 20px; top: 10%; left: 10%; animation-delay: 0s; }
-    .particle:nth-child(2) { width: 15px; height: 15px; top: 30%; left: 80%; animation-delay: 2s; }
-    .particle:nth-child(3) { width: 25px; height: 25px; top: 70%; left: 20%; animation-delay: 4s; }
-    .particle:nth-child(4) { width: 18px; height: 18px; top: 50%; left: 60%; animation-delay: 6s; }
-    .particle:nth-child(5) { width: 22px; height: 22px; top: 80%; left: 90%; animation-delay: 8s; }
-
-    @keyframes float-particle {
-        0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-    }
-
-    .cta-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        margin-top: 1.5rem;
-    }
-
-    .cta-feature {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .py-6 {
-            padding: 4rem 0;
-        }
-        
-        .service-title {
-            font-size: 2rem;
-        }
-        
-        .feature-item {
-            flex-direction: column;
-            text-align: center;
-        }
-        
-        .tech-tags {
-            justify-content: center;
-        }
-        
-        .process-timeline .row {
-            flex-direction: column;
-        }
-    }
-</style>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-    // Animation des compteurs améliorée
-    function animateCounter(element) {
-        const target = parseInt(element.getAttribute('data-count'));
-        const duration = 2500;
-        const startTime = Date.now();
-        const startValue = 0;
-
-        function updateCounter() {
-            const currentTime = Date.now();
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            // Easing function for smooth animation
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart);
-
-            element.textContent = currentValue.toLocaleString() + '+';
-
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            } else {
-                element.textContent = target.toLocaleString() + '+';
-            }
-        }
-
-        requestAnimationFrame(updateCounter);
-    }
-
-    // Observer pour les compteurs
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                setTimeout(() => {
-                    animateCounter(counter);
-                }, 200);
-                observer.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    // Observer tous les compteurs
-    document.querySelectorAll('[data-count]').forEach(counter => {
-        observer.observe(counter);
-    });
-
-    // Animation au scroll pour les éléments avec data-aos
-    document.addEventListener('DOMContentLoaded', function() {
-        const aosObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('[data-aos]').forEach(element => {
-            aosObserver.observe(element);
-        });
-    });
-</script>
 {% endblock %}

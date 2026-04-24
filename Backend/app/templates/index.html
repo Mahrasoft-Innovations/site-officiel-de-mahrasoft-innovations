@@ -1,853 +1,753 @@
 {% extends "base.html" %}
+{% block head_title %}Mahrasoft Innovations — Leader du Numérique au Tchad{% endblock %}
+{% block meta_desc %}Mahrasoft Innovations — Numérisation d'archives, développement logiciel, e-learning et IA pour les institutions et entreprises d'Afrique.{% endblock %}
 
-{% block head_title %}Mahrasoft Innovations - Leader des Solutions IT au Tchad{% endblock %}
+{% block extra_css %}
+<style>
+/* ═══════════ HERO ═══════════ */
+.ms-hero {
+  min-height: 94vh; display: flex; align-items: center;
+  background:
+    radial-gradient(ellipse 80% 70% at 72% 38%, rgba(0,102,204,.2) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 55% at 8% 72%, rgba(135,206,235,.07) 0%, transparent 50%),
+    linear-gradient(162deg, var(--ms-navy) 0%, #0D2045 55%, #081730 100%);
+  position: relative; overflow: hidden;
+}
+.ms-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size: 36px 36px; pointer-events: none;
+}
+.ms-hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--ms-blue), var(--ms-sky), var(--ms-gold), transparent);
+  z-index: 10;
+}
+.hero-glow-1 {
+  position: absolute; width: 600px; height: 600px;
+  border-radius: 50%; top: -200px; right: -100px;
+  background: radial-gradient(circle, rgba(0,102,204,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-glow-2 {
+  position: absolute; width: 400px; height: 400px;
+  border-radius: 50%; bottom: -150px; left: -80px;
+  background: radial-gradient(circle, rgba(135,206,235,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner { padding: 120px 0 80px; position: relative; z-index: 2; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(0,102,204,.18); border: 1px solid rgba(0,102,204,.35);
+  backdrop-filter: blur(10px);
+  padding: 7px 18px; border-radius: 50px;
+  font-size: .68rem; font-weight: 800; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ms-sky);
+  font-family: var(--font-display); margin-bottom: 24px;
+  animation: fadeUp .8s ease both;
+}
+.hero-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--ms-gold); animation: pulse 2.2s ease-in-out infinite;
+}
+
+.hero-h1 {
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: 900; color: #fff; line-height: 1.05;
+  letter-spacing: -.04em; margin-bottom: 20px;
+  animation: fadeUp .9s .1s ease both;
+}
+.hero-h1 .gold {
+  background: linear-gradient(135deg, var(--ms-gold), var(--ms-gold-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-h1 .blue {
+  background: linear-gradient(135deg, var(--ms-blue-mid), var(--ms-sky));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.hero-p {
+  font-size: 1.05rem; color: rgba(255,255,255,.65); max-width: 540px;
+  line-height: 1.78; margin-bottom: 34px;
+  animation: fadeUp 1s .2s ease both;
+}
+
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 1s .3s ease both; }
+
+/* Stats hero */
+.hero-stats-row {
+  display: flex; gap: 20px; flex-wrap: wrap; margin-top: 46px;
+  animation: fadeUp 1s .45s ease both;
+}
+.hero-stat {
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.11);
+  border-radius: var(--radius); padding: 16px 20px; min-width: 110px;
+  text-align: center; backdrop-filter: blur(8px);
+  transition: var(--transition);
+}
+.hero-stat:hover { background: rgba(255,255,255,.11); transform: translateY(-3px); }
+.hero-stat-num {
+  font-family: var(--font-display); font-size: 1.75rem; font-weight: 900;
+  color: var(--ms-gold); line-height: 1; letter-spacing: -.04em;
+}
+.hero-stat-lbl {
+  font-size: .65rem; color: rgba(255,255,255,.48);
+  text-transform: uppercase; letter-spacing: .08em; margin-top: 4px; font-weight: 600;
+}
+
+/* Image hero */
+.hero-img-wrap { position: relative; animation: fadeUp .9s .15s ease both; }
+.hero-img-main {
+  width: 100%; height: 480px; object-fit: cover;
+  border-radius: var(--radius-xl);
+  border: 2px solid rgba(255,255,255,.09);
+  box-shadow: var(--shadow-xl);
+}
+.hero-img-badge {
+  position: absolute; bottom: -18px; left: -18px;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  color: #fff; border-radius: var(--radius);
+  padding: 16px 20px; text-align: center;
+  box-shadow: var(--shadow-lg); border: 3px solid var(--ms-white);
+  min-width: 130px;
+}
+.hero-img-badge .big   { font-size: 1.9rem; font-weight: 900; font-family: var(--font-display); line-height: 1; }
+.hero-img-badge .small { font-size: .68rem; opacity: .85; font-weight: 600; margin-top: 2px; }
+
+/* Scroll hint */
+.hero-scroll {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  animation: float 2.6s ease-in-out infinite; cursor: pointer; text-decoration: none;
+}
+.hero-scroll span { font-size: .6rem; color: rgba(255,255,255,.3); letter-spacing: .1em; text-transform: uppercase; }
+.hero-scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, rgba(255,255,255,.3), transparent); }
+
+/* ═══════════ CLIENTS STRIP ═══════════ */
+.clients-strip {
+  background: var(--ms-ivory); border-top: 1px solid var(--ms-border);
+  border-bottom: 1px solid var(--ms-border); padding: 36px 0;
+}
+.clients-label {
+  font-size: .66rem; font-weight: 800; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ms-muted);
+  font-family: var(--font-display); text-align: center; margin-bottom: 24px;
+}
+.client-item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 10px 20px; opacity: .5; filter: grayscale(100%);
+  transition: var(--transition); cursor: default;
+}
+.client-item:hover { opacity: 1; filter: none; transform: translateY(-2px); }
+.client-item i { font-size: 1.5rem; color: var(--ms-blue); display: block; margin-bottom: 5px; }
+.client-item-name { font-family: var(--font-display); font-weight: 800; font-size: .78rem; color: var(--ms-navy); }
+.client-item-sub  { font-size: .62rem; color: var(--ms-muted); }
+
+/* ═══════════ SERVICE CARDS ═══════════ */
+.svc-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-lg); padding: 30px 26px;
+  height: 100%; transition: all .35s cubic-bezier(.4,0,.2,1);
+  position: relative; overflow: hidden;
+}
+.svc-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: linear-gradient(90deg, var(--ms-blue), var(--ms-sky));
+  transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+}
+.svc-card:hover::before { transform: scaleX(1); }
+.svc-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-7px); border-color: rgba(0,102,204,.2); }
+.svc-icon {
+  width: 56px; height: 56px; border-radius: 15px;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: #fff; margin-bottom: 18px;
+  box-shadow: 0 6px 18px rgba(0,102,204,.24); transition: var(--transition);
+}
+.svc-card:hover .svc-icon { transform: rotate(-6deg) scale(1.08); }
+.svc-card h4 { font-size: .97rem; font-weight: 800; color: var(--ms-navy); margin-bottom: 9px; }
+.svc-card p  { font-size: .84rem; color: var(--ms-muted); line-height: 1.7; margin-bottom: 16px; }
+.svc-tags    { display: flex; flex-wrap: wrap; gap: 6px; }
+.svc-tag {
+  font-size: .66rem; font-weight: 700; padding: 3px 10px; border-radius: 20px;
+  background: rgba(0,102,204,.07); color: var(--ms-blue);
+  border: 1px solid rgba(0,102,204,.15);
+}
+
+/* ═══════════ PROJECT CARDS ═══════════ */
+.proj-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-xl); overflow: hidden;
+  height: 100%; transition: all .38s cubic-bezier(.4,0,.2,1);
+}
+.proj-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-9px); border-color: rgba(0,102,204,.2); }
+.proj-img {
+  position: relative; height: 210px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.proj-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.proj-card:hover .proj-img img { transform: scale(1.07); }
+.proj-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,22,40,.65) 0%, transparent 55%); pointer-events: none; }
+.proj-logo {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(255,255,255,.93); border-radius: 9px;
+  padding: 5px 11px; font-family: var(--font-display); font-size: .75rem; font-weight: 800;
+  color: var(--ms-navy); display: flex; align-items: center; gap: 5px;
+  box-shadow: var(--shadow-sm);
+}
+.proj-status {
+  position: absolute; top: 12px; right: 12px;
+  padding: 3px 11px; border-radius: 20px;
+  font-size: .64rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .06em; font-family: var(--font-display);
+}
+.proj-status.live { background: rgba(22,163,74,.9); color: #fff; }
+.proj-status.done { background: rgba(0,102,204,.9); color: #fff; }
+.proj-status.dev  { background: rgba(245,158,11,.9); color: #fff; }
+.proj-body { padding: 22px 20px; }
+.proj-body h4 { font-size: .97rem; font-weight: 800; color: var(--ms-navy); margin-bottom: 7px; }
+.proj-body p  { font-size: .83rem; color: var(--ms-muted); line-height: 1.65; margin-bottom: 12px; }
+.proj-tech { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 14px; }
+.proj-tech span {
+  font-size: .64rem; font-weight: 700; padding: 2px 9px; border-radius: 20px;
+  background: var(--ms-ivory); color: var(--ms-muted); border: 1px solid var(--ms-border);
+}
+.proj-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--font-display); font-size: .78rem; font-weight: 700;
+  color: var(--ms-blue); transition: gap .22s, color .22s;
+}
+.proj-link i { transition: transform .22s; }
+.proj-link:hover { color: var(--ms-navy); gap: 8px; }
+.proj-link:hover i { transform: translateX(3px); }
+
+/* ═══════════ STATS SECTION ═══════════ */
+.ms-stats-dark {
+  background: linear-gradient(135deg, var(--ms-navy), var(--ms-navy-mid));
+  padding: 72px 0; position: relative; overflow: hidden;
+}
+.ms-stats-dark::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 32px 32px; pointer-events: none;
+}
+.stat-box {
+  text-align: center; padding: 30px 18px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius-lg); position: relative; overflow: hidden;
+  transition: var(--transition);
+}
+.stat-box::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 55%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ms-gold), transparent);
+  opacity: 0; transition: opacity .3s;
+}
+.stat-box:hover { background: rgba(255,255,255,.09); transform: translateY(-5px); }
+.stat-box:hover::before { opacity: 1; }
+.stat-icon-wrap {
+  width: 48px; height: 48px; border-radius: 12px; margin: 0 auto 12px;
+  background: rgba(255,255,255,.07);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem; color: var(--ms-sky);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.stat-num { font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; color: var(--ms-gold); line-height: 1; letter-spacing: -.04em; margin-bottom: 6px; }
+.stat-lbl { font-size: .72rem; color: rgba(255,255,255,.42); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+
+/* ═══════════ ABOUT PREVIEW ═══════════ */
+.about-img-wrap { position: relative; }
+.about-img-main { width: 100%; height: 460px; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); }
+.about-badge {
+  position: absolute; bottom: -16px; right: -16px;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  color: #fff; border-radius: var(--radius); padding: 18px 22px; text-align: center;
+  box-shadow: var(--shadow-lg); border: 3px solid var(--ms-white); min-width: 130px;
+}
+.about-badge .big   { font-size: 2rem; font-weight: 900; font-family: var(--font-display); line-height: 1; }
+.about-badge .small { font-size: .7rem; opacity: .85; font-weight: 600; margin-top: 3px; }
+
+.feature-item {
+  display: flex; align-items: flex-start; gap: 13px;
+  padding: 13px 0; border-bottom: 1px solid var(--ms-border);
+  transition: var(--transition);
+}
+.feature-item:last-child { border-bottom: none; }
+.feature-item:hover { padding-left: 5px; }
+.feat-icon {
+  width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: .95rem;
+  box-shadow: 0 4px 12px rgba(0,102,204,.22); transition: var(--transition);
+}
+.feature-item:hover .feat-icon { transform: rotate(-5deg) scale(1.05); }
+.feat-title { font-size: .88rem; font-weight: 700; color: var(--ms-navy); margin-bottom: 2px; }
+.feat-desc  { font-size: .8rem; color: var(--ms-muted); line-height: 1.55; margin: 0; }
+
+/* ═══════════ TESTIMONIALS ═══════════ */
+.testi-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-lg); padding: 28px 24px;
+  height: 100%; position: relative; transition: var(--transition);
+}
+.testi-card::before {
+  content: '"'; font-size: 5rem; line-height: .7;
+  font-family: Georgia, serif; color: rgba(0,102,204,.1);
+  position: absolute; top: 14px; left: 18px; pointer-events: none;
+}
+.testi-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-5px); }
+.stars { color: var(--ms-gold); font-size: .75rem; margin-bottom: 14px; }
+.testi-text { font-size: .88rem; color: var(--ms-muted); line-height: 1.8; margin-bottom: 20px; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 11px; }
+.testi-ava {
+  width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-family: var(--font-display); font-weight: 800; font-size: .9rem;
+}
+.testi-name { font-size: .86rem; font-weight: 700; color: var(--ms-navy); }
+.testi-org  { font-size: .73rem; color: var(--ms-muted); }
+
+/* ═══════════ CTA ═══════════ */
+.ms-cta-section {
+  background: linear-gradient(135deg, var(--ms-blue) 0%, var(--ms-navy-mid) 100%);
+  padding: 96px 0; position: relative; overflow: hidden;
+}
+.ms-cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 82% 50%, rgba(135,206,235,.1) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 60% at 18% 50%, rgba(0,102,204,.2) 0%, transparent 45%);
+  pointer-events: none;
+}
+.ms-cta-section h2 { color: #fff; font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 12px; }
+.ms-cta-section p  { color: rgba(255,255,255,.7); font-size: 1.02rem; margin-bottom: 0; line-height: 1.75; }
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media (max-width: 991px) {
+  .hero-inner { padding: 80px 0 60px; }
+  .hero-img-main { height: 320px; margin-top: 40px; }
+  .hero-stats-row { gap: 12px; }
+  .hero-stat { min-width: 90px; padding: 12px 14px; }
+}
+@media (max-width: 767px) {
+  .hero-h1 { font-size: 2rem; }
+  .hero-btns { flex-direction: column; }
+  .hero-btns a { width: 100%; justify-content: center; }
+  .about-img-main { height: 280px; }
+  .about-badge { right: 0; }
+}
+</style>
+{% endblock %}
 
 {% block carousel %}
-<!-- Hero Section Modern -->
-<section class="hero-section" style="background: linear-gradient(135deg, #0066cc 0%, #5ba3e0 100%); position: relative; overflow: hidden;">
-    <div class="hero-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </div>
-    <div class="container" style="position: relative; z-index: 2; padding: 120px 0;">
-        <div class="row align-items-center">
-            <div class="col-lg-6" data-aos="fade-right">
-                <div class="hero-content">
-                    <span class="badge bg-white text-primary mb-3 px-4 py-2 rounded-pill">
-                        <i class="bi bi-stars me-2"></i>Innovation Digitale au Tchad
-                    </span>
-                    <h1 class="display-3 fw-bold text-white mb-4">
-                        Transformez Votre Entreprise avec
-                        <span style="color: #87CEEB;">Mahrasoft</span>
-                    </h1>
-                    <p class="lead text-white mb-5">
-                        Leader des services numériques au Tchad, nous offrons des solutions innovantes en numérisation d'archives, développement logiciel, formation professionnelle et transformation digitale.
-                    </p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="{{ https_url_for(request,'contact') }}" class="btn btn-light btn-lg px-5 py-3 rounded-pill">
-                            <i class="bi bi-chat-dots-fill me-2"></i>Demander un Devis
-                        </a>
-                        <a href="{{ https_url_for(request,'service') }}" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill">
-                            <i class="bi bi-arrow-right-circle me-2"></i>Nos Services
-                        </a>
-                    </div>
+<!-- ════════ HERO ════════ -->
+<section class="ms-hero">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container hero-inner">
+    <div class="row align-items-center g-5">
 
-                    <!-- Statistiques Hero -->
-                    <div class="hero-stats mt-5">
-                        <div class="row g-4 justify-content-center">
-                            <div class="col-auto" data-aos="fade-up" data-aos-delay="100">
-                                <div class="stat-card-modern text-center p-4 position-relative">
-                                    <div class="stat-icon-wrapper mb-3">
-                                        <div class="stat-icon-inner">
-                                            <i class="bi bi-file-earmark-text-fill"></i>
-                                        </div>
-                                    </div>
-                                    <h3 class="stat-number fw-bold mb-2" data-count="500000">0+</h3>
-                                    <p class="stat-label mb-0">Dossiers Numérisés</p>
-                                    <div class="stat-glow"></div>
-                                </div>
-                            </div>
-                            <div class="col-auto" data-aos="fade-up" data-aos-delay="200">
-                                <div class="stat-card-modern text-center p-4 position-relative">
-                                    <div class="stat-icon-wrapper mb-3">
-                                        <div class="stat-icon-inner">
-                                            <i class="bi bi-check-circle-fill"></i>
-                                        </div>
-                                    </div>
-                                    <h3 class="stat-number fw-bold mb-2" data-count="50">0+</h3>
-                                    <p class="stat-label mb-0">Projets Réalisés</p>
-                                    <div class="stat-glow"></div>
-                                </div>
-                            </div>
-                            <div class="col-auto" data-aos="fade-up" data-aos-delay="300">
-                                <div class="stat-card-modern text-center p-4 position-relative">
-                                    <div class="stat-icon-wrapper mb-3">
-                                        <div class="stat-icon-inner">
-                                            <i class="bi bi-people-fill"></i>
-                                        </div>
-                                    </div>
-                                    <h3 class="stat-number fw-bold mb-2" data-count="30">0+</h3>
-                                    <p class="stat-label mb-0">Clients Satisfaits</p>
-                                    <div class="stat-glow"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-left">
-                <div class="hero-image position-relative">
-                    <img src="{{ https_url_for(request,'static', path='img/img11.jpeg') }}" 
-                         alt="Solutions Mahrasoft" 
-                         class="img-fluid rounded-4 shadow-lg"
-                         style="border: 5px solid rgba(255, 255, 255, 0.2);">
-                </div>
-            </div>
+      <div class="col-lg-6">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Leader du Numérique au Tchad
         </div>
+        <h1 class="hero-h1">
+          Votre partenaire pour la<br>
+          <span class="gold">transformation</span><br>
+          <span class="blue">digitale</span> en Afrique
+        </h1>
+        <p class="hero-p">
+          Mahrasoft Innovations conçoit des solutions logicielles, de numérisation d'archives,
+          d'e-learning et d'infrastructure IT pour les institutions et entreprises du Tchad et d'Afrique.
+        </p>
+        <div class="hero-btns">
+          <a href="{{ https_url_for(request,'contact') }}" class="btn-ms-primary">
+            <i class="bi bi-chat-dots-fill"></i> Discutons de votre projet
+          </a>
+          <a href="{{ https_url_for(request,'service') }}" class="btn-ms-ghost">
+            <i class="bi bi-grid-3x3-gap"></i> Nos solutions
+          </a>
+        </div>
+        <div class="hero-stats-row">
+          <div class="hero-stat">
+            <div class="hero-stat-num">500k+</div>
+            <div class="hero-stat-lbl">Dossiers numérisés</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">50+</div>
+            <div class="hero-stat-lbl">Projets livrés</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">30+</div>
+            <div class="hero-stat-lbl">Clients</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">8</div>
+            <div class="hero-stat-lbl">Produits actifs</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-img-wrap">
+          <img src="{{ https_url_for(request,'static', path='img/img11.jpeg') }}"
+               alt="Mahrasoft Innovations — Solutions Numériques" class="hero-img-main"
+               loading="eager">
+          <div class="hero-img-badge">
+            <div class="big">3+</div>
+            <div class="small">Années d'excellence</div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
+  <a href="#clients" class="hero-scroll" aria-label="Défiler">
+    <span>Défiler</span>
+    <div class="hero-scroll-line"></div>
+    <i class="bi bi-chevron-down" style="color:rgba(255,255,255,.28);font-size:.65rem"></i>
+  </a>
 </section>
 {% endblock %}
 
 {% block content %}
-<!-- Section Statistiques Unifiée -->
-<!-- <section class="py-5" style="background: linear-gradient(135deg, #1a1f35 0%, #2c3e50 100%); margin-top: -50px; position: relative; z-index: 1;">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="stat-card text-center p-4 rounded-4" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
-                    <div class="stat-icon mb-3">
-                        <i class="bi bi-award-fill" style="font-size: 3rem; color: #87CEEB;"></i>
-                    </div>
-                    <h2 class="text-white fw-bold mb-2" data-count="3">0+</h2>
-                    <p class="text-white-50 mb-0">Années d'Expérience</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="stat-card text-center p-4 rounded-4" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
-                    <div class="stat-icon mb-3">
-                        <i class="bi bi-briefcase-fill" style="font-size: 3rem; color: #87CEEB;"></i>
-                    </div>
-                    <h2 class="text-white fw-bold mb-2" data-count="15">0+</h2>
-                    <p class="text-white-50 mb-0">Experts Techniques</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="stat-card text-center p-4 rounded-4" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
-                    <div class="stat-icon mb-3">
-                        <i class="bi bi-clock-fill" style="font-size: 3rem; color: #87CEEB;"></i>
-                    </div>
-                    <h2 class="text-white fw-bold mb-2" data-count="24">0</h2>
-                    <p class="text-white-50 mb-0">Support Continu</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="stat-card text-center p-4 rounded-4" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
-                    <div class="stat-icon mb-3">
-                        <i class="bi bi-shield-check" style="font-size: 3rem; color: #87CEEB;"></i>
-                    </div>
-                    <h2 class="text-white fw-bold mb-2" data-count="100">0%</h2>
-                    <p class="text-white-50 mb-0">Satisfaction Client</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
 
-<!-- About Preview Section -->
-<section class="section-modern">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6" data-aos="fade-right">
-                <div class="position-relative">
-                    <img src="{{ https_url_for(request,'static', path='img/cours_1.jpeg') }}" 
-                         alt="À propos de Mahrasoft" 
-                         class="img-fluid rounded-4 shadow-lg">
-                    <div class="position-absolute bottom-0 start-0 p-4 m-4 bg-primary text-white rounded-4 shadow-lg">
-                        <h3 class="fw-bold mb-0">3+</h3>
-                        <p class="mb-0">Années d'Expérience</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-left">
-                <div class="section-title-modern text-start">
-                    <span class="section-subtitle">À PROPOS DE NOUS</span>
-                    <h2 class="section-heading">Excellence en Services Numériques</h2>
-                </div>
-                <p class="mb-4 text-muted">
-                    Mahrasoft Innovations est une entreprise tchadienne fondée par des ingénieurs formés en France et en Inde. Nous sommes le leader des services numériques au Tchad, spécialisés dans la transformation digitale des institutions publiques et privées.
-                </p>
-                <div class="row g-4 mb-4">
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-start gap-3">
-                            <div class="flex-shrink-0">
-                                <div class="icon-box">
-                                    <i class="bi bi-lightning-charge-fill text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h5 class="fw-bold mb-2">Solutions Rapides</h5>
-                                <p class="text-muted mb-0 small">Délais optimisés pour tous vos projets</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-start gap-3">
-                            <div class="flex-shrink-0">
-                                <div class="icon-box">
-                                    <i class="bi bi-people-fill text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h5 class="fw-bold mb-2">Experts Qualifiés</h5>
-                                <p class="text-muted mb-0 small">Ingénieurs certifiés et expérimentés</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-start gap-3">
-                            <div class="flex-shrink-0">
-                                <div class="icon-box">
-                                    <i class="bi bi-headset text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h5 class="fw-bold mb-2">Support 24/7</h5>
-                                <p class="text-muted mb-0 small">Assistance continue disponible</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-start gap-3">
-                            <div class="flex-shrink-0">
-                                <div class="icon-box">
-                                    <i class="bi bi-shield-check text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <h5 class="fw-bold mb-2">Sécurité Garantie</h5>
-                                <p class="text-muted mb-0 small">Protection maximale des données</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a href="{{ https_url_for(request,'about') }}" class="btn btn-primary-modern">
-                    <i class="bi bi-info-circle-fill me-2"></i>En Savoir Plus
-                </a>
-            </div>
+<!-- ════════ CLIENTS ════════ -->
+<div class="clients-strip" id="clients" data-aos="fade-up">
+  <div class="container">
+    <div class="clients-label">Ils nous font confiance</div>
+    <div class="row g-0 align-items-center justify-content-center">
+      {% set clients = [
+        ('bi-building-fill','CARMI','Retraite Militaire'),
+        ('bi-hospital-fill','CHUME','Hôpital N\'Djamena'),
+        ('bi-bank','ONAPE','Emploi & Formation'),
+        ('bi-shield-lock-fill','DGSSIE','Sécurité d\'État'),
+        ('bi-landmark-fill','DGI','Impôts du Tchad'),
+        ('bi-plus-circle-fill','Min. Santé','Santé Publique')
+      ] %}
+      {% for icon, name, sub in clients %}
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="client-item">
+          <i class="bi {{ icon }}"></i>
+          <div class="client-item-name">{{ name }}</div>
+          <div class="client-item-sub">{{ sub }}</div>
         </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
+</div>
+
+<!-- ════════ SERVICES ════════ -->
+<section class="ms-section" id="services">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Nos Expertises</span>
+      <h2 class="ms-title">Des solutions pour chaque défi</h2>
+      <p class="ms-subtitle mx-auto">Chaque service est conçu pour répondre aux réalités du contexte africain — connectivité, multilinguisme, contraintes budgétaires.</p>
+    </div>
+    <div class="row g-4">
+      {% set svcs = [
+        ('bi-file-earmark-text-fill','Numérisation d\'Archives','Transformation complète de documents physiques en archives numériques structurées, indexées et sécurisées.',['OCR','GEA/SAE','Haute Résolution','Cloud']),
+        ('bi-code-slash','Développement Logiciel','Applications web, mobiles et desktop sur mesure, des APIs REST aux microservices et intégrations Mobile Money.',['Web Apps','Mobile','APIs','DevOps']),
+        ('bi-mortarboard-fill','Formation Professionnelle','Programmes certifiants en technologies numériques dispensés en présentiel ou à distance via Academia.',['Certifiant','En ligne','Python','IA/ML']),
+        ('bi-graph-up-arrow','Analyse de Données & IA','Tableaux de bord décisionnels, algorithmes de machine learning et solutions IA pour vos processus métiers.',['Power BI','ML','Big Data','Prédictif']),
+        ('bi-folder2-open','Gestion Documentaire','Systèmes d\'archivage électronique sécurisés avec workflows de validation et traçabilité complète.',['SAE','Workflow','Signatures','Audit']),
+        ('bi-cart-fill','E-Commerce & Marketplace','Plateformes B2C/B2B avec paiement Mobile Money intégré, logistique et tableau de bord vendeur.',['Marketplace','Mobile Money','Analytics','App Mobile'])
+      ] %}
+      {% for icon, title, desc, tags in svcs %}
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ (loop.index0 % 3) * 65 }}">
+        <div class="svc-card">
+          <div class="svc-icon"><i class="bi {{ icon }}"></i></div>
+          <h4>{{ title }}</h4>
+          <p>{{ desc }}</p>
+          <div class="svc-tags">{% for t in tags %}<span class="svc-tag">{{ t }}</span>{% endfor %}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-5" data-aos="fade-up">
+      <a href="{{ https_url_for(request,'service') }}" class="btn-ms-primary">
+        <i class="bi bi-arrow-right-circle-fill"></i> Voir tous nos services
+      </a>
+    </div>
+  </div>
 </section>
 
-<!-- Services Section -->
-<section class="section-modern" style="background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);">
-    <div class="container">
-        <div class="section-title-modern" data-aos="fade-up">
-            <span class="section-subtitle">NOS EXPERTISES</span>
-            <h2 class="section-heading">Solutions Digitales Innovantes</h2>
-            <p class="section-description">
-                Découvrez notre gamme complète de services conçus pour propulser votre transformation numérique
-            </p>
-        </div>
-
-        <div class="row g-4">
-            <!-- Services cards restent identiques -->
-            <!-- Numérisation d'Archives -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="card-modern text-center">
-                    <div class="card-icon mx-auto">
-                        <i class="bi bi-file-earmark-text"></i>
-                    </div>
-                    <h4 class="fw-bold mb-3">Numérisation d'Archives</h4>
-                    <p class="text-muted mb-4">
-                        Solutions complètes de digitalisation documentaire avec numérisation haute résolution, OCR et gestion électronique d'archives (GEA).
-                    </p>
-                    <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
-                        <span class="badge bg-light text-primary px-3 py-2">Haute Résolution</span>
-                        <span class="badge bg-light text-primary px-3 py-2">OCR</span>
-                        <span class="badge bg-light text-primary px-3 py-2">Indexation</span>
-                    </div>
-                    <a href="{{ https_url_for(request,'service') }}" class="btn btn-outline-modern">
-                        <i class="bi bi-arrow-right me-2"></i>En Savoir Plus
-                    </a>
-                </div>
-            </div>
-
-            <!-- Développement Logiciel -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-modern text-center">
-                    <div class="card-icon mx-auto">
-                        <i class="bi bi-code-slash"></i>
-                    </div>
-                    <h4 class="fw-bold mb-3">Développement Logiciel</h4>
-                    <p class="text-muted mb-4">
-                        Création d'applications web, mobile et desktop sur mesure adaptées à vos processus métiers spécifiques.
-                    </p>
-                    <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
-                        <span class="badge bg-light text-primary px-3 py-2">Web Apps</span>
-                        <span class="badge bg-light text-primary px-3 py-2">Mobile</span>
-                        <span class="badge bg-light text-primary px-3 py-2">Desktop</span>
-                    </div>
-                    <a href="{{ https_url_for(request,'service') }}" class="btn btn-outline-modern">
-                        <i class="bi bi-arrow-right me-2"></i>En Savoir Plus
-                    </a>
-                </div>
-            </div>
-
-            <!-- Gestion Documentaire -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="card-modern text-center">
-                    <div class="card-icon mx-auto">
-                        <i class="bi bi-folder2-open"></i>
-                    </div>
-                    <h4 class="fw-bold mb-3">Gestion Documentaire</h4>
-                    <p class="text-muted mb-4">
-                        Systèmes d'archivage électronique (SAE) pour organiser, stocker et gérer vos documents numériques de manière sécurisée.
-                    </p>
-                    <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
-                        <span class="badge bg-light text-primary px-3 py-2">SAE</span>
-                        <span class="badge bg-light text-primary px-3 py-2">Sécurisé</span>
-                        <span class="badge bg-light text-primary px-3 py-2">Traçable</span>
-                    </div>
-                    <a href="{{ https_url_for(request,'service') }}" class="btn btn-outline-modern">
-                        <i class="bi bi-arrow-right me-2"></i>En Savoir Plus
-                    </a>
-                </div>
-            </div>
-
-            <!-- Formation Professionnelle -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="card-modern text-center">
-                    <div class="card-icon mx-auto">
-                        <i class="bi bi-mortarboard"></i>
-                    </div>
-                    <h4 class="fw-bold mb-3">Formation Professionnelle</h4>
-                    <p class="text-muted mb-4">
-                        Programmes de formation pratiques en développement web, cybersécurité, IA et technologies modernes.
-                    </p>
-                    <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
-                        <span class="badge bg-light text-primary px-3 py-2">Certifiant</span>
-                        <span class="badge bg-light text-primary px-3 py-2">Pratique</span>
-                        <span class="badge bg-light text-primary px-3 py-2">Expert</span>
-                    </div>
-                    <a href="{{ https_url_for(request,'service') }}" class="btn btn-outline-modern">
-                        <i class="bi bi-arrow-right me-2"></i>En Savoir Plus
-                    </a>
-                </div>
-            </div>
-
-            <!-- Analyse de Données & IA -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                <div class="card-modern text-center">
-                    <div class="card-icon mx-auto">
-                        <i class="bi bi-graph-up-arrow"></i>
-                    </div>
-                    <h4 class="fw-bold mb-3">Analyse de Données & IA</h4>
-                    <p class="text-muted mb-4">
-                        Exploitez les analyses avancées et algorithmes d'IA pour stimuler l'innovation et la prise de décisions stratégiques.
-                    </p>
-                    <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
-                        <span class="badge bg-light text-primary px-3 py-2">Big Data</span>
-                        <span class="badge bg-light text-primary px-3 py-2">ML</span>
-                        <span class="badge bg-light text-primary px-3 py-2">BI</span>
-                    </div>
-                    <a href="{{ https_url_for(request,'service') }}" class="btn btn-outline-modern">
-                        <i class="bi bi-arrow-right me-2"></i>En Savoir Plus
-                    </a>
-                </div>
-            </div>
-
-            <!-- Services IT -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                <div class="card-modern text-center">
-                    <div class="card-icon mx-auto">
-                        <i class="bi bi-gear"></i>
-                    </div>
-                    <h4 class="fw-bold mb-3">Services Informatiques</h4>
-                    <p class="text-muted mb-4">
-                        Support technique, maintenance et optimisation de votre infrastructure IT pour améliorer efficacité et fiabilité.
-                    </p>
-                    <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
-                        <span class="badge bg-light text-primary px-3 py-2">Support</span>
-                        <span class="badge bg-light text-primary px-3 py-2">Cloud</span>
-                        <span class="badge bg-light text-primary px-3 py-2">Maintenance</span>
-                    </div>
-                    <a href="{{ https_url_for(request,'service') }}" class="btn btn-outline-modern">
-                        <i class="bi bi-arrow-right me-2"></i>En Savoir Plus
-                    </a>
-                </div>
-            </div>
-        </div>
+<!-- ════════ PROJETS ════════ -->
+<section class="ms-section alt" id="projets">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Nos Réalisations</span>
+      <h2 class="ms-title">Produits & projets livrés</h2>
+      <p class="ms-subtitle mx-auto">De la plateforme e-learning à la numérisation militaire, nos produits impactent des milliers d'utilisateurs au Tchad et en Afrique.</p>
     </div>
+    <div class="row g-4">
+
+      <!-- Academia -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <div class="proj-card">
+          <div class="proj-img" style="background:linear-gradient(135deg,#0A1628,#1A3A6C)">
+            <img src="{{ https_url_for(request,'static', path='img/logomahrasoftAcademia.png') }}"
+                 alt="Mahrasoft Academia" style="object-fit:contain;padding:20px">
+            <div class="proj-img-overlay"></div>
+            <div class="proj-status live">● En ligne</div>
+          </div>
+          <div class="proj-body">
+            <h4>Mahrasoft Academia</h4>
+            <p>Plateforme e-learning complète — LMS avancé, classes virtuelles, certificats et suivi personnalisé des apprenants.</p>
+            <div class="proj-tech"><span>FastAPI</span><span>React</span><span>PostgreSQL</span><span>LMS</span></div>
+            <a href="https://mahrasoftacademia.com" target="_blank" rel="noopener" class="proj-link">
+              Visiter le site <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mahrasouk -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="70">
+        <div class="proj-card">
+          <div class="proj-img" style="background:linear-gradient(135deg,#0A1628,#1A3A6C)">
+            <img src="{{ https_url_for(request,'static', path='img/logo_Mahrasouk.png') }}"
+                 alt="Mahrasouk" style="object-fit:contain;padding:20px">
+            <div class="proj-img-overlay"></div>
+            <div class="proj-status live">● Actif</div>
+          </div>
+          <div class="proj-body">
+            <h4>Mahrasouk</h4>
+            <p>Marketplace tchadienne B2C — connecte commerçants et consommateurs avec paiement Mobile Money et livraison intégrée.</p>
+            <div class="proj-tech"><span>Django</span><span>React Native</span><span>Mobile Money</span></div>
+            <a href="https://mahrasouk.com" target="_blank" rel="noopener" class="proj-link">
+              Visiter le site <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHUME -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="140">
+        <div class="proj-card">
+          <div class="proj-img" style="background:linear-gradient(135deg,#5C3A24,#A47251)">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:8px">
+              <i class="bi bi-hospital-fill" style="font-size:3rem;color:rgba(255,255,255,.55)"></i>
+              <span style="font-family:var(--font-display);font-weight:900;color:#fff;font-size:1.05rem;letter-spacing:-.02em">CHUME</span>
+            </div>
+            <div class="proj-img-overlay"></div>
+            <div class="proj-status live">● En ligne</div>
+          </div>
+          <div class="proj-body">
+            <h4>CHUME N'Djamena</h4>
+            <p>Site officiel du Centre Hospitalier Universitaire — CMS, prise de rendez-vous en ligne et gestion médicale.</p>
+            <div class="proj-tech"><span>FastAPI</span><span>PostgreSQL</span><span>Jinja2</span><span>RDV</span></div>
+            <a href="https://chume-ndjamena.com" target="_blank" rel="noopener" class="proj-link">
+              Visiter le site <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARMI -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <div class="proj-card">
+          <div class="proj-img">
+            <img src="{{ https_url_for(request,'static', path='img/cours_10.jpeg') }}" alt="CARMI">
+            <div class="proj-img-overlay"></div>
+            <div class="proj-logo"><i class="bi bi-building-fill" style="color:var(--ms-blue)"></i> CARMI</div>
+            <div class="proj-status done">✓ Livré</div>
+          </div>
+          <div class="proj-body">
+            <h4>Numérisation CARMI</h4>
+            <p>Digitalisation de +500 000 dossiers militaires pour la Caisse de Retraite Militaire — OCR, indexation et GED sécurisée.</p>
+            <div class="proj-tech"><span>OCR</span><span>GED</span><span>500k+ dossiers</span><span>Sécurisé</span></div>
+            <span class="proj-link" style="color:var(--ms-muted);cursor:default">
+              Projet confidentiel
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EstructuraTchad -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="70">
+        <div class="proj-card">
+          <div class="proj-img" style="background:linear-gradient(135deg,#1A3A2A,#2D6A4F)">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:8px">
+              <i class="bi bi-building" style="font-size:3rem;color:rgba(255,255,255,.55)"></i>
+              <span style="font-family:var(--font-display);font-weight:900;color:#fff;font-size:1rem">EstructuraTchad</span>
+            </div>
+            <div class="proj-img-overlay"></div>
+            <div class="proj-status live">● En ligne</div>
+          </div>
+          <div class="proj-body">
+            <h4>EstructuraTchad</h4>
+            <p>Plateforme BTP — mise en relation professionnels du bâtiment, appels d'offres, devis et suivi de chantier.</p>
+            <div class="proj-tech"><span>FastAPI</span><span>Vue.js</span><span>BTP</span><span>Géoloc.</span></div>
+            <a href="https://estructuretchad.com" target="_blank" rel="noopener" class="proj-link">
+              Visiter le site <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MahraManager -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="140">
+        <div class="proj-card">
+          <div class="proj-img" style="background:linear-gradient(135deg,#1A1A2E,#16213E)">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:8px">
+              <i class="bi bi-kanban-fill" style="font-size:3rem;color:rgba(91,163,224,.75)"></i>
+              <span style="font-family:var(--font-display);font-weight:900;color:#fff;font-size:1rem">MahraManager</span>
+            </div>
+            <div class="proj-img-overlay"></div>
+            <div class="proj-status dev">⚡ En dev.</div>
+          </div>
+          <div class="proj-body">
+            <h4>MahraManager</h4>
+            <p>Suite ERP/CRM pour PME africaines — comptabilité, RH, facturation, gestion de projet et analytics.</p>
+            <div class="proj-tech"><span>ERP</span><span>CRM</span><span>RH</span><span>Comptabilité</span></div>
+            <a href="https://mahramanager.com" target="_blank" rel="noopener" class="proj-link">
+              Découvrir <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
-<!-- Le reste du contenu reste identique -->
-<!-- Projets Réalisés Section -->
-<section class="section-modern">
-    <div class="container">
-        <div class="section-title-modern" data-aos="fade-up">
-            <span class="section-subtitle">NOS RÉALISATIONS</span>
-            <h2 class="section-heading">Projets d'Excellence</h2>
-            <p class="section-description">
-                Découvrez nos projets phares qui transforment le paysage numérique au Tchad
-            </p>
+<!-- ════════ STATS ════════ -->
+<section class="ms-stats-dark">
+  <div class="container" style="position:relative">
+    <div class="row g-4 justify-content-center">
+      {% set stats = [
+        ('bi-file-earmark-text-fill','500k+','Dossiers numérisés'),
+        ('bi-check-circle-fill','50+','Projets livrés'),
+        ('bi-people-fill','30+','Clients satisfaits'),
+        ('bi-grid-fill','8','Produits actifs'),
+        ('bi-award-fill','3+','Années d\'expérience'),
+        ('bi-star-fill','100%','Satisfaction client')
+      ] %}
+      {% for icon, num, lbl in stats %}
+      <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 50 }}">
+        <div class="stat-box">
+          <div class="stat-icon-wrap"><i class="bi {{ icon }}"></i></div>
+          <div class="stat-num">{{ num }}</div>
+          <div class="stat-lbl">{{ lbl }}</div>
         </div>
-
-        <div class="row g-4">
-            <!-- Projet CARMI -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="project-card card-modern">
-                    <div class="project-image mb-4">
-                        <img src="{{ https_url_for(request,'static', path='img/cours_10.jpeg') }}" 
-                             alt="Projet CARMI" 
-                             class="img-fluid rounded-3">
-                    </div>
-                    <h4 class="fw-bold mb-3">Numérisation Archives CARMI</h4>
-                    <p class="text-muted mb-3">
-                        Digitalisation de plus de 500,000 dossiers d'archives militaires avec système de gestion électronique complet.
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge bg-primary px-3 py-2">
-                            <i class="bi bi-check-circle me-1"></i>Terminé
-                        </span>
-                        <span class="text-muted small">2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mahrasoft Academia -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="project-card card-modern">
-                    <div class="project-image mb-4">
-                        <img src="{{ https_url_for(request,'static', path='img/logomahrasoftAcademia.png') }}" 
-                             alt="Mahrasoft Academia" 
-                             class="img-fluid rounded-3">
-                    </div>
-                    <h4 class="fw-bold mb-3">Mahrasoft Academia</h4>
-                    <p class="text-muted mb-3">
-                        Plateforme e-learning complète avec LMS avancé, classes virtuelles et suivi personnalisé des apprenants.
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge bg-success px-3 py-2">
-                            <i class="bi bi-play-circle me-1"></i>En Ligne
-                        </span>
-                        <a href="https://mahrasoftacademia.com" target="_blank" class="text-primary fw-bold">
-                            Visiter <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mahrasouk -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="project-card card-modern">
-                    <div class="project-image mb-4">
-                        <img src="{{ https_url_for(request,'static', path='img/logo_Mahrasouk.png') }}" 
-                             alt="Mahrasouk" 
-                             class="img-fluid rounded-3">
-                    </div>
-                    <h4 class="fw-bold mb-3">Mahrasouk E-Commerce</h4>
-                    <p class="text-muted mb-3">
-                        Marketplace innovante connectant les commerçants tchadiens aux consommateurs avec paiement sécurisé.
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge bg-success px-3 py-2">
-                            <i class="bi bi-cart me-1"></i>Actif
-                        </span>
-                        <a href="https://mahrasouk.com" target="_blank" class="text-primary fw-bold">
-                            Visiter <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </section>
 
-<!-- CTA Section -->
-<section class="cta-section">
-    <div class="cta-shapes">
-        <div class="cta-shape cta-shape-1"></div>
-        <div class="cta-shape cta-shape-2"></div>
-    </div>
-    <div class="container position-relative" style="z-index: 2;">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-8" data-aos="fade-right">
-                <h2 class="display-5 fw-bold text-white mb-3">
-                    Prêt à Transformer Votre Entreprise ?
-                </h2>
-                <p class="lead text-white mb-0 opacity-90">
-                    Contactez-nous dès aujourd'hui pour discuter de vos besoins en solutions digitales et découvrir comment nous pouvons vous aider à atteindre vos objectifs.
-                </p>
-            </div>
-            <div class="col-lg-4 text-lg-end" data-aos="fade-left">
-                <a href="{{ https_url_for(request,'contact') }}" class="btn btn-light btn-lg px-5 py-3 rounded-pill fw-bold">
-                    <i class="bi bi-chat-dots-fill me-2"></i>Demander un Devis
-                </a>
-            </div>
+<!-- ════════ À PROPOS ════════ -->
+<section class="ms-section" id="about">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800">
+        <div class="about-img-wrap">
+          <img src="{{ https_url_for(request,'static', path='img/cours_1.jpeg') }}"
+               alt="Équipe Mahrasoft" class="about-img-main" loading="lazy">
+          <div class="about-badge">
+            <div class="big">3+</div>
+            <div class="small">Ans d'excellence</div>
+          </div>
         </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+        <span class="ms-tag">À Propos de Mahrasoft</span>
+        <h2 class="ms-title mt-3">Ingénieurs tchadiens,<br>solutions mondiales</h2>
+        <p style="color:var(--ms-muted);line-height:1.85;margin-bottom:26px">
+          Fondée en 2024 à N'Djaména par des ingénieurs formés en France et en Inde,
+          Mahrasoft Innovations est aujourd'hui le leader des services numériques au Tchad.
+          Notre mission : rendre la technologie accessible, locale et impactante.
+        </p>
+        <div class="mb-4">
+          {% set feats = [
+            ('bi-lightning-charge-fill','Livraison rapide','Délais optimisés grâce à des méthodologies agiles éprouvées.'),
+            ('bi-shield-check-fill','Sécurité garantie','Standards RGPD et sécurité internationale sur toutes nos solutions.'),
+            ('bi-headset','Support continu','Équipe disponible 6j/7 pour support et maintenance.'),
+            ('bi-translate','Multilingue','Français, anglais et arabe — l\'Afrique est plurielle, nos solutions aussi.')
+          ] %}
+          {% for icon, title, desc in feats %}
+          <div class="feature-item" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 50 }}">
+            <div class="feat-icon"><i class="bi {{ icon }}"></i></div>
+            <div>
+              <div class="feat-title">{{ title }}</div>
+              <p class="feat-desc">{{ desc }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="{{ https_url_for(request,'about') }}" class="btn-ms-primary">
+          <i class="bi bi-info-circle-fill"></i> En savoir plus
+        </a>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- Testimonials Section -->
-<section class="section-modern" style="background: #f9fafb;">
-    <div class="container">
-        <div class="section-title-modern" data-aos="fade-up">
-            <span class="section-subtitle">TÉMOIGNAGES</span>
-            <h2 class="section-heading">Ce Que Disent Nos Clients</h2>
-        </div>
-
-        <div class="row g-4">
-            <!-- Témoignages restent identiques -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="testimonial-card card-modern">
-                    <div class="quote-icon mb-3">
-                        <i class="bi bi-quote"></i>
-                    </div>
-                    <p class="mb-4 text-muted">
-                        "La collaboration avec Mahrasoft Innovations a transformé notre gestion documentaire. Le système mis en place nous a permis de réduire de 80% le temps de recherche des dossiers."
-                    </p>
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="flex-grow-1">
-                            <h6 class="fw-bold mb-1">Directeur des Archives</h6>
-                            <p class="text-muted small mb-0">CARMI - Caisse de Retraite Militaire</p>
-                        </div>
-                        <div class="rating text-warning">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="testimonial-card card-modern">
-                    <div class="quote-icon mb-3">
-                        <i class="bi bi-quote"></i>
-                    </div>
-                    <p class="mb-4 text-muted">
-                        "Grâce à Mahrasoft Academia, j'ai pu me former en développement web tout en continuant mon travail. La plateforme est intuitive et les formateurs très disponibles."
-                    </p>
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="flex-grow-1">
-                            <h6 class="fw-bold mb-1">Ahmed, 28 ans</h6>
-                            <p class="text-muted small mb-0">Développeur Web</p>
-                        </div>
-                        <div class="rating text-warning">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="testimonial-card card-modern">
-                    <div class="quote-icon mb-3">
-                        <i class="bi bi-quote"></i>
-                    </div>
-                    <p class="mb-4 text-muted">
-                        "Mahrasouk a transformé mon commerce traditionnel. Mes ventes ont augmenté de 300% depuis que j'ai rejoint la plateforme. Un excellent partenaire pour digitaliser son business."
-                    </p>
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="flex-grow-1">
-                            <h6 class="fw-bold mb-1">Hassan, 45 ans</h6>
-                            <p class="text-muted small mb-0">Commerçant en Artisanat</p>
-                        </div>
-                        <div class="rating text-warning">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ════════ TÉMOIGNAGES ════════ -->
+<section class="ms-section alt" id="temoignages">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Témoignages</span>
+      <h2 class="ms-title">Ce que disent nos clients</h2>
+      <p class="ms-subtitle mx-auto">Des institutions publiques aux startups, ils témoignent de l'impact réel de nos solutions.</p>
     </div>
+    <div class="row g-4">
+      {% set testis = [
+        ('C','Directeur des Archives','CARMI — Retraite Militaire','Rechercher un dossier qui prenait 2 jours ne prend plus que 30 secondes. Mahrasoft a révolutionné notre gestion documentaire.'),
+        ('A','Ahmed Mahamat','Développeur Web — ex-stagiaire','Grâce à Mahrasoft Academia, j\'ai acquis des compétences réelles en 6 mois. La formation m\'a directement conduit à un emploi.'),
+        ('H','Hassan Youssouf','Commerçant en artisanat — Mahrasouk','Mahrasouk a triplé mes ventes. Mes clients me trouvent maintenant en ligne. Mahrasoft m\'a ouvert les portes du commerce digital.'),
+        ('D','Dr. Directeur Général','CHUME N\'Djamena','Notre site avec la prise de rendez-vous en ligne a considérablement amélioré l\'accès aux soins pour nos patients.')
+      ] %}
+      {% for init, name, org, text in testis %}
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 60 }}">
+        <div class="testi-card">
+          <div class="stars">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          </div>
+          <p class="testi-text">{{ text }}</p>
+          <div class="testi-author">
+            <div class="testi-ava">{{ init }}</div>
+            <div>
+              <div class="testi-name">{{ name }}</div>
+              <div class="testi-org">{{ org }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </section>
-{% endblock %}
 
-{% block extra_css %}
-<style>
-    /* Styles unifiés pour les statistiques */
-    .hero-shapes {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
+<!-- ════════ CTA ════════ -->
+<section class="ms-cta-section">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7" data-aos="fade-right">
+        <h2>Prêt à digitaliser votre organisation ?</h2>
+        <p>Que vous soyez une institution publique, une PME ou une startup, notre équipe d'ingénieurs est prête à concevoir la solution qu'il vous faut — dans les délais et le budget convenus.</p>
+      </div>
+      <div class="col-lg-5" data-aos="fade-left">
+        <div class="d-flex gap-3 flex-wrap justify-content-lg-end">
+          <a href="{{ https_url_for(request,'contact') }}" class="btn-ms-primary">
+            <i class="bi bi-chat-dots-fill"></i> Devis gratuit
+          </a>
+          <a href="tel:+23563755858" class="btn-ms-ghost">
+            <i class="bi bi-telephone-fill"></i> +235 63 75 58 58
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    .shape {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        animation: float 20s infinite;
-    }
-
-    .shape-1 {
-        width: 300px;
-        height: 300px;
-        top: -100px;
-        left: -50px;
-        animation-delay: 0s;
-    }
-
-    .shape-2 {
-        width: 200px;
-        height: 200px;
-        top: 50%;
-        right: -50px;
-        animation-delay: 5s;
-    }
-
-    .shape-3 {
-        width: 150px;
-        height: 150px;
-        bottom: -50px;
-        left: 30%;
-        animation-delay: 10s;
-    }
-
-    .cta-section {
-        background: linear-gradient(135deg, #0066cc 0%, #5ba3e0 100%); 
-        padding: 80px 0; 
-        position: relative; 
-        overflow: hidden;
-    }
-
-    .cta-shapes {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .cta-shape {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    .cta-shape-1 {
-        width: 400px;
-        height: 400px;
-        top: -200px;
-        right: -100px;
-    }
-
-    .cta-shape-2 {
-        width: 300px;
-        height: 300px;
-        bottom: -150px;
-        left: -50px;
-    }
-
-    /* Styles pour les statistiques hero */
-    .hero-stats {
-        position: relative;
-        z-index: 3;
-    }
-
-    .stat-card-modern {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 20px;
-        min-width: 200px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        overflow: hidden;
-    }
-
-    .stat-card-modern::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-    }
-
-    .stat-card-modern:hover {
-        transform: translateY(-10px) scale(1.05);
-        background: rgba(255, 255, 255, 0.25);
-        border-color: rgba(255, 255, 255, 0.4);
-        box-shadow: 0 20px 40px rgba(0, 102, 204, 0.3);
-    }
-
-    .stat-icon-wrapper {
-        position: relative;
-        display: inline-block;
-    }
-
-    .stat-icon-inner {
-        width: 70px;
-        height: 70px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(10px);
-        transition: all 0.4s ease;
-    }
-
-    .stat-card-modern:hover .stat-icon-inner {
-        transform: scale(1.1) rotate(5deg);
-        background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.2));
-        border-color: rgba(255, 255, 255, 0.6);
-    }
-
-    .stat-icon-inner i {
-        font-size: 1.8rem;
-        color: white;
-        text-shadow: 0 2px 10px rgba(0, 102, 204, 0.5);
-    }
-
-    .stat-number {
-        font-size: 2.5rem;
-        background: linear-gradient(135deg, #ffffff, #e6f2ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 0 4px 20px rgba(0, 102, 204, 0.3);
-        letter-spacing: -0.5px;
-    }
-
-    .stat-label {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1rem;
-        font-weight: 500;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .stat-glow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        border-radius: 20px;
-    }
-
-    .stat-card-modern:hover .stat-glow {
-        opacity: 1;
-    }
-
-    .icon-box {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .quote-icon i {
-        font-size: 3rem;
-        color: #0066cc;
-        opacity: 0.2;
-    }
-
-    /* Animations */
-    @keyframes float {
-        0%, 100% {
-            transform: translateY(0) rotate(0deg);
-        }
-        50% {
-            transform: translateY(-30px) rotate(180deg);
-        }
-    }
-
-    @keyframes countUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .stat-number {
-        animation: countUp 0.8s ease-out;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .stat-card-modern {
-            min-width: 160px;
-            padding: 1.5rem 1rem;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-        }
-        
-        .stat-icon-inner {
-            width: 60px;
-            height: 60px;
-        }
-        
-        .stat-icon-inner i {
-            font-size: 1.5rem;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .hero-stats .row {
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .stat-card-modern {
-            min-width: 200px;
-            margin-bottom: 1rem;
-        }
-    }
-</style>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-    // Animation unifiée pour tous les compteurs
-    function animateCounter(element) {
-        const target = element.getAttribute('data-count').includes('%') 
-            ? parseInt(element.getAttribute('data-count'))
-            : parseInt(element.getAttribute('data-count'));
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
-
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                if (element.getAttribute('data-count').includes('%')) {
-                    element.textContent = target + '%';
-                } else {
-                    element.textContent = target.toLocaleString() + '+';
-                }
-                clearInterval(timer);
-            } else {
-                if (element.getAttribute('data-count').includes('%')) {
-                    element.textContent = Math.floor(current) + '%';
-                } else {
-                    element.textContent = Math.floor(current).toLocaleString() + '+';
-                }
-            }
-        }, 16);
-    }
-
-    // Observer pour détecter quand les éléments sont visibles
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                setTimeout(() => {
-                    animateCounter(counter);
-                }, entry.target.closest('.hero-stats') ? 300 : 0);
-                observer.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    // Observer tous les compteurs
-    document.querySelectorAll('[data-count]').forEach(counter => {
-        observer.observe(counter);
-    });
-</script>
 {% endblock %}
