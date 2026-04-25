@@ -1,13 +1,11 @@
 #!/bin/bash
 # =============================================================
 # Backend/build/entrypoint.sh — mahrasoft.com
-#
-# FIX : les dossiers /mahrasoft-app/static ne sont plus créés
-#       ici car ils sont baked dans l'image. Seuls uploads,
-#       temp et logs (montés en volumes) sont initialisés.
 # =============================================================
 
-set -eu
+set -e
+# NOTE : on n'utilise PAS set -u car RELOAD_OPT peut être vide
+# et bash -u interprète une variable vide comme non définie
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -22,39 +20,36 @@ log_debug() { echo -e "${BLUE}[DEBUG]${NC} $1"; }
 
 # ── Variables d'environnement ──────────────────────────────
 log_info "🔍 Vérification des variables d'environnement..."
-
 if [ -z "${SECRET_KEY:-}" ]; then
   log_warn "⚠️  SECRET_KEY non défini (valeur par défaut utilisée)"
 fi
 log_info "✅ Variables vérifiées"
 
 # ── Dossiers montés en volumes (uploads, temp, logs) ───────
-# ⚠️  NE PAS toucher /mahrasoft-app/static — il est baked
-#     dans l'image et doit rester intact.
+# ⚠️  NE PAS créer /mahrasoft-app/static ici — il est baked
+#     dans l'image par COPY app/ . dans le Dockerfile.
+#     Créer static ici écraserait les fichiers de l'image.
 log_info "📁 Initialisation des dossiers de données..."
 
-VOLUME_DIRS=(
-  "/mahrasoft-app/uploads/img"
-  "/mahrasoft-app/uploads/documents"
-  "/mahrasoft-app/uploads/media"
-  "/mahrasoft-app/uploads/temp"
-  "/mahrasoft-app/temp"
+for dir in \
+  "/mahrasoft-app/uploads/img" \
+  "/mahrasoft-app/uploads/documents" \
+  "/mahrasoft-app/uploads/media" \
+  "/mahrasoft-app/uploads/temp" \
+  "/mahrasoft-app/temp" \
   "/mahrasoft-app/logs"
-)
-
-for dir in "${VOLUME_DIRS[@]}"; do
+do
   mkdir -p "$dir"
   log_debug "✓ $dir"
 done
 
-if [ "${APP_DEBUG:-False}" == "True" ]; then
+if [ "${APP_DEBUG:-False}" = "True" ]; then
   chmod -R 777 /mahrasoft-app/uploads /mahrasoft-app/temp 2>/dev/null || true
   log_warn "⚠️  Permissions permissives (mode DEBUG)"
 else
   chmod -R 755 /mahrasoft-app/uploads /mahrasoft-app/temp 2>/dev/null || true
   log_info "✅ Permissions sécurisées (mode PRODUCTION)"
 fi
-
 log_info "✅ Dossiers de données initialisés"
 
 # ── Vérification des fichiers statiques ────────────────────
@@ -62,8 +57,8 @@ log_info "🔍 Vérification des fichiers statiques..."
 
 if [ ! -d "/mahrasoft-app/static" ]; then
   log_error "❌ CRITIQUE : /mahrasoft-app/static absent !"
-  log_error "   Cause probable : un volume docker-compose monte"
-  log_error "   un dossier vide sur /mahrasoft-app/static."
+  log_error "   Cause : un volume docker-compose monte un dossier vide"
+  log_error "   sur /mahrasoft-app/static et écrase les fichiers de l'image."
   log_error "   Solution : retirer le volume static du docker-compose.yml"
   exit 1
 fi
@@ -71,25 +66,20 @@ fi
 STATIC_COUNT=$(find /mahrasoft-app/static -type f 2>/dev/null | wc -l)
 if [ "$STATIC_COUNT" -eq 0 ]; then
   log_error "❌ CRITIQUE : /mahrasoft-app/static est VIDE !"
-  log_error "   Un volume vide écrase les fichiers de l'image."
   log_error "   Solution : retirer le volume static du docker-compose.yml"
   exit 1
 fi
-
 log_info "✅ Fichiers statiques présents : $STATIC_COUNT fichier(s)"
 
 # ── Vérification de main.py ────────────────────────────────
 log_info "🔍 Vérification de l'application..."
-
 if [ ! -f "/mahrasoft-app/main.py" ]; then
   log_error "❌ main.py introuvable dans /mahrasoft-app"
   ls -la /mahrasoft-app
   exit 1
 fi
-
 log_info "✅ main.py trouvé"
 
-# ── Import Python ──────────────────────────────────────────
 if python -c "import main" 2>/dev/null; then
   log_info "✅ Import Python réussi"
 else
@@ -105,13 +95,16 @@ log_info "   Debug       : ${APP_DEBUG:-False}"
 log_info "   Workers     : ${NB_WORKERS:-2}"
 log_info "   Static files: $STATIC_COUNT fichier(s)"
 
-if [ "${APP_DEBUG:-False}" == "True" ]; then
+# FIX set -eu : initialiser RELOAD_OPT avant d'utiliser set -u
+# Une variable vide avec set -u provoque : "unbound variable"
+RELOAD_OPT=""
+LOG_LEVEL="info"
+
+if [ "${APP_DEBUG:-False}" = "True" ]; then
   RELOAD_OPT="--reload"
   LOG_LEVEL="debug"
   log_warn "🚧 Mode DEBUG activé (auto-reload)"
 else
-  RELOAD_OPT=""
-  LOG_LEVEL="info"
   log_info "🚀 Mode PRODUCTION"
 fi
 
@@ -121,16 +114,17 @@ log_info "   Workers : ${NB_WORKERS:-2}"
 
 cd /mahrasoft-app
 
+# shellcheck disable=SC2086
 exec gunicorn \
-  --workers ${NB_WORKERS:-2} \
+  --workers "${NB_WORKERS:-2}" \
   --worker-class uvicorn.workers.UvicornWorker \
   --bind 0.0.0.0:8000 \
   --timeout 120 \
   --keep-alive 5 \
-  --log-level ${LOG_LEVEL} \
+  --log-level "$LOG_LEVEL" \
   --access-logfile /mahrasoft-app/logs/access.log \
   --error-logfile /mahrasoft-app/logs/error.log \
   --capture-output \
   --enable-stdio-inheritance \
-  ${RELOAD_OPT} \
+  $RELOAD_OPT \
   main:app
