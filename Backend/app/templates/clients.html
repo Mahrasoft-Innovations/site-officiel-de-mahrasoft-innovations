@@ -1,1056 +1,455 @@
 {% extends "base.html" %}
+{% block head_title %}Clients & Réussites — Mahrasoft Innovations{% endblock %}
+{% block meta_desc %}Découvrez comment Mahrasoft accompagne 30+ entreprises et institutions tchadiennes dans leur transformation digitale.{% endblock %}
 
-{% block head_title %}Clients - Mahrasoft Innovations | Témoignages et Réussites au Tchad{% endblock %}
-
-{% block carousel %}
-<!-- Page Header Modern -->
-<section class="page-header-modern" style="background: linear-gradient(135deg, #0066cc 0%, #5ba3e0 100%); position: relative; overflow: hidden; padding: 140px 0 100px;">
-    <div class="hero-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-    </div>
-    <div class="container" style="position: relative; z-index: 2;">
-        <div class="row align-items-center">
-            <div class="col-lg-10 mx-auto text-center" data-aos="fade-down" data-aos-duration="1000">
-                <nav aria-label="breadcrumb" class="mb-4">
-                    <ol class="breadcrumb justify-content-center" style="background: transparent;">
-                        <li class="breadcrumb-item">
-                            <a href="{{ https_url_for(request,'index') }}" class="text-white opacity-75 hover-white">
-                                <i class="bi bi-house me-1"></i>Accueil
-                            </a>
-                        </li>
-                        <li class="breadcrumb-item text-white active opacity-90">Clients</li>
-                    </ol>
-                </nav>
-                <span class="badge bg-white text-primary mb-4 px-4 py-3 rounded-pill shadow-sm">
-                    <i class="bi bi-trophy me-2"></i>Nos Réussites Partagées
-                </span>
-                <h1 class="display-3 fw-bold text-white mb-4 hero-title">
-                    Nos <span class="text-light-blue">Clients</span>
-                </h1>
-                <p class="lead text-white opacity-90 mb-5 fs-5">
-                    Découvrez comment nous accompagnons nos partenaires vers l'excellence numérique au Tchad
-                </p>
-                
-                <!-- Statistiques Hero Améliorées -->
-                <div class="hero-stats mt-5">
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="100">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-people-fill"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2" data-count="30">0+</h3>
-                                <p class="stat-label mb-0">Clients Satisfaits</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="200">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-check-circle-fill"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2" data-count="50">0+</h3>
-                                <p class="stat-label mb-0">Projets Réalisés</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                        <div class="col-auto" data-aos="fade-up" data-aos-delay="300">
-                            <div class="stat-card-hero text-center p-4 position-relative">
-                                <div class="stat-icon-wrapper mb-3">
-                                    <div class="stat-icon-inner">
-                                        <i class="bi bi-award-fill"></i>
-                                    </div>
-                                </div>
-                                <h3 class="stat-number fw-bold mb-2">98%</h3>
-                                <p class="stat-label mb-0">Taux de Satisfaction</p>
-                                <div class="stat-glow"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
-            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
-            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
-        </svg>
-    </div>
-</section>
-
+{% block extra_css %}
 <style>
-    .hero-shapes {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
+/* ═══════════════════════════════════════════════
+   CLIENTS PAGE — Design System v5
+   ═══════════════════════════════════════════════ */
 
-    .shape {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        animation: float 20s infinite ease-in-out;
-    }
+/* ── Stats hero ── */
+.clients-stats-row {
+  display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-end;
+}
+.clients-stat-pill {
+  text-align: center; padding: 16px 22px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: var(--radius); backdrop-filter: blur(8px);
+  min-width: 110px;
+}
+.clients-stat-pill .n {
+  font-family: var(--font-display); font-size: 1.6rem; font-weight: 900;
+  color: var(--ms-gold); line-height: 1; display: block;
+}
+.clients-stat-pill .l {
+  font-size: .64rem; color: rgba(255,255,255,.5);
+  text-transform: uppercase; letter-spacing: .08em; font-weight: 600;
+  margin-top: 4px; display: block;
+}
 
-    .shape-1 {
-        width: 400px;
-        height: 400px;
-        top: -150px;
-        left: -100px;
-        animation-delay: 0s;
-    }
+/* ── Impact section ── */
+.impact-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-lg); padding: 32px 24px; text-align: center;
+  height: 100%; transition: all .35s cubic-bezier(.4,0,.2,1);
+  position: relative; overflow: hidden;
+}
+.impact-card::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--ms-blue), var(--ms-sky));
+  transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+}
+.impact-card:hover::before { transform: scaleX(1); }
+.impact-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-6px); border-color: rgba(0,102,204,.2); }
+.impact-icon {
+  width: 64px; height: 64px; border-radius: 16px; margin: 0 auto 18px;
+  background: var(--ms-ivory); border: 1px solid var(--ms-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; color: var(--ms-blue); transition: var(--transition);
+}
+.impact-card:hover .impact-icon {
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  color: #fff; border-color: transparent;
+  box-shadow: 0 8px 20px rgba(0,102,204,.28);
+}
+.impact-pct {
+  font-family: var(--font-display); font-size: 2.4rem; font-weight: 900;
+  color: var(--ms-navy); line-height: 1; margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--ms-navy), var(--ms-blue));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.impact-label { font-size: .88rem; color: var(--ms-muted); line-height: 1.5; }
 
-    .shape-2 {
-        width: 250px;
-        height: 250px;
-        top: 20%;
-        right: -80px;
-        animation-delay: 5s;
-    }
+/* ── Service grid ── */
+.svc-client-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-lg); padding: 28px 24px;
+  height: 100%; transition: all .35s cubic-bezier(.4,0,.2,1);
+  position: relative;
+}
+.svc-client-card:hover {
+  box-shadow: var(--shadow-lg); transform: translateY(-6px);
+  border-color: rgba(0,102,204,.2);
+}
+.svc-client-icon {
+  width: 52px; height: 52px; border-radius: 13px; margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem; color: #fff; transition: var(--transition);
+  box-shadow: 0 6px 16px rgba(0,102,204,.22);
+}
+.svc-client-card:hover .svc-client-icon { transform: rotate(-6deg) scale(1.08); }
+.svc-client-card h5 { font-size: .94rem; font-weight: 800; color: var(--ms-navy); margin-bottom: 8px; }
+.svc-client-card p  { font-size: .83rem; color: var(--ms-muted); line-height: 1.7; margin: 0; }
 
-    .shape-3 {
-        width: 180px;
-        height: 180px;
-        bottom: 50px;
-        left: 25%;
-        animation-delay: 10s;
-    }
+/* ── Image frame ── */
+.clients-img-frame {
+  border-radius: var(--radius-xl); overflow: hidden;
+  box-shadow: var(--shadow-xl); position: relative;
+}
+.clients-img-frame img {
+  width: 100%; height: 340px; object-fit: cover; display: block;
+  transition: transform .55s cubic-bezier(.4,0,.2,1);
+}
+.clients-img-frame:hover img { transform: scale(1.04); }
+.clients-img-badge {
+  position: absolute; bottom: 16px; left: 16px; right: 16px;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-navy-mid));
+  color: #fff; padding: 12px 18px; border-radius: var(--radius);
+  font-family: var(--font-display); font-size: .78rem; font-weight: 800;
+  text-align: center; display: flex; align-items: center; justify-content: center;
+  gap: 7px; box-shadow: 0 8px 24px rgba(0,102,204,.35);
+  animation: float 3s ease-in-out infinite;
+}
+.clients-img-badge-top {
+  top: 16px; bottom: auto;
+}
 
-    .shape-4 {
-        width: 120px;
-        height: 120px;
-        bottom: 100px;
-        right: 20%;
-        animation-delay: 15s;
-    }
+/* ── Testimonials ── */
+.testi-card {
+  background: var(--ms-white); border: 1px solid var(--ms-border);
+  border-radius: var(--radius-xl); padding: 32px 28px;
+  height: 100%; transition: all .35s cubic-bezier(.4,0,.2,1);
+  position: relative; display: flex; flex-direction: column;
+}
+.testi-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--ms-blue), var(--ms-sky));
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+.testi-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-8px); border-color: rgba(0,102,204,.18); }
 
-    .wave-divider {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        overflow: hidden;
-        line-height: 0;
-        transform: rotate(180deg);
-    }
+.testi-avatar {
+  width: 64px; height: 64px; border-radius: 50%; margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-blue-mid));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; color: #fff;
+  box-shadow: 0 8px 20px rgba(0,102,204,.28); flex-shrink: 0;
+}
+.testi-quote-icon {
+  font-size: 2.4rem; color: var(--ms-blue); opacity: .15; line-height: 1;
+  margin-bottom: 10px; display: block;
+}
+.testi-text {
+  font-size: .88rem; color: var(--ms-muted); line-height: 1.78;
+  font-style: italic; flex: 1; margin-bottom: 20px;
+}
+.testi-name { font-size: .9rem; font-weight: 800; color: var(--ms-navy); margin-bottom: 2px; }
+.testi-role { font-size: .78rem; color: var(--ms-muted); margin-bottom: 10px; }
+.testi-stars { color: var(--ms-gold); font-size: .85rem; display: flex; gap: 2px; }
 
-    .wave-divider svg {
-        position: relative;
-        display: block;
-        width: calc(100% + 1.3px);
-        height: 80px;
-    }
-
-    .wave-divider .shape-fill {
-        fill: #FFFFFF;
-    }
-
-    @keyframes float {
-        0%, 100% {
-            transform: translateY(0) rotate(0deg);
-        }
-        33% {
-            transform: translateY(-20px) rotate(120deg);
-        }
-        66% {
-            transform: translateY(10px) rotate(240deg);
-        }
-    }
-
-    .text-light-blue {
-        color: #87CEEB !important;
-        text-shadow: 0 2px 10px rgba(135, 206, 235, 0.3);
-    }
-
-    .hover-white:hover {
-        color: white !important;
-        opacity: 1 !important;
-    }
-
-    .hero-title {
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Styles pour les statistiques hero */
-    .stat-card-hero {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 25px;
-        min-width: 180px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        overflow: hidden;
-    }
-
-    .stat-card-hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-    }
-
-    .stat-card-hero:hover {
-        transform: translateY(-15px) scale(1.08);
-        background: rgba(255, 255, 255, 0.25);
-        border-color: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 25px 50px rgba(0, 102, 204, 0.4);
-    }
-
-    .stat-icon-wrapper {
-        position: relative;
-        display: inline-block;
-    }
-
-    .stat-icon-inner {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(10px);
-        transition: all 0.4s ease;
-    }
-
-    .stat-card-hero:hover .stat-icon-inner {
-        transform: scale(1.15) rotate(10deg);
-        background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
-        border-color: rgba(255, 255, 255, 0.8);
-    }
-
-    .stat-icon-inner i {
-        font-size: 2rem;
-        color: white;
-        text-shadow: 0 2px 15px rgba(0, 102, 204, 0.6);
-    }
-
-    .stat-number {
-        font-size: 2.8rem;
-        background: linear-gradient(135deg, #ffffff, #e6f2ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 0 4px 25px rgba(0, 102, 204, 0.4);
-        letter-spacing: -1px;
-    }
-
-    .stat-label {
-        color: rgba(255, 255, 255, 0.95);
-        font-size: 1.1rem;
-        font-weight: 600;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .stat-glow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, transparent 70%);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        border-radius: 25px;
-    }
-
-    .stat-card-hero:hover .stat-glow {
-        opacity: 1;
-    }
+/* ── CTA strip ── */
+.clients-cta {
+  background: linear-gradient(135deg, var(--ms-blue), var(--ms-navy-mid));
+  border-radius: var(--radius-xl); padding: 52px 48px;
+  position: relative; overflow: hidden;
+}
+.clients-cta::before {
+  content: ''; position: absolute; top: -80px; right: -80px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: rgba(255,255,255,.06); pointer-events: none;
+}
+.clients-cta::after {
+  content: ''; position: absolute; bottom: -60px; left: -60px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: rgba(255,255,255,.04); pointer-events: none;
+}
+.cta-check-row { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.cta-check-item {
+  display: flex; align-items: center; gap: 9px;
+  font-size: .88rem; color: rgba(255,255,255,.82);
+}
+.cta-check-item i { color: var(--ms-gold); font-size: .9rem; flex-shrink: 0; }
 </style>
 {% endblock %}
 
 {% block content %}
-<!-- Introduction -->
-<section class="section-modern py-6">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 text-center" data-aos="fade-up" data-aos-duration="1000">
-                <div class="impact-badge mb-4">
-                    <span class="badge-impact">NOTRE IMPACT</span>
-                </div>
-                <h2 class="display-5 fw-bold mb-4">Comment Mahrasoft Innovations Aide Ses Clients</h2>
-                <p class="lead text-muted mb-5">
-                    Depuis plus de 2 ans, nous accompagnons entreprises et institutions dans leur transformation digitale avec des solutions innovantes et adaptées au contexte tchadien. Notre approche personnalisée garantit des résultats concrets et durables.
-                </p>
-                
-                <!-- Statistiques Impact -->
-                <div class="row g-4 mt-5">
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="impact-stat text-center p-4">
-                            <div class="impact-icon mb-3">
-                                <i class="bi bi-graph-up-arrow"></i>
-                            </div>
-                            <h3 class="fw-bold text-primary mb-2">80%</h3>
-                            <p class="text-muted mb-0">Amélioration de l'efficacité</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="impact-stat text-center p-4">
-                            <div class="impact-icon mb-3">
-                                <i class="bi bi-clock"></i>
-                            </div>
-                            <h3 class="fw-bold text-primary mb-2">70%</h3>
-                            <p class="text-muted mb-0">Réduction du temps de traitement</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="impact-stat text-center p-4">
-                            <div class="impact-icon mb-3">
-                                <i class="bi bi-currency-dollar"></i>
-                            </div>
-                            <h3 class="fw-bold text-primary mb-2">60%</h3>
-                            <p class="text-muted mb-0">Économies réalisées</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+<!-- ── Hero ─────────────────────────────────────────────── -->
+<section class="ms-page-hero">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="ms-breadcrumb">
+      <a href="{{ https_url_for(request,'index') }}">Accueil</a>
+      <i class="bi bi-chevron-right" style="font-size:.5rem"></i>
+      <a href="{{ https_url_for(request,'decouvrez/clients') }}">Découvrez</a>
+      <i class="bi bi-chevron-right" style="font-size:.5rem"></i>
+      <span>Clients</span>
     </div>
+    <div class="row align-items-end g-4">
+      <div class="col-lg-7" data-aos="fade-up">
+        <h1>Nos Clients &amp; Réussites</h1>
+        <p>30+ entreprises et institutions qui nous font confiance pour leur transformation digitale au Tchad.</p>
+      </div>
+      <div class="col-lg-5" data-aos="fade-left" data-aos-delay="80">
+        <div class="clients-stats-row">
+          <div class="clients-stat-pill"><span class="n">30+</span><span class="l">Clients</span></div>
+          <div class="clients-stat-pill"><span class="n">50+</span><span class="l">Projets</span></div>
+          <div class="clients-stat-pill"><span class="n">98%</span><span class="l">Satisfaction</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Services aux Clients -->
-<section class="section-modern py-6" style="background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);">
-    <div class="container">
-        <div class="row g-6 align-items-center">
-            <!-- Colonne Gauche -->
-            <div class="col-lg-4">
-                <div class="row g-4">
-                    <!-- Solution IT sur Mesure -->
-                    <div class="col-12" data-aos="fade-up" data-aos-delay="0">
-                        <div class="service-client-card p-5 rounded-4 h-100">
-                            <div class="service-icon mb-4">
-                                <i class="bi bi-gear"></i>
-                                <div class="icon-glow"></div>
-                            </div>
-                            <h4 class="fw-bold mb-3">Solutions IT sur Mesure</h4>
-                            <p class="text-muted mb-0">
-                                Nous développons des logiciels et des applications personnalisés qui répondent aux besoins spécifiques de chaque client, garantissant des solutions optimisées et efficaces.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Protection des Données -->
-                    <div class="col-12" data-aos="fade-up" data-aos-delay="100">
-                        <div class="service-client-card p-5 rounded-4 h-100">
-                            <div class="service-icon mb-4">
-                                <i class="bi bi-shield-check"></i>
-                                <div class="icon-glow"></div>
-                            </div>
-                            <h4 class="fw-bold mb-3">Protection Avancée des Données</h4>
-                            <p class="text-muted mb-0">
-                                Grâce à nos services de cybersécurité, nous aidons nos clients à protéger leurs données sensibles et à sécuriser leurs infrastructures contre les cybermenaces.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Accompagnement Stratégique -->
-                    <div class="col-12" data-aos="fade-up" data-aos-delay="200">
-                        <div class="service-client-card p-5 rounded-4 h-100">
-                            <div class="service-icon mb-4">
-                                <i class="bi bi-lightbulb"></i>
-                                <div class="icon-glow"></div>
-                            </div>
-                            <h4 class="fw-bold mb-3">Accompagnement Stratégique</h4>
-                            <p class="text-muted mb-0">
-                                Nous conseillons nos clients dans leur transformation numérique, en leur fournissant les meilleures pratiques et technologies pour atteindre leurs objectifs de croissance.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Image Centrale -->
-            <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
-                <div class="position-relative text-center">
-                    <div class="central-image-wrapper">
-                        <img src="{{ https_url_for(request,'static', path='img/feature.jpg') }}" 
-                             alt="Collaboration client Mahrasoft" 
-                             class="img-fluid rounded-4 shadow-lg main-image">
-                        <div class="image-badge">
-                            <div class="badge-content">
-                                <i class="bi bi-heart-fill me-2"></i>
-                                Partenaire de Votre Réussite
-                            </div>
-                            <div class="badge-glow"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Colonne Droite -->
-            <div class="col-lg-4">
-                <div class="row g-4">
-                    <!-- Analyse de Données -->
-                    <div class="col-12" data-aos="fade-up" data-aos-delay="400">
-                        <div class="service-client-card p-5 rounded-4 h-100">
-                            <div class="service-icon mb-4">
-                                <i class="bi bi-graph-up-arrow"></i>
-                                <div class="icon-glow"></div>
-                            </div>
-                            <h4 class="fw-bold mb-3">Optimisation de la Prise de Décision</h4>
-                            <p class="text-muted mb-0">
-                                Nous analysons et interprétons les données pour offrir à nos clients des insights qui améliorent leur processus décisionnel et renforcent leur compétitivité.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Support Technique -->
-                    <div class="col-12" data-aos="fade-up" data-aos-delay="500">
-                        <div class="service-client-card p-5 rounded-4 h-100">
-                            <div class="service-icon mb-4">
-                                <i class="bi bi-headset"></i>
-                                <div class="icon-glow"></div>
-                            </div>
-                            <h4 class="fw-bold mb-3">Support Technique Fiable</h4>
-                            <p class="text-muted mb-0">
-                                Nous assurons un support technique et une maintenance rapide, afin de minimiser les temps d'arrêt et de garantir la continuité des opérations de nos clients.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Formation Continue -->
-                    <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                        <div class="service-client-card p-5 rounded-4 h-100">
-                            <div class="service-icon mb-4">
-                                <i class="bi bi-mortarboard"></i>
-                                <div class="icon-glow"></div>
-                            </div>
-                            <h4 class="fw-bold mb-3">Formation Continue</h4>
-                            <p class="text-muted mb-0">
-                                Nous offrons des formations personnalisées en IT pour renforcer les compétences des équipes de nos clients, les aidant à s'adapter aux nouvelles technologies.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Deuxième Rangée -->
-        <div class="row g-6 mt-4">
-            <!-- Colonne Gauche -->
-            <div class="col-lg-4">
-                <div class="row g-4">
-                    <!-- Technologies Modernes -->
-                    <div class="col-12" data-aos="fade-up" data-aos-delay="700">
-                        <div class="service-client-card p-5 rounded-4 h-100">
-                            <div class="service-icon mb-4">
-                                <i class="bi bi-cpu"></i>
-                                <div class="icon-glow"></div>
-                            </div>
-                            <h4 class="fw-bold mb-3">Accès aux Technologies Modernes</h4>
-                            <p class="text-muted mb-0">
-                                Nous permettons à nos clients d'adopter des technologies récentes et performantes pour moderniser leurs infrastructures et rester compétitifs.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Image Centrale -->
-            <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="800">
-                <div class="position-relative text-center">
-                    <div class="central-image-wrapper">
-                        <img src="{{ https_url_for(request,'static', path='img/cours_9.jpeg') }}" 
-                             alt="Solutions innovantes Mahrasoft" 
-                             class="img-fluid rounded-4 shadow-lg main-image">
-                        <div class="image-badge top-badge">
-                            <div class="badge-content">
-                                <i class="bi bi-stars me-2"></i>
-                                Innovation & Excellence
-                            </div>
-                            <div class="badge-glow"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Colonne Droite -->
-            <div class="col-lg-4">
-                <div class="row g-4">
-                    <!-- Productivité -->
-                    <div class="col-12" data-aos="fade-up" data-aos-delay="900">
-                        <div class="service-client-card p-5 rounded-4 h-100">
-                            <div class="service-icon mb-4">
-                                <i class="bi bi-speedometer2"></i>
-                                <div class="icon-glow"></div>
-                            </div>
-                            <h4 class="fw-bold mb-3">Amélioration de la Productivité</h4>
-                            <p class="text-muted mb-0">
-                                En automatisant les processus et en optimisant les systèmes, nous aidons nos clients à accroître leur productivité et à réduire les coûts opérationnels.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Partenariat -->
-                    <div class="col-12" data-aos="fade-up" data-aos-delay="1000">
-                        <div class="service-client-card p-5 rounded-4 h-100">
-                            <div class="service-icon mb-4">
-                                <i class="bi bi-handshake"></i>
-                                <div class="icon-glow"></div>
-                            </div>
-                            <h4 class="fw-bold mb-3">Partenariat à Long Terme</h4>
-                            <p class="text-muted mb-0">
-                                Nous travaillons avec nos clients en tant que partenaires de confiance, les accompagnant à chaque étape de leur croissance avec un soutien continu.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Solutions Durables -->
-                    <div class="col-12" data-aos="fade-up" data-aos-delay="1100">
-                        <div class="service-client-card p-5 rounded-4 h-100">
-                            <div class="service-icon mb-4">
-                                <i class="bi bi-tree"></i>
-                                <div class="icon-glow"></div>
-                            </div>
-                            <h4 class="fw-bold mb-3">Solutions Innovantes et Durables</h4>
-                            <p class="text-muted mb-0">
-                                Nous intégrons des technologies modernes et des approches durables pour aider nos clients à rester à la pointe de l'innovation.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ── Impact chiffré ────────────────────────────────────── -->
+<section class="ms-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Notre Impact</span>
+      <h2 class="ms-title">Des résultats mesurables</h2>
+      <p class="ms-subtitle mx-auto">Depuis 2022, nos solutions produisent des résultats concrets et documentés chez chaque client.</p>
     </div>
+    <div class="row g-4">
+      {% set impacts = [
+        ('bi-graph-up-arrow', '80%', "Amélioration de l'efficacité opérationnelle"),
+        ('bi-clock-history', '70%', 'Réduction du temps de traitement des dossiers'),
+        ('bi-cash-stack', '60%', 'Économies réalisées sur les coûts opérationnels'),
+        ('bi-shield-check', '100%', 'Sécurité et conformité des données garanties'),
+      ] %}
+      {% for icon, pct, label in impacts %}
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 65 }}">
+        <div class="impact-card">
+          <div class="impact-icon"><i class="bi {{ icon }}"></i></div>
+          <div class="impact-pct">{{ pct }}</div>
+          <div class="impact-label">{{ label }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </section>
 
-<!-- Témoignages Clients -->
-<section class="section-modern py-6">
-    <div class="container">
-        <div class="section-title-modern text-center mb-6" data-aos="fade-up" data-aos-duration="1000">
-            <span class="section-subtitle">TÉMOIGNAGES</span>
-            <h2 class="section-heading">Ce Que Disent Nos Clients</h2>
-            <p class="section-description">
-                Découvrez les retours d'expérience de nos partenaires satisfaits qui nous font confiance
-            </p>
-        </div>
-
-        <div class="row g-5">
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
-                <div class="testimonial-card text-center p-5 rounded-4 h-100">
-                    <div class="client-avatar mb-4 mx-auto">
-                        <div class="avatar-wrapper">
-                            <i class="bi bi-building"></i>
-                        </div>
-                        <div class="avatar-glow"></div>
-                    </div>
-                    <div class="quote-icon mb-4">
-                        <i class="bi bi-quote"></i>
-                    </div>
-                    <p class="testimonial-text mb-5">
-                        "Mahrasoft a transformé notre gestion documentaire. Le système de numérisation nous a permis de réduire de 80% le temps de recherche des dossiers. Un partenaire fiable et professionnel qui comprend nos besoins spécifiques."
-                    </p>
-                    <div class="client-info">
-                        <h6 class="fw-bold mb-2">Directeur des Archives</h6>
-                        <p class="text-muted small mb-3">CARMI - Caisse de Retraite Militaire</p>
-                        <div class="rating text-warning">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="testimonial-card text-center p-5 rounded-4 h-100">
-                    <div class="client-avatar mb-4 mx-auto">
-                        <div class="avatar-wrapper">
-                            <i class="bi bi-shop"></i>
-                        </div>
-                        <div class="avatar-glow"></div>
-                    </div>
-                    <div class="quote-icon mb-4">
-                        <i class="bi bi-quote"></i>
-                    </div>
-                    <p class="testimonial-text mb-5">
-                        "Grâce à Mahrasouk, notre plateforme e-commerce, nos ventes ont augmenté de 300%. L'équipe de Mahrasoft a su comprendre nos besoins et livrer une solution parfaite avec un support exceptionnel."
-                    </p>
-                    <div class="client-info">
-                        <h6 class="fw-bold mb-2">Commerçant Partenaire</h6>
-                        <p class="text-muted small mb-3">Mahrasouk Marketplace</p>
-                        <div class="rating text-warning">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="testimonial-card text-center p-5 rounded-4 h-100">
-                    <div class="client-avatar mb-4 mx-auto">
-                        <div class="avatar-wrapper">
-                            <i class="bi bi-mortarboard"></i>
-                        </div>
-                        <div class="avatar-glow"></div>
-                    </div>
-                    <div class="quote-icon mb-4">
-                        <i class="bi bi-quote"></i>
-                    </div>
-                    <p class="testimonial-text mb-5">
-                        "La plateforme Mahrasoft Academia a révolutionné notre approche de la formation. Les cours sont accessibles, bien structurés et le support technique est réactif. Une véritable valeur ajoutée pour notre institution."
-                    </p>
-                    <div class="client-info">
-                        <h6 class="fw-bold mb-2">Responsable Formation</h6>
-                        <p class="text-muted small mb-3">Institution Partenaire</p>
-                        <div class="rating text-warning">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ── Services aux clients — grille alternée ────────────── -->
+<section class="ms-section alt">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Ce que nous offrons</span>
+      <h2 class="ms-title">Comment nous accompagnons nos clients</h2>
+      <p class="ms-subtitle mx-auto">Une approche complète qui couvre tous les aspects de votre transformation digitale.</p>
     </div>
+
+    <!-- Rangée 1 -->
+    <div class="row g-4 align-items-center mb-5">
+      <div class="col-lg-8">
+        <div class="row g-4">
+          {% set svcs1 = [
+            ('bi-gear-fill', 'Solutions IT sur Mesure', "Logiciels et applications personnalisés selon vos besoins — pas de solutions génériques."),
+            ('bi-shield-lock-fill', 'Protection Avancée des Données', 'Cybersécurité, chiffrement AES-256, sauvegardes redondantes et conformité réglementaire.'),
+            ('bi-lightbulb-fill', 'Accompagnement Stratégique', 'Conseil en transformation numérique, choix des technologies et feuille de route digitale.'),
+            ('bi-bar-chart-fill', 'Prise de Décision par les Données', "Analytics, Power BI, tableaux de bord temps réel — décidez avec des données fiables."),
+          ] %}
+          {% for icon, title, desc in svcs1 %}
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 55 }}">
+            <div class="svc-client-card">
+              <div class="svc-client-icon"><i class="bi {{ icon }}"></i></div>
+              <h5>{{ title }}</h5>
+              <p>{{ desc }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-left" data-aos-delay="100">
+        <div class="clients-img-frame">
+          <img src="{{ https_url_for(request,'static', path='img/feature.jpg') }}"
+               alt="Collaboration client Mahrasoft" loading="lazy">
+          <div class="clients-img-badge">
+            <i class="bi bi-heart-fill"></i> Partenaire de votre réussite
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rangée 2 -->
+    <div class="row g-4 align-items-center flex-lg-row-reverse">
+      <div class="col-lg-8">
+        <div class="row g-4">
+          {% set svcs2 = [
+            ('bi-headset', 'Support Technique Fiable', 'Maintenance réactive, monitoring 24/7 et interventions rapides pour zéro interruption.'),
+            ('bi-mortarboard-fill', 'Formation Continue', 'Programmes sur mesure pour vos équipes via Mahrasoft Academia — en présentiel ou à distance.'),
+            ('bi-cpu-fill', 'Technologies Modernes', "IA, Machine Learning, cloud, mobile — vous adoptez les outils qui font la différence."),
+            ('bi-speedometer2', 'Productivité Améliorée', "Automatisation des processus répétitifs, intégration des systèmes et optimisation des workflows."),
+          ] %}
+          {% for icon, title, desc in svcs2 %}
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 55 }}">
+            <div class="svc-client-card">
+              <div class="svc-client-icon"><i class="bi {{ icon }}"></i></div>
+              <h5>{{ title }}</h5>
+              <p>{{ desc }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-right" data-aos-delay="100">
+        <div class="clients-img-frame">
+          <img src="{{ https_url_for(request,'static', path='img/cours_9.jpeg') }}"
+               alt="Innovation Mahrasoft" loading="lazy">
+          <div class="clients-img-badge clients-img-badge-top">
+            <i class="bi bi-stars"></i> Innovation &amp; Excellence
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<!-- CTA Amélioré -->
-<section class="section-modern py-6" style="background: linear-gradient(135deg, #0066cc 0%, #5ba3e0 100%); position: relative; overflow: hidden;">
-    <div class="particles-container">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+<!-- ── Témoignages ──────────────────────────────────────── -->
+<section class="ms-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Témoignages</span>
+      <h2 class="ms-title">Ce que disent nos clients</h2>
+      <p class="ms-subtitle mx-auto">Des partenaires satisfaits qui témoignent de l'impact réel de nos solutions.</p>
     </div>
-    <div class="container position-relative" style="z-index: 2;">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-8" data-aos="fade-right" data-aos-duration="1000">
-                <h2 class="display-5 fw-bold text-white mb-4">
-                    Prêt à Devenir Notre Prochain Client Satisfait ?
-                </h2>
-                <p class="lead text-white mb-4 opacity-90 fs-5">
-                    Rejoignez les 30+ entreprises qui nous font confiance pour leur transformation digitale au Tchad.
-                </p>
-                <div class="cta-features">
-                    <div class="cta-feature">
-                        <i class="bi bi-check-circle-fill text-white"></i>
-                        <span class="text-white opacity-90">Solutions personnalisées</span>
-                    </div>
-                    <div class="cta-feature">
-                        <i class="bi bi-check-circle-fill text-white"></i>
-                        <span class="text-white opacity-90">Support technique 24/7</span>
-                    </div>
-                    <div class="cta-feature">
-                        <i class="bi bi-check-circle-fill text-white"></i>
-                        <span class="text-white opacity-90">Résultats garantis</span>
-                    </div>
-                </div>
+    <div class="row g-4">
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0">
+        <div class="testi-card">
+          <div class="d-flex align-items-center gap-3 mb-16" style="margin-bottom:16px">
+            <div class="testi-avatar"><i class="bi bi-building"></i></div>
+            <div>
+              <div class="testi-name">Directeur des Archives</div>
+              <div class="testi-role">CARMI — Caisse de Retraite Militaire</div>
+              <div class="testi-stars">
+                {% for _ in range(5) %}<i class="bi bi-star-fill"></i>{% endfor %}
+              </div>
             </div>
-            <div class="col-lg-4 text-lg-end" data-aos="fade-left" data-aos-duration="1000">
-                <a href="{{ https_url_for(request,'contact') }}" class="btn btn-light btn-lg px-5 py-3 rounded-pill fw-bold shadow-lg">
-                    <i class="bi bi-rocket-takeoff me-2"></i>Devenir Client
-                </a>
-            </div>
+          </div>
+          <i class="bi bi-quote testi-quote-icon"></i>
+          <p class="testi-text">"Mahrasoft a transformé notre gestion documentaire. Le système de numérisation nous a permis de réduire de 80% le temps de recherche des dossiers. Un partenaire fiable qui comprend nos besoins spécifiques."</p>
         </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="80">
+        <div class="testi-card">
+          <div class="d-flex align-items-center gap-3" style="margin-bottom:16px">
+            <div class="testi-avatar"><i class="bi bi-shop"></i></div>
+            <div>
+              <div class="testi-name">Commerçant Partenaire</div>
+              <div class="testi-role">Mahrasouk Marketplace</div>
+              <div class="testi-stars">
+                {% for _ in range(5) %}<i class="bi bi-star-fill"></i>{% endfor %}
+              </div>
+            </div>
+          </div>
+          <i class="bi bi-quote testi-quote-icon"></i>
+          <p class="testi-text">"Grâce à Mahrasouk, notre plateforme e-commerce, nos ventes ont augmenté de 300%. L'équipe Mahrasoft a su comprendre nos besoins et livrer une solution parfaite avec un support exceptionnel."</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="160">
+        <div class="testi-card">
+          <div class="d-flex align-items-center gap-3" style="margin-bottom:16px">
+            <div class="testi-avatar"><i class="bi bi-mortarboard"></i></div>
+            <div>
+              <div class="testi-name">Responsable Formation</div>
+              <div class="testi-role">Institution Partenaire</div>
+              <div class="testi-stars">
+                {% for _ in range(5) %}<i class="bi bi-star-fill"></i>{% endfor %}
+              </div>
+            </div>
+          </div>
+          <i class="bi bi-quote testi-quote-icon"></i>
+          <p class="testi-text">"Mahrasoft Academia a révolutionné notre approche de la formation. Cours accessibles, bien structurés, support technique réactif. Une véritable valeur ajoutée pour notre institution."</p>
+        </div>
+      </div>
+
     </div>
+  </div>
 </section>
 
-<style>
-    .py-6 {
-        padding: 6rem 0;
-    }
+<!-- ── Partenaires longue durée ─────────────────────────── -->
+<section class="ms-section alt">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="ms-tag">Partenaires</span>
+      <h2 class="ms-title">Ils nous font confiance</h2>
+      <p class="ms-subtitle mx-auto">Institutions publiques, entreprises privées et organisations qui ont choisi Mahrasoft.</p>
+    </div>
+    <div class="row g-3" data-aos="fade-up" data-aos-delay="80">
+      {% set partners = [
+        ('bi-building-fill-gear','CARMI','Retraite Militaire'),
+        ('bi-bank2','ONAPE','Office National'),
+        ('bi-shield-fill','DGSSIE','Direction Générale'),
+        ('bi-receipt','DGI','Direction des Impôts'),
+        ('bi-diagram-3-fill','TCHAD CARMI','Ressources Humaines'),
+        ('bi-mortarboard-fill','Enastic','École Nationale'),
+        ('bi-shop','Mahrasouk','E-commerce'),
+        ('bi-laptop','Secteur Privé','Entreprises'),
+      ] %}
+      {% for icon, name, cat in partners %}
+      <div class="col-6 col-md-3 col-lg-3">
+        <div style="background:var(--ms-white);border:1px solid var(--ms-border);border-radius:var(--radius-lg);padding:20px 16px;text-align:center;transition:var(--transition);"
+             onmouseover="this.style.boxShadow=`var(--shadow)`;this.style.borderColor=`rgba(0,102,204,.2)`;this.style.transform=`translateY(-4px)`"
+             onmouseout="this.style.boxShadow='';this.style.borderColor='var(--ms-border)';this.style.transform=''">
+          <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--ms-blue),var(--ms-blue-mid));display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;margin:0 auto 12px;box-shadow:0 4px 12px rgba(0,102,204,.22)">
+            <i class="bi {{ icon }}"></i>
+          </div>
+          <div style="font-family:var(--font-display);font-size:.84rem;font-weight:800;color:var(--ms-navy)">{{ name }}</div>
+          <div style="font-size:.7rem;color:var(--ms-muted)">{{ cat }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-    .mb-6 {
-        margin-bottom: 6rem;
-    }
+<!-- ── CTA ──────────────────────────────────────────────── -->
+<section class="ms-section">
+  <div class="container" data-aos="zoom-in">
+    <div class="clients-cta">
+      <div class="row align-items-center g-4" style="position:relative;z-index:2">
+        <div class="col-lg-8">
+          <h2 style="color:#fff;font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:10px;letter-spacing:-.02em">
+            Prêt à rejoindre nos clients satisfaits ?
+          </h2>
+          <p style="color:rgba(255,255,255,.72);font-size:.95rem;line-height:1.75;margin-bottom:0">
+            Rejoignez les 30+ entreprises qui nous font confiance pour leur transformation digitale au Tchad.
+          </p>
+          <div class="cta-check-row">
+            <div class="cta-check-item"><i class="bi bi-check-circle-fill"></i> Solutions personnalisées à votre contexte</div>
+            <div class="cta-check-item"><i class="bi bi-check-circle-fill"></i> Support technique réactif</div>
+            <div class="cta-check-item"><i class="bi bi-check-circle-fill"></i> Résultats mesurables et documentés</div>
+          </div>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <a href="{{ https_url_for(request,'contact') }}" class="btn-ms-ghost">
+            <i class="bi bi-rocket-takeoff-fill"></i> Devenir client
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    /* Styles pour l'introduction */
-    .impact-badge {
-        margin-bottom: 2rem;
-    }
-
-    .badge-impact {
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        color: white;
-        padding: 0.75rem 2rem;
-        border-radius: 25px;
-        font-weight: 600;
-        font-size: 0.9rem;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-
-    .impact-stat {
-        transition: all 0.3s ease;
-    }
-
-    .impact-stat:hover {
-        transform: translateY(-5px);
-    }
-
-    .impact-icon {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, rgba(0, 102, 204, 0.1), rgba(91, 163, 224, 0.1));
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        color: #0066cc;
-        margin: 0 auto;
-        transition: all 0.3s ease;
-    }
-
-    .impact-stat:hover .impact-icon {
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        color: white;
-        transform: scale(1.1);
-    }
-
-    /* Styles pour les cartes de service */
-    .service-client-card {
-        background: white;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border: 2px solid transparent;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .service-client-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 25px 50px rgba(0, 102, 204, 0.2);
-        border-color: rgba(0, 102, 204, 0.2);
-    }
-
-    .service-icon {
-        position: relative;
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        color: white;
-        transition: all 0.3s ease;
-    }
-
-    .service-client-card:hover .service-icon {
-        transform: scale(1.1) rotate(5deg);
-        box-shadow: 0 15px 30px rgba(0, 102, 204, 0.4);
-    }
-
-    .icon-glow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
-        border-radius: 20px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .service-client-card:hover .icon-glow {
-        opacity: 1;
-    }
-
-    /* Styles pour les images centrales */
-    .central-image-wrapper {
-        position: relative;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    }
-
-    .main-image {
-        transition: transform 0.5s ease;
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-    }
-
-    .central-image-wrapper:hover .main-image {
-        transform: scale(1.05);
-    }
-
-    .image-badge {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        right: 20px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        padding: 15px 20px;
-        border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 102, 204, 0.4);
-        animation: float-badge 3s ease-in-out infinite;
-    }
-
-    .top-badge {
-        top: 20px;
-        bottom: auto;
-    }
-
-    .badge-content {
-        color: white;
-        font-weight: 600;
-        font-size: 1rem;
-        text-align: center;
-    }
-
-    .badge-glow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
-        border-radius: 15px;
-        opacity: 0.5;
-    }
-
-    @keyframes float-badge {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-5px); }
-    }
-
-    /* Styles pour les témoignages */
-    .testimonial-card {
-        background: white;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border: 2px solid transparent;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .testimonial-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 25px 50px rgba(0, 102, 204, 0.15);
-        border-color: rgba(0, 102, 204, 0.2);
-    }
-
-    .client-avatar {
-        position: relative;
-    }
-
-    .avatar-wrapper {
-        width: 100px;
-        height: 100px;
-        background: linear-gradient(135deg, #0066cc, #5ba3e0);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        color: white;
-        position: relative;
-        z-index: 2;
-    }
-
-    .avatar-glow {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 120px;
-        height: 120px;
-        background: radial-gradient(circle, rgba(0,102,204,0.2) 0%, transparent 70%);
-        border-radius: 50%;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .testimonial-card:hover .avatar-glow {
-        opacity: 1;
-    }
-
-    .quote-icon {
-        font-size: 3rem;
-        color: #0066cc;
-        opacity: 0.2;
-        transition: all 0.3s ease;
-    }
-
-    .testimonial-card:hover .quote-icon {
-        opacity: 0.4;
-        transform: scale(1.1);
-    }
-
-    .testimonial-text {
-        color: #6c757d;
-        line-height: 1.7;
-        font-style: italic;
-        position: relative;
-    }
-
-    .testimonial-text::before {
-        content: '"';
-        font-size: 4rem;
-        color: #0066cc;
-        opacity: 0.1;
-        position: absolute;
-        top: -20px;
-        left: -10px;
-        font-family: serif;
-    }
-
-    .rating {
-        font-size: 1.2rem;
-    }
-
-    /* Styles pour les particules CTA */
-    .particles-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .particle {
-        position: absolute;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        animation: float-particle 15s infinite linear;
-    }
-
-    .particle:nth-child(1) { width: 20px; height: 20px; top: 10%; left: 10%; animation-delay: 0s; }
-    .particle:nth-child(2) { width: 15px; height: 15px; top: 30%; left: 80%; animation-delay: 2s; }
-    .particle:nth-child(3) { width: 25px; height: 25px; top: 70%; left: 20%; animation-delay: 4s; }
-    .particle:nth-child(4) { width: 18px; height: 18px; top: 50%; left: 60%; animation-delay: 6s; }
-    .particle:nth-child(5) { width: 22px; height: 22px; top: 80%; left: 90%; animation-delay: 8s; }
-
-    @keyframes float-particle {
-        0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-    }
-
-    .cta-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        margin-top: 1.5rem;
-    }
-
-    .cta-feature {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .py-6 {
-            padding: 4rem 0;
-        }
-        
-        .service-client-card {
-            padding: 2rem !important;
-        }
-        
-        .central-image-wrapper {
-            margin: 2rem 0;
-        }
-        
-        .testimonial-card {
-            padding: 2rem !important;
-        }
-        
-        .cta-features {
-            flex-direction: column;
-            gap: 1rem;
-        }
-    }
-</style>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    // Animation des compteurs améliorée
-    function animateCounter(element) {
-        const target = parseInt(element.getAttribute('data-count'));
-        const duration = 2500;
-        const startTime = Date.now();
-        const startValue = 0;
-
-        function updateCounter() {
-            const currentTime = Date.now();
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            // Easing function for smooth animation
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart);
-
-            element.textContent = currentValue.toLocaleString() + '+';
-
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            } else {
-                element.textContent = target.toLocaleString() + '+';
-            }
-        }
-
-        requestAnimationFrame(updateCounter);
-    }
-
-    // Observer pour les compteurs
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                setTimeout(() => {
-                    animateCounter(counter);
-                }, 200);
-                observer.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    // Observer tous les compteurs
-    document.querySelectorAll('[data-count]').forEach(counter => {
-        observer.observe(counter);
-    });
-
-    // Animation au scroll pour les éléments avec data-aos
-    document.addEventListener('DOMContentLoaded', function() {
-        const aosObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('[data-aos]').forEach(element => {
-            aosObserver.observe(element);
-        });
-    });
+// Compteurs animés
+const counters = document.querySelectorAll('.n[data-count]');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '+';
+    const dur = 1800;
+    const start = Date.now();
+    (function tick() {
+      const p = Math.min((Date.now() - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(ease * target) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    })();
+    io.unobserve(el);
+  });
+}, { threshold: .3 });
+counters.forEach(c => io.observe(c));
 </script>
 {% endblock %}
