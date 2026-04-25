@@ -186,37 +186,37 @@ async def ping():
 @app.get("/", response_class=HTMLResponse, tags=["Pages"])
 async def index(request: Request):
     return templates.TemplateResponse(
-        request, "index.html", {"current": "index"}
+        request=request, name="index.html", context={"current": "index"}
     )
 
 @app.get("/about", response_class=HTMLResponse, tags=["Pages"])
 async def about(request: Request):
     return templates.TemplateResponse(
-        request, "about.html", {"current": "about"}
+        request=request, name="about.html", context={"current": "about"}
     )
 
 @app.get("/service", response_class=HTMLResponse, tags=["Pages"])
 async def service(request: Request):
     return templates.TemplateResponse(
-        request, "service.html", {"current": "service"}
+        request=request, name="service.html", context={"current": "service"}
     )
 
 @app.get("/blog", response_class=HTMLResponse, tags=["Pages"])
 async def blog(request: Request):
     return templates.TemplateResponse(
-        request, "blog.html", {"current": "blog"}
+        request=request, name="blog.html", context={"current": "blog"}
     )
 
 @app.get("/detail", response_class=HTMLResponse, tags=["Pages"])
 async def detail(request: Request):
     return templates.TemplateResponse(
-        request, "detail.html", {"current": "detail"}
+        request=request, name="detail.html", context={"current": "detail"}
     )
 
 @app.get("/contact", response_class=HTMLResponse, tags=["Pages"])
 async def contact(request: Request):
     return templates.TemplateResponse(
-        request, "contact.html", {"current": "contact"}
+        request=request, name="contact.html", context={"current": "contact"}
     )
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -225,19 +225,19 @@ async def contact(request: Request):
 @app.get("/decouvrez/valeurs", response_class=HTMLResponse, tags=["Découvrez"])
 async def valeurs(request: Request):
     return templates.TemplateResponse(
-        request, "valeurs.html", {"current": "valeurs"}
+        request=request, name="valeurs.html", context={"current": "valeurs"}
     )
 
 @app.get("/decouvrez/clients", response_class=HTMLResponse, tags=["Découvrez"])
 async def clients(request: Request):
     return templates.TemplateResponse(
-        request, "clients.html", {"current": "clients"}
+        request=request, name="clients.html", context={"current": "clients"}
     )
 
 @app.get("/decouvrez/strategie", response_class=HTMLResponse, tags=["Découvrez"])
 async def strategie(request: Request):
     return templates.TemplateResponse(
-        request, "strategie.html", {"current": "strategie"}
+        request=request, name="strategie.html", context={"current": "strategie"}
     )
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -246,9 +246,9 @@ async def strategie(request: Request):
 @app.get("/carrieres/rechercherpostuler", response_class=HTMLResponse, tags=["Carrières"])
 async def rechercher_postuler(request: Request):
     return templates.TemplateResponse(
-        request,
-        "rechercherpostuler.html",
-        {"current": "rechercherpostuler", "posts": posts},
+        request=request,
+        name="rechercherpostuler.html",
+        context={"current": "rechercherpostuler", "posts": posts},
     )
 
 @app.get("/carrieres/job/{id}", response_class=HTMLResponse, tags=["Carrières"])
@@ -256,37 +256,36 @@ async def job(id: str, request: Request):
     post = next((p for p in posts if p["id"] == id), None)
     if post:
         return templates.TemplateResponse(
-            request, "job.html", {"post": post}
+            request=request, name="job.html", context={"post": post}
         )
-    # FIX : {"request": request} obligatoire pour Starlette 0.36+
     return templates.TemplateResponse(
-        request, "404.html", {"request": request}, status_code=404
+        request=request, name="404.html", context={}, status_code=404
     )
 
 @app.get("/carrieres/jeunediplomes", response_class=HTMLResponse, tags=["Carrières"])
 async def jeune_diplomes(request: Request):
     return templates.TemplateResponse(
-        request, "jeunediplomes.html", {"current": "jeunediplomes"}
+        request=request, name="jeunediplomes.html", context={"current": "jeunediplomes"}
     )
 
 @app.get("/carrieres/etudiants", response_class=HTMLResponse, tags=["Carrières"])
 async def etudiants(request: Request):
     return templates.TemplateResponse(
-        request, "etudiants.html", {"current": "etudiants"}
+        request=request, name="etudiants.html", context={"current": "etudiants"}
     )
 
 @app.get("/carrieres/formation", response_class=HTMLResponse, tags=["Carrières"])
 async def formation(request: Request):
     return templates.TemplateResponse(
-        request, "formation.html", {"current": "formation"}
+        request=request, name="formation.html", context={"current": "formation"}
     )
 
 @app.get("/carrieres/environnementdetravail", response_class=HTMLResponse, tags=["Carrières"])
 async def environnement_travail(request: Request):
     return templates.TemplateResponse(
-        request,
-        "environnementdetravail.html",
-        {"current": "environnementdetravail"},
+        request=request,
+        name="environnementdetravail.html",
+        context={"current": "environnementdetravail"},
     )
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -303,9 +302,8 @@ async def not_found(request: Request, exc: HTTPException):
                 "timestamp": datetime.now().isoformat(),
             },
         )
-    # FIX : {"request": request} obligatoire — sans ça → ValueError → 500
     return templates.TemplateResponse(
-        request, "404.html", {"request": request}, status_code=404
+        request=request, name="404.html", context={}, status_code=404
     )
 
 @app.exception_handler(500)
